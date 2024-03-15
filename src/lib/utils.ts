@@ -1,3 +1,5 @@
+import { type Route } from "next";
+
 /**
  * Type guard for enums.
  */
@@ -6,6 +8,20 @@ export function isEnumValue<T extends Record<string, string>>(
   value: string,
 ): value is T[keyof T] {
   return Object.values(obj).includes(value);
+}
+
+/**
+ * Check that `child` is a subroute of `parent`.
+ */
+export function isSubRouteOf(parent: Route, child: Route): boolean {
+  return child.startsWith(parent);
+}
+
+/**
+ * Add return query to a route if it exists.
+ */
+export function buildReturnUrl(route: Route, returnUrl: string | null): Route {
+  return returnUrl === null ? route : `${route}?return=${returnUrl}`;
 }
 
 /**

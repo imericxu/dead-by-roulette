@@ -7,6 +7,7 @@
     "next/core-web-vitals",
     "standard-with-typescript",
     "plugin:react/recommended",
+    "plugin:import/recommended",
     "prettier"
   ],
   "parserOptions": {
@@ -16,6 +17,8 @@
   "plugins": ["react", "only-warn"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
+    "@typescript-eslint/no-unsafe-argument": "error",
     "@typescript-eslint/strict-boolean-expressions": "off"
   }
 }

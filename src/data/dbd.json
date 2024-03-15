@@ -8,32 +8,9 @@
         "bigImg": "/images/large-portraits/killers/the-trapper.png",
         "power": "Bear Trap",
         "powerImg": "/images/killer-powers/bear-trap.png",
-        "perkIds": [
-          0,
-          1,
-          2
-        ],
+        "perkIds": [0, 1, 2],
         "addOnIds": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12,
-          13,
-          14,
-          15,
-          16,
-          17,
-          18,
-          19
+          0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
         ]
       },
       {
@@ -43,32 +20,10 @@
         "bigImg": "/images/large-portraits/killers/the-wraith.png",
         "power": "Wailing Bell",
         "powerImg": "/images/killer-powers/wailing-bell.png",
-        "perkIds": [
-          3,
-          4,
-          5
-        ],
+        "perkIds": [3, 4, 5],
         "addOnIds": [
-          20,
-          21,
-          22,
-          23,
-          24,
-          25,
-          26,
-          27,
-          28,
-          29,
-          30,
-          31,
-          32,
-          33,
-          34,
-          35,
-          36,
-          37,
-          38,
-          39
+          20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36,
+          37, 38, 39
         ]
       },
       {
@@ -78,32 +33,10 @@
         "bigImg": "/images/large-portraits/killers/the-hillbilly.png",
         "power": "Chainsaw",
         "powerImg": "/images/killer-powers/chainsaw.png",
-        "perkIds": [
-          6,
-          7,
-          8
-        ],
+        "perkIds": [6, 7, 8],
         "addOnIds": [
-          40,
-          41,
-          42,
-          43,
-          44,
-          45,
-          46,
-          47,
-          48,
-          49,
-          50,
-          51,
-          52,
-          53,
-          54,
-          55,
-          56,
-          57,
-          58,
-          59
+          40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56,
+          57, 58, 59
         ]
       },
       {
@@ -113,32 +46,10 @@
         "bigImg": "/images/large-portraits/killers/the-nurse.png",
         "power": "Spencer’s Last Breath",
         "powerImg": "/images/killer-powers/spencers-last-breath.png",
-        "perkIds": [
-          9,
-          10,
-          11
-        ],
+        "perkIds": [9, 10, 11],
         "addOnIds": [
-          60,
-          61,
-          62,
-          63,
-          64,
-          65,
-          66,
-          67,
-          68,
-          69,
-          70,
-          71,
-          72,
-          73,
-          74,
-          75,
-          76,
-          77,
-          78,
-          79
+          60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76,
+          77, 78, 79
         ]
       },
       {
@@ -148,32 +59,10 @@
         "bigImg": "/images/large-portraits/killers/the-shape.png",
         "power": "Evil Within",
         "powerImg": "/images/killer-powers/evil-within.png",
-        "perkIds": [
-          12,
-          13,
-          14
-        ],
+        "perkIds": [12, 13, 14],
         "addOnIds": [
-          80,
-          81,
-          82,
-          83,
-          84,
-          85,
-          86,
-          87,
-          88,
-          89,
-          90,
-          91,
-          92,
-          93,
-          94,
-          95,
-          96,
-          97,
-          98,
-          99
+          80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96,
+          97, 98, 99
         ]
       },
       {
@@ -183,32 +72,10 @@
         "bigImg": "/images/large-portraits/killers/the-hag.png",
         "power": "Blackened Catalyst",
         "powerImg": "/images/killer-powers/blackened-catalyst.png",
-        "perkIds": [
-          15,
-          16,
-          17
-        ],
+        "perkIds": [15, 16, 17],
         "addOnIds": [
-          100,
-          101,
-          102,
-          103,
-          104,
-          105,
-          106,
-          107,
-          108,
-          109,
-          110,
-          111,
-          112,
-          113,
-          114,
-          115,
-          116,
-          117,
-          118,
-          119
+          100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113,
+          114, 115, 116, 117, 118, 119
         ]
       },
       {
@@ -218,32 +85,10 @@
         "bigImg": "/images/large-portraits/killers/the-doctor.png",
         "power": "Carter’s Spark",
         "powerImg": "/images/killer-powers/carters-spark.png",
-        "perkIds": [
-          18,
-          19,
-          20
-        ],
+        "perkIds": [18, 19, 20],
         "addOnIds": [
-          120,
-          121,
-          122,
-          123,
-          124,
-          125,
-          126,
-          127,
-          128,
-          129,
-          130,
-          131,
-          132,
-          133,
-          134,
-          135,
-          136,
-          137,
-          138,
-          139
+          120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133,
+          134, 135, 136, 137, 138, 139
         ]
       },
       {
@@ -253,32 +98,10 @@
         "bigImg": "/images/large-portraits/killers/the-huntress.png",
         "power": "Hunting Hatchets",
         "powerImg": "/images/killer-powers/hunting-hatchets.png",
-        "perkIds": [
-          21,
-          22,
-          23
-        ],
+        "perkIds": [21, 22, 23],
         "addOnIds": [
-          140,
-          141,
-          142,
-          143,
-          144,
-          145,
-          146,
-          147,
-          148,
-          149,
-          150,
-          151,
-          152,
-          153,
-          154,
-          155,
-          156,
-          157,
-          158,
-          159
+          140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153,
+          154, 155, 156, 157, 158, 159
         ]
       },
       {
@@ -288,32 +111,10 @@
         "bigImg": "/images/large-portraits/killers/the-cannibal.png",
         "power": "Bubba’s Chainsaw",
         "powerImg": "/images/killer-powers/bubbas-chainsaw.png",
-        "perkIds": [
-          24,
-          25,
-          26
-        ],
+        "perkIds": [24, 25, 26],
         "addOnIds": [
-          160,
-          161,
-          162,
-          163,
-          164,
-          165,
-          166,
-          167,
-          168,
-          169,
-          170,
-          171,
-          172,
-          173,
-          174,
-          175,
-          176,
-          177,
-          178,
-          179
+          160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173,
+          174, 175, 176, 177, 178, 179
         ]
       },
       {
@@ -323,32 +124,10 @@
         "bigImg": "/images/large-portraits/killers/the-nightmare.png",
         "power": "Dream Demon",
         "powerImg": "/images/killer-powers/dream-demon.png",
-        "perkIds": [
-          27,
-          28,
-          29
-        ],
+        "perkIds": [27, 28, 29],
         "addOnIds": [
-          180,
-          181,
-          182,
-          183,
-          184,
-          185,
-          186,
-          187,
-          188,
-          189,
-          190,
-          191,
-          192,
-          193,
-          194,
-          195,
-          196,
-          197,
-          198,
-          199
+          180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193,
+          194, 195, 196, 197, 198, 199
         ]
       },
       {
@@ -358,32 +137,10 @@
         "bigImg": "/images/large-portraits/killers/the-pig.png",
         "power": "Jigsaw’s Baptism",
         "powerImg": "/images/killer-powers/jigsaws-baptism.png",
-        "perkIds": [
-          30,
-          31,
-          32
-        ],
+        "perkIds": [30, 31, 32],
         "addOnIds": [
-          200,
-          201,
-          202,
-          203,
-          204,
-          205,
-          206,
-          207,
-          208,
-          209,
-          210,
-          211,
-          212,
-          213,
-          214,
-          215,
-          216,
-          217,
-          218,
-          219
+          200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213,
+          214, 215, 216, 217, 218, 219
         ]
       },
       {
@@ -393,32 +150,10 @@
         "bigImg": "/images/large-portraits/killers/the-clown.png",
         "power": "The Afterpiece Tonic",
         "powerImg": "/images/killer-powers/the-afterpiece-tonic.png",
-        "perkIds": [
-          33,
-          34,
-          35
-        ],
+        "perkIds": [33, 34, 35],
         "addOnIds": [
-          220,
-          221,
-          222,
-          223,
-          224,
-          225,
-          226,
-          227,
-          228,
-          229,
-          230,
-          231,
-          232,
-          233,
-          234,
-          235,
-          236,
-          237,
-          238,
-          239
+          220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233,
+          234, 235, 236, 237, 238, 239
         ]
       },
       {
@@ -428,32 +163,10 @@
         "bigImg": "/images/large-portraits/killers/the-spirit.png",
         "power": "Yamaoka’s Haunting",
         "powerImg": "/images/killer-powers/yamaokas-haunting.png",
-        "perkIds": [
-          36,
-          37,
-          38
-        ],
+        "perkIds": [36, 37, 38],
         "addOnIds": [
-          240,
-          241,
-          242,
-          243,
-          244,
-          245,
-          246,
-          247,
-          248,
-          249,
-          250,
-          251,
-          252,
-          253,
-          254,
-          255,
-          256,
-          257,
-          258,
-          259
+          240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253,
+          254, 255, 256, 257, 258, 259
         ]
       },
       {
@@ -463,32 +176,10 @@
         "bigImg": "/images/large-portraits/killers/the-pig.png",
         "power": "Feral Frenzy",
         "powerImg": "/images/killer-powers/feral-frenzy.png",
-        "perkIds": [
-          39,
-          40,
-          41
-        ],
+        "perkIds": [39, 40, 41],
         "addOnIds": [
-          260,
-          261,
-          262,
-          263,
-          264,
-          265,
-          266,
-          267,
-          268,
-          269,
-          270,
-          271,
-          272,
-          273,
-          274,
-          275,
-          276,
-          277,
-          278,
-          279
+          260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273,
+          274, 275, 276, 277, 278, 279
         ]
       },
       {
@@ -498,32 +189,10 @@
         "bigImg": "/images/large-portraits/killers/the-plague.png",
         "power": "Vile Purge",
         "powerImg": "/images/killer-powers/vile-purge.png",
-        "perkIds": [
-          42,
-          43,
-          44
-        ],
+        "perkIds": [42, 43, 44],
         "addOnIds": [
-          280,
-          281,
-          282,
-          283,
-          284,
-          285,
-          286,
-          287,
-          288,
-          289,
-          290,
-          291,
-          292,
-          293,
-          294,
-          295,
-          296,
-          297,
-          298,
-          299
+          280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293,
+          294, 295, 296, 297, 298, 299
         ]
       },
       {
@@ -533,32 +202,10 @@
         "bigImg": "/images/large-portraits/killers/the-ghost-face.png",
         "power": "Night Shroud",
         "powerImg": "/images/killer-powers/night-shroud.png",
-        "perkIds": [
-          45,
-          46,
-          47
-        ],
+        "perkIds": [45, 46, 47],
         "addOnIds": [
-          300,
-          301,
-          302,
-          303,
-          304,
-          305,
-          306,
-          307,
-          308,
-          309,
-          310,
-          311,
-          312,
-          313,
-          314,
-          315,
-          316,
-          317,
-          318,
-          319
+          300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313,
+          314, 315, 316, 317, 318, 319
         ]
       },
       {
@@ -568,32 +215,10 @@
         "bigImg": "/images/large-portraits/killers/the-demogorgon.png",
         "power": "Of the Abyss",
         "powerImg": "/images/killer-powers/of-the-abyss.png",
-        "perkIds": [
-          48,
-          49,
-          50
-        ],
+        "perkIds": [48, 49, 50],
         "addOnIds": [
-          320,
-          321,
-          322,
-          323,
-          324,
-          325,
-          326,
-          327,
-          328,
-          329,
-          330,
-          331,
-          332,
-          333,
-          334,
-          335,
-          336,
-          337,
-          338,
-          339
+          320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333,
+          334, 335, 336, 337, 338, 339
         ]
       },
       {
@@ -603,32 +228,10 @@
         "bigImg": "/images/large-portraits/killers/the-oni.png",
         "power": "Yamaoka’s Wrath",
         "powerImg": "/images/killer-powers/yamaokas-wrath.png",
-        "perkIds": [
-          51,
-          52,
-          53
-        ],
+        "perkIds": [51, 52, 53],
         "addOnIds": [
-          340,
-          341,
-          342,
-          343,
-          344,
-          345,
-          346,
-          347,
-          348,
-          349,
-          350,
-          351,
-          352,
-          353,
-          354,
-          355,
-          356,
-          357,
-          358,
-          359
+          340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353,
+          354, 355, 356, 357, 358, 359
         ]
       },
       {
@@ -638,32 +241,10 @@
         "bigImg": "/images/large-portraits/killers/the-deathslinger.png",
         "power": "The Redeemer",
         "powerImg": "/images/killer-powers/the-redeemer.png",
-        "perkIds": [
-          54,
-          55,
-          56
-        ],
+        "perkIds": [54, 55, 56],
         "addOnIds": [
-          360,
-          361,
-          362,
-          363,
-          364,
-          365,
-          366,
-          367,
-          368,
-          369,
-          370,
-          371,
-          372,
-          373,
-          374,
-          375,
-          376,
-          377,
-          378,
-          379
+          360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373,
+          374, 375, 376, 377, 378, 379
         ]
       },
       {
@@ -673,32 +254,10 @@
         "bigImg": "/images/large-portraits/killers/the-executioner.png",
         "power": "Rites of Judgement",
         "powerImg": "/images/killer-powers/rites-of-judgement.png",
-        "perkIds": [
-          57,
-          58,
-          59
-        ],
+        "perkIds": [57, 58, 59],
         "addOnIds": [
-          380,
-          381,
-          382,
-          383,
-          384,
-          385,
-          386,
-          387,
-          388,
-          389,
-          390,
-          391,
-          392,
-          393,
-          394,
-          395,
-          396,
-          397,
-          398,
-          399
+          380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393,
+          394, 395, 396, 397, 398, 399
         ]
       },
       {
@@ -708,32 +267,10 @@
         "bigImg": "/images/large-portraits/killers/the-blight.png",
         "power": "Blighted Corruption",
         "powerImg": "/images/killer-powers/blighted-corruption.png",
-        "perkIds": [
-          60,
-          61,
-          62
-        ],
+        "perkIds": [60, 61, 62],
         "addOnIds": [
-          400,
-          401,
-          402,
-          403,
-          404,
-          405,
-          406,
-          407,
-          408,
-          409,
-          410,
-          411,
-          412,
-          413,
-          414,
-          415,
-          416,
-          417,
-          418,
-          419
+          400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413,
+          414, 415, 416, 417, 418, 419
         ]
       },
       {
@@ -743,32 +280,10 @@
         "bigImg": "/images/large-portraits/killers/the-twins.png",
         "power": "Blood Bond",
         "powerImg": "/images/killer-powers/blood-bond.png",
-        "perkIds": [
-          63,
-          64,
-          65
-        ],
+        "perkIds": [63, 64, 65],
         "addOnIds": [
-          420,
-          421,
-          422,
-          423,
-          424,
-          425,
-          426,
-          427,
-          428,
-          429,
-          430,
-          431,
-          432,
-          433,
-          434,
-          435,
-          436,
-          437,
-          438,
-          439
+          420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433,
+          434, 435, 436, 437, 438, 439
         ]
       },
       {
@@ -778,32 +293,10 @@
         "bigImg": "/images/large-portraits/killers/the-trickster.png",
         "power": "Showstopper",
         "powerImg": "/images/killer-powers/showstopper.png",
-        "perkIds": [
-          66,
-          67,
-          68
-        ],
+        "perkIds": [66, 67, 68],
         "addOnIds": [
-          440,
-          441,
-          442,
-          443,
-          444,
-          445,
-          446,
-          447,
-          448,
-          449,
-          450,
-          451,
-          452,
-          453,
-          454,
-          455,
-          456,
-          457,
-          458,
-          459
+          440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453,
+          454, 455, 456, 457, 458, 459
         ]
       },
       {
@@ -813,32 +306,10 @@
         "bigImg": "/images/large-portraits/killers/the-nemesis.png",
         "power": "T-Virus",
         "powerImg": "/images/killer-powers/t-virus.png",
-        "perkIds": [
-          69,
-          70,
-          71
-        ],
+        "perkIds": [69, 70, 71],
         "addOnIds": [
-          460,
-          461,
-          462,
-          463,
-          464,
-          465,
-          466,
-          467,
-          468,
-          469,
-          470,
-          471,
-          472,
-          473,
-          474,
-          475,
-          476,
-          477,
-          478,
-          479
+          460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473,
+          474, 475, 476, 477, 478, 479
         ]
       },
       {
@@ -848,32 +319,10 @@
         "bigImg": "/images/large-portraits/killers/the-cenobite.png",
         "power": "Summons of Pain",
         "powerImg": "/images/killer-powers/summons-of-pain.png",
-        "perkIds": [
-          72,
-          73,
-          74
-        ],
+        "perkIds": [72, 73, 74],
         "addOnIds": [
-          480,
-          481,
-          482,
-          483,
-          484,
-          485,
-          486,
-          487,
-          488,
-          489,
-          490,
-          491,
-          492,
-          493,
-          494,
-          495,
-          496,
-          497,
-          498,
-          499
+          480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493,
+          494, 495, 496, 497, 498, 499
         ]
       },
       {
@@ -883,32 +332,10 @@
         "bigImg": "/images/large-portraits/killers/the-artist.png",
         "power": "Birds of Torment",
         "powerImg": "/images/killer-powers/birds-of-torment.png",
-        "perkIds": [
-          75,
-          76,
-          77
-        ],
+        "perkIds": [75, 76, 77],
         "addOnIds": [
-          500,
-          501,
-          502,
-          503,
-          504,
-          505,
-          506,
-          507,
-          508,
-          509,
-          510,
-          511,
-          512,
-          513,
-          514,
-          515,
-          516,
-          517,
-          518,
-          519
+          500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513,
+          514, 515, 516, 517, 518, 519
         ]
       },
       {
@@ -918,32 +345,10 @@
         "bigImg": "/images/large-portraits/killers/the-onryo.png",
         "power": "Deluge of Fear",
         "powerImg": "/images/killer-powers/deluge-of-fear.png",
-        "perkIds": [
-          78,
-          79,
-          80
-        ],
+        "perkIds": [78, 79, 80],
         "addOnIds": [
-          520,
-          521,
-          522,
-          523,
-          524,
-          525,
-          526,
-          527,
-          528,
-          529,
-          530,
-          531,
-          532,
-          533,
-          534,
-          535,
-          536,
-          537,
-          538,
-          539
+          520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533,
+          534, 535, 536, 537, 538, 539
         ]
       },
       {
@@ -953,32 +358,10 @@
         "bigImg": "/images/large-portraits/killers/the-dredge.png",
         "power": "Reign of Darkness",
         "powerImg": "/images/killer-powers/reign-of-darkness.png",
-        "perkIds": [
-          81,
-          82,
-          83
-        ],
+        "perkIds": [81, 82, 83],
         "addOnIds": [
-          540,
-          541,
-          542,
-          543,
-          544,
-          545,
-          546,
-          547,
-          548,
-          549,
-          550,
-          551,
-          552,
-          553,
-          554,
-          555,
-          556,
-          557,
-          558,
-          559
+          540, 541, 542, 543, 544, 545, 546, 547, 548, 549, 550, 551, 552, 553,
+          554, 555, 556, 557, 558, 559
         ]
       },
       {
@@ -988,32 +371,10 @@
         "bigImg": "/images/large-portraits/killers/the-mastermind.png",
         "power": "Virulent Bound",
         "powerImg": "/images/killer-powers/virulent-bound.png",
-        "perkIds": [
-          84,
-          85,
-          86
-        ],
+        "perkIds": [84, 85, 86],
         "addOnIds": [
-          560,
-          561,
-          562,
-          563,
-          564,
-          565,
-          566,
-          567,
-          568,
-          569,
-          570,
-          571,
-          572,
-          573,
-          574,
-          575,
-          576,
-          577,
-          578,
-          579
+          560, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 573,
+          574, 575, 576, 577, 578, 579
         ]
       },
       {
@@ -1023,32 +384,10 @@
         "bigImg": "/images/large-portraits/killers/the-knight.png",
         "power": "Guardia Compagnia",
         "powerImg": "/images/killer-powers/guardia-compagnia.png",
-        "perkIds": [
-          87,
-          88,
-          89
-        ],
+        "perkIds": [87, 88, 89],
         "addOnIds": [
-          580,
-          581,
-          582,
-          583,
-          584,
-          585,
-          586,
-          587,
-          588,
-          589,
-          590,
-          591,
-          592,
-          593,
-          594,
-          595,
-          596,
-          597,
-          598,
-          599
+          580, 581, 582, 583, 584, 585, 586, 587, 588, 589, 590, 591, 592, 593,
+          594, 595, 596, 597, 598, 599
         ]
       },
       {
@@ -1058,32 +397,10 @@
         "bigImg": "/images/large-portraits/killers/the-skull-merchant.png",
         "power": "Eyes in the Sky",
         "powerImg": "/images/killer-powers/eyes-in-the-sky.png",
-        "perkIds": [
-          90,
-          91,
-          92
-        ],
+        "perkIds": [90, 91, 92],
         "addOnIds": [
-          600,
-          601,
-          602,
-          603,
-          604,
-          605,
-          606,
-          607,
-          608,
-          609,
-          610,
-          611,
-          612,
-          613,
-          614,
-          615,
-          616,
-          617,
-          618,
-          619
+          600, 601, 602, 603, 604, 605, 606, 607, 608, 609, 610, 611, 612, 613,
+          614, 615, 616, 617, 618, 619
         ]
       },
       {
@@ -1093,32 +410,10 @@
         "bigImg": "/images/large-portraits/killers/the-singularity.png",
         "power": "Quantum Instantiation",
         "powerImg": "/images/killer-powers/quantum-instantiation.png",
-        "perkIds": [
-          93,
-          94,
-          95
-        ],
+        "perkIds": [93, 94, 95],
         "addOnIds": [
-          620,
-          621,
-          622,
-          623,
-          624,
-          625,
-          626,
-          627,
-          628,
-          629,
-          630,
-          631,
-          632,
-          633,
-          634,
-          635,
-          636,
-          637,
-          638,
-          639
+          620, 621, 622, 623, 624, 625, 626, 627, 628, 629, 630, 631, 632, 633,
+          634, 635, 636, 637, 638, 639
         ]
       },
       {
@@ -1128,32 +423,10 @@
         "bigImg": "/images/large-portraits/killers/the-xenomorph.png",
         "power": "Hidden Pursuit",
         "powerImg": "/images/killer-powers/hidden-pursuit.png",
-        "perkIds": [
-          96,
-          97,
-          98
-        ],
+        "perkIds": [96, 97, 98],
         "addOnIds": [
-          640,
-          641,
-          642,
-          643,
-          644,
-          645,
-          646,
-          647,
-          648,
-          649,
-          650,
-          651,
-          652,
-          653,
-          654,
-          655,
-          656,
-          657,
-          658,
-          659
+          640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 650, 651, 652, 653,
+          654, 655, 656, 657, 658, 659
         ]
       },
       {
@@ -1163,32 +436,10 @@
         "bigImg": "/images/large-portraits/killers/the-good-guy-chucky.png",
         "power": "Playtime’s Over",
         "powerImg": "/images/killer-powers/playtimes-over.png",
-        "perkIds": [
-          99,
-          100,
-          101
-        ],
+        "perkIds": [99, 100, 101],
         "addOnIds": [
-          660,
-          661,
-          662,
-          663,
-          664,
-          665,
-          666,
-          667,
-          668,
-          669,
-          670,
-          671,
-          672,
-          673,
-          674,
-          675,
-          676,
-          677,
-          678,
-          679
+          660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 672, 673,
+          674, 675, 676, 677, 678, 679
         ]
       }
     ],
@@ -6029,440 +5280,280 @@
         "name": "Dwight Fairfield",
         "img": "/images/portraits/survivors/dwight-fairfield.png",
         "bigImg": "/images/large-portraits/survivors/dwight-fairfield.png",
-        "perkIds": [
-          115,
-          116,
-          117
-        ]
+        "perkIds": [115, 116, 117]
       },
       {
         "id": 35,
         "name": "Meg Thomas",
         "img": "/images/portraits/survivors/meg-thomas.png",
         "bigImg": "/images/large-portraits/survivors/meg-thomas.png",
-        "perkIds": [
-          118,
-          119,
-          120
-        ]
+        "perkIds": [118, 119, 120]
       },
       {
         "id": 36,
         "name": "Claudette Morel",
         "img": "/images/portraits/survivors/claudette-morel.png",
         "bigImg": "/images/large-portraits/survivors/claudette-morel.png",
-        "perkIds": [
-          121,
-          122,
-          123
-        ]
+        "perkIds": [121, 122, 123]
       },
       {
         "id": 37,
         "name": "Jake Park",
         "img": "/images/portraits/survivors/jake-park.png",
         "bigImg": "/images/large-portraits/survivors/jake-park.png",
-        "perkIds": [
-          124,
-          125,
-          126
-        ]
+        "perkIds": [124, 125, 126]
       },
       {
         "id": 38,
         "name": "Nea Karlsson",
         "img": "/images/portraits/survivors/nea-karlsson.png",
         "bigImg": "/images/large-portraits/survivors/nea-karlsson.png",
-        "perkIds": [
-          127,
-          128,
-          129
-        ]
+        "perkIds": [127, 128, 129]
       },
       {
         "id": 39,
         "name": "Laurie Strode",
         "img": "/images/portraits/survivors/laurie-strode.png",
         "bigImg": "/images/large-portraits/survivors/laurie-strode.png",
-        "perkIds": [
-          130,
-          131,
-          132
-        ]
+        "perkIds": [130, 131, 132]
       },
       {
         "id": 40,
         "name": "Ace Visconti",
         "img": "/images/portraits/survivors/ace-visconti.png",
         "bigImg": "/images/large-portraits/survivors/ace-visconti.png",
-        "perkIds": [
-          133,
-          134,
-          135
-        ]
+        "perkIds": [133, 134, 135]
       },
       {
         "id": 41,
         "name": "William “Bill” Overbeck",
         "img": "/images/portraits/survivors/william-bill-overbeck.png",
         "bigImg": "/images/large-portraits/survivors/william-bill-overbeck.png",
-        "perkIds": [
-          136,
-          137,
-          138
-        ]
+        "perkIds": [136, 137, 138]
       },
       {
         "id": 42,
         "name": "Feng Min",
         "img": "/images/portraits/survivors/feng-min.png",
         "bigImg": "/images/large-portraits/survivors/feng-min.png",
-        "perkIds": [
-          139,
-          140,
-          141
-        ]
+        "perkIds": [139, 140, 141]
       },
       {
         "id": 43,
         "name": "David King",
         "img": "/images/portraits/survivors/david-king.png",
         "bigImg": "/images/large-portraits/survivors/david-king.png",
-        "perkIds": [
-          142,
-          143,
-          144
-        ]
+        "perkIds": [142, 143, 144]
       },
       {
         "id": 44,
         "name": "Quentin Smith",
         "img": "/images/portraits/survivors/quentin-smith.png",
         "bigImg": "/images/large-portraits/survivors/quentin-smith.png",
-        "perkIds": [
-          145,
-          146,
-          147
-        ]
+        "perkIds": [145, 146, 147]
       },
       {
         "id": 45,
         "name": "Detective David Tapp",
         "img": "/images/portraits/survivors/detective-david-tapp.png",
         "bigImg": "/images/large-portraits/survivors/detective-david-tapp.png",
-        "perkIds": [
-          148,
-          149,
-          150
-        ]
+        "perkIds": [148, 149, 150]
       },
       {
         "id": 46,
         "name": "Kate Denson",
         "img": "/images/portraits/survivors/kate-denson.png",
         "bigImg": "/images/large-portraits/survivors/kate-denson.png",
-        "perkIds": [
-          151,
-          152,
-          153
-        ]
+        "perkIds": [151, 152, 153]
       },
       {
         "id": 47,
         "name": "Adam Francis",
         "img": "/images/portraits/survivors/adam-francis.png",
         "bigImg": "/images/large-portraits/survivors/adam-francis.png",
-        "perkIds": [
-          154,
-          155,
-          156
-        ]
+        "perkIds": [154, 155, 156]
       },
       {
         "id": 48,
         "name": "Jeffrey “Jeff” Johansen",
         "img": "/images/portraits/survivors/jeffrey-jeff-johansen.png",
         "bigImg": "/images/large-portraits/survivors/jeffrey-jeff-johansen.png",
-        "perkIds": [
-          157,
-          158,
-          159
-        ]
+        "perkIds": [157, 158, 159]
       },
       {
         "id": 49,
         "name": "Jane Romero",
         "img": "/images/portraits/survivors/jane-romero.png",
         "bigImg": "/images/large-portraits/survivors/jane-romero.png",
-        "perkIds": [
-          160,
-          161,
-          162
-        ]
+        "perkIds": [160, 161, 162]
       },
       {
         "id": 50,
         "name": "Ashley J. Williams",
         "img": "/images/portraits/survivors/ashley-j-williams.png",
         "bigImg": "/images/large-portraits/survivors/ashley-j-williams.png",
-        "perkIds": [
-          163,
-          164,
-          165
-        ]
+        "perkIds": [163, 164, 165]
       },
       {
         "id": 51,
         "name": "Nancy Wheeler",
         "img": "/images/portraits/survivors/nancy-wheeler.png",
         "bigImg": "/images/large-portraits/survivors/nancy-wheeler.png",
-        "perkIds": [
-          166,
-          167,
-          168
-        ]
+        "perkIds": [166, 167, 168]
       },
       {
         "id": 52,
         "name": "Steve Harrington",
         "img": "/images/portraits/survivors/steve-harrington.png",
         "bigImg": "/images/large-portraits/survivors/steve-harrington.png",
-        "perkIds": [
-          169,
-          170,
-          171
-        ]
+        "perkIds": [169, 170, 171]
       },
       {
         "id": 53,
         "name": "Yui Kimura",
         "img": "/images/portraits/survivors/yui-kimura.png",
         "bigImg": "/images/large-portraits/survivors/yui-kimura.png",
-        "perkIds": [
-          172,
-          173,
-          174
-        ]
+        "perkIds": [172, 173, 174]
       },
       {
         "id": 54,
         "name": "Zarina Kassir",
         "img": "/images/portraits/survivors/zarina-kassir.png",
         "bigImg": "/images/large-portraits/survivors/zarina-kassir.png",
-        "perkIds": [
-          175,
-          176,
-          177
-        ]
+        "perkIds": [175, 176, 177]
       },
       {
         "id": 55,
         "name": "Cheryl Mason",
         "img": "/images/portraits/survivors/cheryl-mason.png",
         "bigImg": "/images/large-portraits/survivors/cheryl-mason.png",
-        "perkIds": [
-          178,
-          179,
-          180
-        ]
+        "perkIds": [178, 179, 180]
       },
       {
         "id": 56,
         "name": "Felix Richter",
         "img": "/images/portraits/survivors/felix-richter.png",
         "bigImg": "/images/large-portraits/survivors/felix-richter.png",
-        "perkIds": [
-          181,
-          182,
-          183
-        ]
+        "perkIds": [181, 182, 183]
       },
       {
         "id": 57,
         "name": "Élodie Rakoto",
         "img": "/images/portraits/survivors/elodie-rakoto.png",
         "bigImg": "/images/large-portraits/survivors/elodie-rakoto.png",
-        "perkIds": [
-          184,
-          185,
-          186
-        ]
+        "perkIds": [184, 185, 186]
       },
       {
         "id": 58,
         "name": "Yun-Jin Lee",
         "img": "/images/portraits/survivors/yun-jin-lee.png",
         "bigImg": "/images/large-portraits/survivors/yun-jin-lee.png",
-        "perkIds": [
-          187,
-          188,
-          189
-        ]
+        "perkIds": [187, 188, 189]
       },
       {
         "id": 59,
         "name": "Jill Valentine",
         "img": "/images/portraits/survivors/jill-valentine.png",
         "bigImg": "/images/large-portraits/survivors/jill-valentine.png",
-        "perkIds": [
-          190,
-          191,
-          192
-        ]
+        "perkIds": [190, 191, 192]
       },
       {
         "id": 60,
         "name": "Leon S. Kennedy",
         "img": "/images/portraits/survivors/lean-s-kennedy.png",
         "bigImg": "/images/large-portraits/survivors/leon-s-kennedy.png",
-        "perkIds": [
-          193,
-          194,
-          195
-        ]
+        "perkIds": [193, 194, 195]
       },
       {
         "id": 61,
         "name": "Mikaela Reid",
         "img": "/images/portraits/survivors/mikaela-reid.png",
         "bigImg": "/images/large-portraits/survivors/mikaela-reid.png",
-        "perkIds": [
-          196,
-          197,
-          198
-        ]
+        "perkIds": [196, 197, 198]
       },
       {
         "id": 62,
         "name": "Jonah Vasquez",
         "img": "/images/portraits/survivors/jonah-vasquez.png",
         "bigImg": "/images/large-portraits/survivors/jonah-vasquez.png",
-        "perkIds": [
-          199,
-          200,
-          201
-        ]
+        "perkIds": [199, 200, 201]
       },
       {
         "id": 63,
         "name": "Yoichi Asakawa",
         "img": "/images/portraits/survivors/yoichi-asakawa.png",
         "bigImg": "/images/large-portraits/survivors/yoichi-asakawa.png",
-        "perkIds": [
-          202,
-          203,
-          204
-        ]
+        "perkIds": [202, 203, 204]
       },
       {
         "id": 64,
         "name": "Haddie Kaur",
         "img": "/images/portraits/survivors/haddie-kaur.png",
         "bigImg": "/images/large-portraits/survivors/haddie-kaur.png",
-        "perkIds": [
-          205,
-          206,
-          207
-        ]
+        "perkIds": [205, 206, 207]
       },
       {
         "id": 65,
         "name": "Ada Wong",
         "img": "/images/portraits/survivors/ada-wong.png",
         "bigImg": "/images/large-portraits/survivors/ada-wong.png",
-        "perkIds": [
-          208,
-          209,
-          210
-        ]
+        "perkIds": [208, 209, 210]
       },
       {
         "id": 66,
         "name": "Rebecca Chambers",
         "img": "/images/portraits/survivors/rebecca-chambers.png",
         "bigImg": "/images/large-portraits/survivors/rebecca-chambers.png",
-        "perkIds": [
-          211,
-          212,
-          213
-        ]
+        "perkIds": [211, 212, 213]
       },
       {
         "id": 67,
         "name": "Vittorio Toscano",
         "img": "/images/portraits/survivors/vittorio-toscano.png",
         "bigImg": "/images/large-portraits/survivors/vittorio-toscano.png",
-        "perkIds": [
-          214,
-          215,
-          216
-        ]
+        "perkIds": [214, 215, 216]
       },
       {
         "id": 68,
         "name": "Thalita Lyra",
         "img": "/images/portraits/survivors/thalita-lyra.png",
         "bigImg": "/images/large-portraits/survivors/thalita-lyra.png",
-        "perkIds": [
-          217,
-          218,
-          219
-        ]
+        "perkIds": [217, 218, 219]
       },
       {
         "id": 69,
         "name": "Renato Lyra",
         "img": "/images/portraits/survivors/renato-lyra.png",
         "bigImg": "/images/large-portraits/survivors/renato-lyra.png",
-        "perkIds": [
-          220,
-          221,
-          222
-        ]
+        "perkIds": [220, 221, 222]
       },
       {
         "id": 70,
         "name": "Gabriel Soma",
         "img": "/images/portraits/survivors/gabriel-soma.png",
         "bigImg": "/images/large-portraits/survivors/gabriel-soma.png",
-        "perkIds": [
-          223,
-          224,
-          225
-        ]
+        "perkIds": [223, 224, 225]
       },
       {
         "id": 71,
         "name": "Nicolas Cage",
         "img": "/images/portraits/survivors/nicolas-cage.png",
         "bigImg": "/images/large-portraits/survivors/nicolas-cage.png",
-        "perkIds": [
-          226,
-          227,
-          228
-        ]
+        "perkIds": [226, 227, 228]
       },
       {
         "id": 72,
         "name": "Ellen Ripley",
         "img": "/images/portraits/survivors/ellen-ripley.png",
         "bigImg": "/images/large-portraits/survivors/ellen-ripley.png",
-        "perkIds": [
-          229,
-          230,
-          231
-        ]
+        "perkIds": [229, 230, 231]
       },
       {
         "id": 73,
         "name": "Alan Wake",
         "img": "/images/portraits/survivors/alan-wake.png",
         "bigImg": "/images/large-portraits/survivors/alan-wake.png",
-        "perkIds": [
-          232,
-          233,
-          234
-        ]
+        "perkIds": [232, 233, 234]
       }
     ],
     "itemTypes": [
@@ -6470,119 +5561,40 @@
         "id": 0,
         "name": "Flashlights",
         "img": "/images/items/item-flashlights.png",
-        "itemIds": [
-          0,
-          1,
-          2
-        ],
+        "itemIds": [0, 1, 2],
         "addOnIds": [
-          680,
-          681,
-          682,
-          683,
-          684,
-          685,
-          686,
-          687,
-          688,
-          689,
-          690,
-          691,
-          692
+          680, 681, 682, 683, 684, 685, 686, 687, 688, 689, 690, 691, 692
         ]
       },
       {
         "id": 1,
         "name": "Keys",
         "img": "/images/items/item-keys.png",
-        "itemIds": [
-          3,
-          4,
-          5
-        ],
-        "addOnIds": [
-          693,
-          694,
-          695,
-          696,
-          697,
-          698,
-          699,
-          700,
-          701
-        ]
+        "itemIds": [3, 4, 5],
+        "addOnIds": [693, 694, 695, 696, 697, 698, 699, 700, 701]
       },
       {
         "id": 2,
         "name": "Maps",
         "img": "/images/items/item-maps.png",
-        "itemIds": [
-          6,
-          7
-        ],
-        "addOnIds": [
-          702,
-          703,
-          704,
-          705,
-          706,
-          707,
-          708,
-          709,
-          710
-        ]
+        "itemIds": [6, 7],
+        "addOnIds": [702, 703, 704, 705, 706, 707, 708, 709, 710]
       },
       {
         "id": 3,
         "name": "Med-Kits",
         "img": "/images/items/item-med-kits.png",
-        "itemIds": [
-          8,
-          9,
-          10,
-          11
-        ],
+        "itemIds": [8, 9, 10, 11],
         "addOnIds": [
-          711,
-          712,
-          713,
-          714,
-          715,
-          716,
-          717,
-          718,
-          719,
-          720,
-          721,
-          722,
-          723
+          711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722, 723
         ]
       },
       {
         "id": 4,
         "name": "Toolboxes",
         "img": "/images/items/item-toolboxes.png",
-        "itemIds": [
-          12,
-          13,
-          14,
-          15,
-          16,
-          17
-        ],
-        "addOnIds": [
-          724,
-          725,
-          726,
-          727,
-          728,
-          729,
-          730,
-          731,
-          732,
-          733,
-          734
-        ]
+        "itemIds": [12, 13, 14, 15, 16, 17],
+        "addOnIds": [724, 725, 726, 727, 728, 729, 730, 731, 732, 733, 734]
       }
     ],
     "items": [

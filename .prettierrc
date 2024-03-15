@@ -1,4 +1,5 @@
 {
   "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tv"],
   "tailwindConfig": "./tailwind.config.ts"
 }
