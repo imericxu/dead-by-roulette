@@ -6,7 +6,6 @@ const enum LocalStorageKey {
   lastSettingsRole = "lastSettingsRole",
   lastKillerSettingsTab = "lastKillerSettingsTab",
   lastSurvivorSettingsTab = "lastSurvivorSettingsTab",
-  loadoutConfig = "loadoutConfig",
 }
 
 export enum SettingsTab {
@@ -70,59 +69,18 @@ export function saveLastTab(role: DbdRole, tab: SettingsTab): void {
  * Configuration for randomizing a loadout.
  */
 export interface LoadoutConfig {
+  id?: number;
+  lastUsed: Date;
+  name: string;
+  role: DbdRole;
   disabledEntities: Record<ConfigEntity, Set<number>>;
 }
 
-enum ConfigEntity {
+export enum ConfigEntity {
   characters = "characters",
   itemTypes = "itemTypes",
   items = "items",
   addOns = "addOns",
   offerings = "offerings",
   perks = "perks",
-}
-
-function createLoadoutConfig(): LoadoutConfig {
-  return {
-    disabledEntities: {
-      characters: new Set<number>(),
-      itemTypes: new Set<number>(),
-      items: new Set<number>(),
-      addOns: new Set<number>(),
-      offerings: new Set<number>(),
-      perks: new Set<number>(),
-    },
-  };
-}
-
-export function getLoadoutConfig(): LoadoutConfig {
-  const storedValue: string | null = localStorage.getItem(
-    LocalStorageKey.loadoutConfig,
-  );
-  if (storedValue === null) return createLoadoutConfig();
-  return JSON.parse(storedValue);
-}
-
-export function saveLoadoutConfig(config: LoadoutConfig): void {
-  localStorage.setItem(LocalStorageKey.loadoutConfig, JSON.stringify(config));
-}
-
-export function resetLoadoutConfig(): void {
-  localStorage.removeItem(LocalStorageKey.loadoutConfig);
-}
-
-export function disableEntity(
-  config: LoadoutConfig,
-  entity: ConfigEntity,
-  id: number,
-): void {
-  config.disabledEntities[entity].add(id);
-}
-
-export function enableEntity(
-  config: LoadoutConfig,
-  entity: ConfigEntity,
-  id: number,
-): void {
-  config.disabledEntities[entity].delete(id);
 }
