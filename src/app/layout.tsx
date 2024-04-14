@@ -24,7 +24,10 @@ export default function RootLayout({
           jost.className,
         )}
       >
-        {children}
+        {/* Grid Container */}
+        <div className="relative mx-page grid grid-cols-4 gap-4 sm:grid-cols-8 sm:gap-x-8 lg:mx-page-lg lg:w-[var(--page-width-lg)] lg:grid-cols-12">
+          {children}
+        </div>
       </body>
     </html>
   );

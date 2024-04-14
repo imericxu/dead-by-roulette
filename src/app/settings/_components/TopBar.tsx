@@ -2,26 +2,26 @@
 
 import RoleSwitcher from "@/components/RoleSwitcher";
 import DbdRole from "@/lib/dbdRole";
-import { buildReturnUrl, isSubRouteOf } from "@/lib/utils";
+import { buildReturnUrl } from "@/lib/utils";
 import { LucideArrowLeft, LucideHome } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 import type { ReactElement } from "react";
+import { match } from "ts-pattern";
 
 export default function TopBar(): ReactElement {
-  const pathname = usePathname() as Route;
-  const role: DbdRole | null = (() => {
-    if (isSubRouteOf("/settings/killer", pathname)) return DbdRole.killer;
-    if (isSubRouteOf("/settings/survivor", pathname)) return DbdRole.survivor;
-    return null;
-  })();
-
-  const searchParams = useSearchParams();
-  const returnUrl: string | null = searchParams.get("return");
+  const role: DbdRole | null = match(useSelectedLayoutSegment())
+    .with(null, () => null)
+    .with("killer", () => DbdRole.killer)
+    .with("survivor", () => DbdRole.survivor)
+    .otherwise((value) => {
+      throw new Error(`Unexpected segment: ${value}`);
+    });
+  const returnUrl: string | null = useSearchParams().get("return");
 
   return (
-    <header className="sticky flex h-12 w-full items-center border-b border-white/10 px-4 shadow-lg">
+    <header className="sticky col-span-full flex h-12 w-dvw items-center justify-self-center border-b border-white/10 px-4 shadow-lg">
       {/* Either a back or home button based on return URL */}
       <Link
         href={(returnUrl as Route) ?? "/"}

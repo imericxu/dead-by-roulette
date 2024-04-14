@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import colors from "tailwindcss/colors";
 
 const config: Config = {
   content: [
@@ -12,6 +11,15 @@ const config: Config = {
     extend: {
       colors: {
         focus: "#ca8a04b3",
+      },
+      margin: {
+        page: "16px",
+        "page-sm": "32px",
+        "page-lg": "calc((100% - var(--page-width-lg)) / 2)",
+      },
+      padding: {
+        page: "16px",
+        "page-sm": "32px",
       },
     },
   },

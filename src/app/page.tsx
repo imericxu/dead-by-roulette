@@ -5,7 +5,7 @@ import { type ReactElement } from "react";
 export default function Home(): ReactElement {
   return (
     <>
-      <main className="flex h-screen min-h-min flex-col items-center justify-center gap-8 text-center">
+      <main className="col-span-full flex h-screen min-h-min w-40 flex-col items-center justify-center gap-8 justify-self-center text-center">
         {/* Heading */}
         <h1 className="text-balance text-5xl font-bold uppercase">
           Dead by Roulette

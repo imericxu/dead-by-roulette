@@ -8,16 +8,16 @@ import {
 import { ReactElement, ReactNode } from "react";
 import StoreLastAccessed from "./StoreLastAccessed";
 import StyledButton from "@/components/StyledButton";
-import LinkTabber from "@/components/LinkTabber";
+import LinkTabber from "@/app/settings/_components/LinkTabber";
 import { Route } from "next";
 import { SettingsTab } from "@/lib/settings";
 
 const tabs: Record<SettingsTab, { label: string; url: Route }> = {
   character: { label: "Survivors", url: "/settings/survivor/survivors" },
   perks: { label: "Perks", url: "/settings/survivor/perks" },
-  addons: {
+  addOns: {
     label: "Items/Add-ons",
-    url: "/settings/survivor/items-and-addons",
+    url: "/settings/survivor/items-and-add-ons",
   },
   offerings: { label: "Offerings", url: "/settings/survivor/offerings" },
   loadout: { label: "Current Loadout", url: "/settings/survivor/loadout" },

@@ -1,15 +1,19 @@
 /**
  * Automatically redirects to the last accessed settings page.
  */
+"use client";
 
 import { ReactElement } from "react";
-import GoToLastAccessedSettings from "./GoToLastAccessedSettings";
+import EffectRedirectToLastTab from "./_components/EffectRedirectToLastTab";
+import { LucideLoader2 } from "lucide-react";
 
-export default function Settings(): ReactElement {
+export default function SettingsRedirectPage(): ReactElement {
   return (
     <>
-      <GoToLastAccessedSettings />
-      <main className="p-4">Loading settings&hellip;</main>
+      <EffectRedirectToLastTab />
+      <main className="col-span-full col-start-1 mt-4 flex w-full flex-col items-center">
+        <LucideLoader2 size={24} className="animate-spin text-white/50" />
+      </main>
     </>
   );
 }

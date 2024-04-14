@@ -1,26 +1,28 @@
 "use client";
 
 import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
-import { type Route } from "next";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 import { type ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
-import ButtonLink from "./ButtonLink";
+import ButtonLink from "../../../components/ButtonLink";
 import { buildReturnUrl } from "@/lib/utils";
+import { Route } from "next";
 
 export interface LinkTabberProps {
-  tabs: Array<{ label: string; url: Route }>;
   className?: string;
+  layoutRoute: Route;
+  tabs: Array<{ label: string; segment: string }>;
 }
 
 export default function LinkTabber(props: LinkTabberProps): ReactElement {
+  const segment: string | null = useSelectedLayoutSegment();
+  if (segment === null) throw new Error("There shouldn't be a page here.");
   const tabsRef = useRef<HTMLUListElement>(null);
 
-  const pathname = usePathname() as Route;
   const currentTabIdx: number = useMemo(() => {
-    return props.tabs.findIndex((tab) => tab.url === pathname);
-  }, [pathname, props.tabs]);
+    return props.tabs.findIndex((tab) => tab.segment === segment);
+  }, [segment, props.tabs]);
 
   const searchParams = useSearchParams();
   const returnUrl: string | null = searchParams.get("return");
@@ -179,10 +181,13 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
         ref={tabsRef}
         className="hide-scrollbar flex h-10 w-full items-stretch overflow-x-scroll px-4"
       >
-        {props.tabs.map(({ label, url }, i) => (
+        {props.tabs.map(({ label, segment }, i) => (
           <li key={label} className="group">
             <ButtonLink
-              href={buildReturnUrl(url, returnUrl)}
+              href={buildReturnUrl(
+                `${props.layoutRoute}/${segment}` as Route,
+                returnUrl,
+              )}
               className={twMerge(
                 "-outline-offset-2",
                 currentTabIdx === i &&

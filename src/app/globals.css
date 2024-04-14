@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --page-width-lg: calc(48px * 12 + 32px * 11);
+  }
+
   *:focus-visible {
     @apply outline outline-2 outline-offset-2 outline-focus forced-colors:outline-[Highlight];
   }
@@ -12,6 +16,7 @@
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+
     &::-webkit-scrollbar {
       display: none;
     }

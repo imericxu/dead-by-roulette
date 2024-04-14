@@ -1,6 +1,7 @@
 import DbdRole from "./dbdRole";
 import { isEnumValue } from "./utils";
 import { match } from "ts-pattern";
+import type { Route } from "next";
 
 const enum LocalStorageKey {
   lastSettingsRole = "lastSettingsRole",
@@ -33,9 +34,9 @@ export function getLastRole(): DbdRole {
 }
 
 /**
- * Get the last settings tab accessed for the given role.
+ * Get the route for the last settings tab accessed for the given role.
  */
-export function getLastSettingsTab(role: DbdRole): SettingsTab {
+export function getLastSettingsTabRoute(role: DbdRole): Route {
   const storedValue: string | null = localStorage.getItem(
     match(role)
       .with(DbdRole.killer, () => LocalStorageKey.lastKillerSettingsTab)
@@ -43,12 +44,41 @@ export function getLastSettingsTab(role: DbdRole): SettingsTab {
       .exhaustive(),
   );
 
-  if (storedValue === null) return SettingsTab.character;
-
-  if (isEnumValue(SettingsTab, storedValue)) return storedValue;
+  if (storedValue !== null && isEnumValue(SettingsTab, storedValue)) {
+    return match(role)
+      .returnType<Route>()
+      .with(DbdRole.killer, () =>
+        match(storedValue)
+          .returnType<Route>()
+          .with(SettingsTab.character, () => "/settings/killer/killers")
+          .with(SettingsTab.perks, () => "/settings/killer/perks")
+          .with(SettingsTab.addOns, () => "/settings/killer/add-ons")
+          .with(SettingsTab.offerings, () => "/settings/killer/offerings")
+          .with(SettingsTab.loadout, () => "/settings/killer/loadout")
+          .exhaustive(),
+      )
+      .with(DbdRole.survivor, () =>
+        match(storedValue)
+          .returnType<Route>()
+          .with(SettingsTab.character, () => "/settings/survivor/survivors")
+          .with(SettingsTab.perks, () => "/settings/survivor/perks")
+          .with(
+            SettingsTab.addOns,
+            () => "/settings/survivor/items-and-add-ons",
+          )
+          .with(SettingsTab.offerings, () => "/settings/survivor/offerings")
+          .with(SettingsTab.loadout, () => "/settings/survivor/loadout")
+          .exhaustive(),
+      )
+      .exhaustive();
+  }
 
   saveLastTab(role, SettingsTab.character);
-  return SettingsTab.character;
+  return match(role)
+    .returnType<Route>()
+    .with(DbdRole.killer, () => "/settings/killer/killers")
+    .with(DbdRole.survivor, () => "/settings/survivor/survivors")
+    .exhaustive();
 }
 
 /**

@@ -1,11 +1,12 @@
 import { ReactElement } from "react";
-import GoToLastKillerTab from "./GoToLastKillerTab";
+import EffectRedirectToLastKillerTab from "./_components/EffectRedirectToLastKillerTab";
+import LoadingSettings from "@/app/settings/_components/LoadingSettings";
 
 export default function KillerSettings(): ReactElement {
   return (
     <>
-      <GoToLastKillerTab />
-      <main className="p-4">Loading killer settings&hellip;</main>
+      <EffectRedirectToLastKillerTab />
+      <LoadingSettings />
     </>
   );
 }

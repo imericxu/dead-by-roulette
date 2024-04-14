@@ -1,11 +1,12 @@
 import { ReactElement } from "react";
-import GoToLastSurvivorTab from "./GoToLastSurvivorTab";
+import LoadingSettings from "@/app/settings/_components/LoadingSettings";
+import EffectRedirectToLastSurvivorTab from "./_components/EffectRedirectToLastSurvivorTab";
 
 export default function SurvivorSettings(): ReactElement {
   return (
     <>
-      <GoToLastSurvivorTab />
-      <main className="p-4">Loading survivor settings&hellip;</main>
+      <EffectRedirectToLastSurvivorTab />
+      <LoadingSettings />
     </>
   );
 }
