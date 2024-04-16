@@ -8,11 +8,13 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const link = tv({
   extend: focusRing,
-  base: "inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap border uppercase transition active:border-white/95 active:bg-white/10",
+  base: "inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap border bg-transparent uppercase transition active:border-main-heavy active:bg-overlay",
   variants: {
     variant: {
-      default: "border-white/25",
+      default: "border-main-light",
       ghost: "border-transparent",
+      active:
+        "border-main-heavy bg-overlay-light active:border-main-medium active:bg-overlay-light",
     },
     btnSize: {
       default: "px-4 py-2",
@@ -26,12 +28,17 @@ const link = tv({
     {
       isHovered: true,
       variant: "default",
-      class: "bg-white/10",
+      class: "bg-overlay",
     },
     {
       isHovered: true,
       variant: "ghost",
-      class: "border-white/25",
+      class: "border-main-light",
+    },
+    {
+      isHovered: true,
+      variant: "active",
+      class: "bg-overlay",
     },
   ],
   defaultVariants: {

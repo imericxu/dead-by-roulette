@@ -61,7 +61,7 @@ export default function ConfigSelect({
                           size: "lessPadding",
                           case: "normal",
                         }),
-                        "w-full justify-start focus:border-white/95 focus:bg-white/10",
+                        "w-full justify-start focus:border-main focus:bg-overlay",
                       )}
                     >
                       {item.name}
@@ -74,14 +74,14 @@ export default function ConfigSelect({
         ) : (
           <div
             className={twMerge(
-              "flex flex-grow items-baseline gap-2",
+              "flex flex-grow items-baseline gap-2 [&>*]:cursor-wait",
               className,
             )}
           >
             <span>Config</span>
             <Button
               isDisabled
-              className="pressed:border-white/95 inline-flex h-10 grow items-center gap-2 border border-white/25 px-2 hover:border-white/50 hover:bg-white/10"
+              className="inline-flex h-10 grow items-center gap-2 border border-main-light px-2 text-white/75"
             >
               <span className="grow overflow-ellipsis whitespace-nowrap text-left">
                 Loading&hellip;

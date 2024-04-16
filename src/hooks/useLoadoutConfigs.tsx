@@ -8,16 +8,9 @@ export interface ConfigManager {
   addConfig: (name: string) => Promise<void>;
   deleteConfig: (id: number) => Promise<void>;
   selectConfig: (id: number) => Promise<void>;
-  enableEntity: (
-    configId: number,
-    entity: ConfigEntity,
-    entityId: number,
-  ) => Promise<void>;
-  disableEntity: (
-    configId: number,
-    entity: ConfigEntity,
-    entityId: number,
-  ) => Promise<void>;
+  toggleEntity: (entity: ConfigEntity, entityId: number) => Promise<void>;
+  enableEntity: (entity: ConfigEntity, entityId: number) => Promise<void>;
+  disableEntity: (entity: ConfigEntity, entityId: number) => Promise<void>;
 }
 
 export default function useLoadoutConfigs(role: DbdRole): {
@@ -56,28 +49,39 @@ export default function useLoadoutConfigs(role: DbdRole): {
       selectConfig: async (id: number): Promise<void> => {
         await db.config.update(id, { lastUsed: new Date() });
       },
-      enableEntity: async (
-        configId: number,
+      toggleEntity: async (
         entity: ConfigEntity,
         entityId: number,
       ): Promise<void> => {
-        const config = await db.config.get(configId);
-        if (config === undefined) throw new Error("Config not found");
+        if (configs === undefined) throw new Error("Configs not loaded");
+        const config = configs[0];
+        if (config.disabledEntities[entity].has(entityId)) {
+          config.disabledEntities[entity].delete(entityId);
+        } else {
+          config.disabledEntities[entity].add(entityId);
+        }
+        await db.config.put(config);
+      },
+      enableEntity: async (
+        entity: ConfigEntity,
+        entityId: number,
+      ): Promise<void> => {
+        if (configs === undefined) throw new Error("Configs not loaded");
+        const config = configs[0];
         config.disabledEntities[entity].delete(entityId);
         await db.config.put(config);
       },
       disableEntity: async (
-        configId: number,
         entity: ConfigEntity,
         entityId: number,
       ): Promise<void> => {
-        const config = await db.config.get(configId);
-        if (config === undefined) throw new Error("Config not found");
+        if (configs === undefined) throw new Error("Configs not loaded");
+        const config = configs[0];
         config.disabledEntities[entity].add(entityId);
         await db.config.put(config);
       },
     }),
-    [role],
+    [configs, role],
   );
 
   useEffect(() => {

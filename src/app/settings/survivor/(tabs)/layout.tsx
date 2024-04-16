@@ -37,7 +37,7 @@ export default function SurvivorSettingsLayout({
 
           <button
             type="button"
-            className="inline-flex h-10 grow items-center gap-2 border border-white/25 px-2 active:border-white/95 hover:border-white/50 hover:bg-white/10"
+            className="inline-flex h-10 grow items-center gap-2 border border-main-light px-2 active:border-main hover:border-white/50 hover:bg-overlay"
           >
             <span className="grow overflow-ellipsis whitespace-nowrap text-left">
               My Config Name

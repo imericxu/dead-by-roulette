@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={twJoin(
-          "bg-neutral-950 bg-gradient-to-b from-red-950/90 to-red-950/15 bg-fixed text-white/95",
+          "bg-neutral-950 bg-gradient-to-b from-red-950/90 to-red-950/15 bg-fixed text-main",
           jost.className,
         )}
       >

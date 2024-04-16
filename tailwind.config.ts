@@ -11,6 +11,17 @@ const config: Config = {
     extend: {
       colors: {
         focus: "#ca8a04b3",
+        main: {
+          DEFAULT: "rgba(255, 255, 255, 0.95)",
+          light: "rgba(255, 255, 255, 0.25)",
+          medium: "rgba(255, 255, 255, 0.5)",
+          heavy: "rgba(255, 255, 255, 0.75)",
+          heaviest: "rgba(255, 255, 255, 0.95)",
+        },
+        overlay: {
+          light: "rgba(255, 255, 255, 0.05)",
+          DEFAULT: "rgba(255, 255, 255, 0.1)",
+        },
       },
       margin: {
         page: "16px",

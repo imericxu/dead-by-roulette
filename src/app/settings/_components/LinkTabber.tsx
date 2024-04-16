@@ -4,7 +4,7 @@ import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 import { type ReactElement, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "react-aria-components";
-import { twMerge } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 import ButtonLink from "../../../components/ButtonLink";
 import { buildReturnUrl } from "@/lib/utils";
 import { Route } from "next";
@@ -188,11 +188,8 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
                 `${props.layoutRoute}/${segment}` as Route,
                 returnUrl,
               )}
-              className={twMerge(
-                "-outline-offset-2",
-                currentTabIdx === i &&
-                  "pointer-event-none border-white/95 bg-white/5",
-              )}
+              variant={currentTabIdx === i ? "active" : "default"}
+              className={"-outline-offset-2"}
             >
               {label}
             </ButtonLink>

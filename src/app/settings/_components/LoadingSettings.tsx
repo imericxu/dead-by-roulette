@@ -8,14 +8,14 @@ export default function LoadingSettings(): ReactElement {
         {Array.from({ length: 5 }).map((_, i) => (
           <div
             key={i}
-            className="h-10 w-24 flex-shrink-0 border border-white/50"
+            className="h-10 w-24 flex-shrink-0 border border-main-light"
           ></div>
         ))}
       </div>
       {/* Config Dropdown */}
-      <div className="h-10 border border-white/50"></div>
+      <div className="h-10 border border-main-medium"></div>
       {/* Content */}
-      <div className="h-80 border border-white/50 gradient-mask-b-0"></div>
+      <div className="h-80 border border-main-medium gradient-mask-b-0"></div>
     </main>
   );
 }

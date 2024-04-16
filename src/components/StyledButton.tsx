@@ -11,13 +11,11 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 export const buttonStyles = tv({
   extend: focusRing,
-  base: "inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap border bg-transparent transition",
+  base: "inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap border bg-transparent transition pressed:border-main-heavy disabled:text-white/75",
   variants: {
     variant: {
-      default:
-        "border-white/25 hover:bg-white/10 pressed:border-white/95 pressed:bg-white/10",
-      ghost:
-        "border-transparent hover:border-white/25 pressed:border-white/95 pressed:bg-white/10",
+      default: "border-main-light hover:bg-overlay",
+      ghost: "border-transparent hover:border-main-light",
     },
     size: {
       default: "px-4 py-2",
