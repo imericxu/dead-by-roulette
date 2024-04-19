@@ -3,7 +3,7 @@ import { Route } from "next";
 import { redirect } from "next/navigation";
 import { pickRandom } from "@/lib/utils";
 
-export default async function Roulette(): Promise<ReactElement> {
+export default async function RoulettePage(): Promise<ReactElement> {
   const routes: Route[] = ["/roulette/killer", "/roulette/survivor"];
   redirect(pickRandom(routes));
 }

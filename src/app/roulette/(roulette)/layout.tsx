@@ -3,9 +3,9 @@ import TopBar from "./TopBar";
 
 export default function RouletteLayout({
   children,
-}: Readonly<{
-  children: ReactNode;
-}>): ReactElement {
+}: {
+  children: Readonly<ReactNode>;
+}): ReactElement {
   return (
     <>
       <TopBar />

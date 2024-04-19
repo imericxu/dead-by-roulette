@@ -1,7 +1,7 @@
-import { type ConfigEntity, LoadoutConfig } from "@/lib/settings";
 import { db } from "@/lib/db";
-import { useLiveQuery } from "dexie-react-hooks";
 import DbdRole from "@/lib/dbdRole";
+import { LoadoutConfig, type ConfigEntity } from "@/lib/settings";
+import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useMemo } from "react";
 
 export interface ConfigManager {
