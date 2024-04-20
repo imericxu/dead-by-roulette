@@ -15,13 +15,10 @@ import {
   randomizePerks,
 } from "@/lib/randomize";
 import { LoadoutConfig } from "@/lib/settings";
-import { isEnumValue } from "@/lib/utils";
-import { Route } from "next";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReactElement, useCallback, useEffect, useState } from "react";
-import { Button, Tab, TabList, TabPanel, Tabs } from "react-aria-components";
-import { P, match } from "ts-pattern";
+import { Button } from "react-aria-components";
+import { match } from "ts-pattern";
 import MobileRoulette from "./MobileRoulette";
 
 export enum RouletteTab {

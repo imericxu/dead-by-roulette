@@ -1,17 +1,18 @@
 "use client";
 
 import LoadDetectImage from "@/components/LoadDetectImage";
+import { Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import Loadout, { LoadoutPart } from "@/lib/loadout";
 import { isEnumValue } from "@/lib/utils";
+import rarityBg from "@/lib/variants/rarityBg";
 import { type Route } from "next";
-import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, type ReactElement } from "react";
+import { ReactNode, useEffect, useState, type ReactElement } from "react";
 import { Button, Tab, TabList, TabPanel, Tabs } from "react-aria-components";
+import { twJoin, twMerge } from "tailwind-merge";
 import { P, match } from "ts-pattern";
 import { RouletteTab } from "./Roulette";
-import { twMerge } from "tailwind-merge";
 
 export interface MobileRouletteProps {
   role: DbdRole;
@@ -19,18 +20,13 @@ export interface MobileRouletteProps {
   randomizeHandler: (part: LoadoutPart, idx?: number) => void;
 }
 
-export default function MobileRoulette({
-  role,
-  loadout,
-  randomizeHandler,
-}: MobileRouletteProps): ReactElement {
+export default function MobileRoulette(
+  props: MobileRouletteProps,
+): ReactElement {
   const pathname = usePathname() as Route;
   const router = useRouter();
   const searchParams = useSearchParams();
   const [tab, setTab] = useState<RouletteTab | null>(null);
-
-  const [perkHovered, setPerkHovered] = useState<boolean>(false);
-  const [perkPressed, setPerkPressed] = useState<boolean>(false);
 
   // Sync the tab state with the URL query parameter
   // If the tab is not set, default to the perks tab
@@ -113,196 +109,302 @@ export default function MobileRoulette({
 
       {/* Tab Content */}
       <div className="w-[min(100%,320px)] grow transition">
-        {/* Character Tab */}
-        <TabPanel id="character" className="flex flex-col items-center gap-4">
-          <h1 className="text-balance text-center text-xl font-medium">
-            Character
-          </h1>
-          {/* Large Portrait of Character */}
-          {loadout === null ? (
-            <div className="aspect-[4/3] w-full animate-pulse border border-main-heavy bg-overlay"></div>
-          ) : (
-            <>
-              <Button
-                onPress={() => {
-                  randomizeHandler(LoadoutPart.character);
-                }}
-                aria-label="Randomize Character"
-                className="relative aspect-[4/3] w-full overflow-hidden border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 pt-2 outline-0 transition hover:brightness-110 focus-visible:outline-2 pressed:border-main-heavy"
-              >
-                <LoadDetectImage
-                  src={loadout.character.bigImg}
-                  alt=""
-                  priority
-                  sizes="(max-width: 320px) 100vw, 360px"
-                  width={0}
-                  height={0}
-                  className="m-auto h-full w-auto overflow-hidden object-cover opacity-100 transition data-[loading=true]:opacity-0"
-                />
-              </Button>
-              {/* Character Name */}
-              <h2 className="text-lg">
-                {`${role === DbdRole.killer ? "The " : ""}${
-                  loadout.character.name
-                }`}
-              </h2>
-            </>
-          )}
-        </TabPanel>
-
-        {/* Perks Tab */}
-        <TabPanel id="perks" className="flex flex-col gap-4">
-          <h1 className="text-balance text-center text-xl font-medium">
-            Perks
-          </h1>
-
-          {/* Perks */}
-          <div className="flex flex-col gap-2">
-            {loadout === null
-              ? [...Array(4)].map((_, idx) => (
-                  <div key={idx} className="h-24"></div>
-                ))
-              : loadout.perks.map((perk, idx) => (
-                  <Button
-                    key={perk.id}
-                    onPress={() => {
-                      randomizeHandler(LoadoutPart.perks);
-                    }}
-                    onHoverChange={setPerkHovered}
-                    onPressChange={setPerkPressed}
-                    className={twMerge(
-                      "flex items-center justify-start gap-2 border border-main-light p-2 text-start outline-0 transition focus-visible:outline-2",
-                      perkHovered && "bg-overlay-light",
-                      perkPressed && "border-main-heavy",
-                    )}
-                  >
-                    {/* Image */}
-                    {/* Pseudo-Border */}
-                    <div
-                      className={twMerge(
-                        "clip-diamond shrink-0 bg-main-light p-0.5 transition",
-                        perkPressed && "bg-main-heavy",
-                      )}
-                    >
-                      {/* Clipped Background */}
-                      <div className="clip-diamond overflow-visible bg-orange-950 bg-gradient-to-b">
-                        <LoadDetectImage
-                          src={perk.img}
-                          alt=""
-                          priority
-                          width={68}
-                          height={68}
-                          className={twMerge(
-                            "scale-110 opacity-100 transition data-[loading=true]:opacity-0",
-                            perkHovered && "brightness-110",
-                          )}
-                        />
-                      </div>
-                    </div>
-
-                    <p className="grow">{perk.name}</p>
-                  </Button>
-                ))}
-          </div>
-        </TabPanel>
-
-        {/* Power/Item and Add-Ons Tab */}
-        <TabPanel id="add-ons">
-          <h1 className="text-balance text-center text-xl font-medium">
-            {match(role)
-              .with(DbdRole.killer, () => "Power and ")
-              .with(DbdRole.survivor, () => "Item and ")
-              .exhaustive()}
-            Add-Ons
-          </h1>
-
-          {/* Power/Item Image */}
-          <h2>
-            {match(role)
-              .with(DbdRole.killer, () => "Power")
-              .with(DbdRole.survivor, () => "Item")
-              .exhaustive()}
-          </h2>
-          {loadout === null ? (
-            <div className="h-26 w-full"></div>
-          ) : (
-            <Button
-              onPress={() => {
-                randomizeHandler(LoadoutPart.ability);
-              }}
-              className="flex w-full items-center gap-2 border border-main-light pressed:border-main-heavy"
-            >
-              <Image
-                src={loadout?.ability.img}
-                alt=""
-                width={100}
-                height={100}
-                priority
-                className="opacity-100 transition data-[loading=true]:opacity-0"
-              />
-              <p>{loadout?.ability.name}</p>
-            </Button>
-          )}
-
-          {/* Add-Ons */}
-          <h2>Add-Ons</h2>
-          {loadout === null
-            ? [...Array(2)].map((_, idx) => (
-                <div key={idx} className="h-26 w-full"></div>
-              ))
-            : loadout.addOns.map((addOn) => (
-                <Button
-                  key={addOn.id}
-                  onPress={() => {
-                    randomizeHandler(LoadoutPart.addOn);
-                  }}
-                  className="flex items-center gap-2"
-                >
-                  <Image
-                    src={addOn.img}
-                    alt=""
-                    width={100}
-                    height={100}
-                    priority
-                  />
-                  <p>{addOn.name}</p>
-                </Button>
-              ))}
-        </TabPanel>
-
-        {/* Offering Tab */}
-        <TabPanel id="offering" className="flex flex-col items-center gap-4">
-          <h1 className="text-balance text-center text-xl font-medium">
-            Offering
-          </h1>
-
-          {/* Offering Image */}
-          {loadout === null ? (
-            <div className="h-[128px] w-[128px]"></div>
-          ) : (
-            <Button
-              onPress={() => {
-                randomizeHandler(LoadoutPart.offering);
-              }}
-              className="clip-hexagon bg-main-light p-0.5 pressed:bg-main-heavy"
-            >
-              <div className="clip-hexagon relative box-content h-[128px] w-[128px] bg-red-800 py-[8px]">
-                <Image
-                  src={loadout?.offering.img}
-                  alt=""
-                  fill
-                  priority
-                  sizes="120px"
-                  className="object-cover"
-                />
-              </div>
-            </Button>
-          )}
-
-          {/* Offering Name */}
-          <p className="text-lg">{loadout?.offering.name}</p>
-        </TabPanel>
+        <CharacterTab {...props} />
+        <PerksTab {...props} />
+        <AbilityAddOnsTab {...props} />
+        <OfferingTab {...props} />
       </div>
     </Tabs>
+  );
+}
+
+function RouletteTabContent(props: {
+  id: string;
+  title: string;
+  children: Readonly<ReactNode>;
+}): ReactElement {
+  return (
+    <TabPanel id={props.id} className="flex flex-col items-center gap-4">
+      <h1 className="text-balance text-center text-xl font-medium uppercase">
+        {props.title}
+      </h1>
+      {props.children}
+    </TabPanel>
+  );
+}
+
+function CharacterTab({
+  loadout,
+  role,
+  randomizeHandler,
+}: MobileRouletteProps): ReactElement {
+  return (
+    <RouletteTabContent id="character" title="Character">
+      {/* Large Portrait of Character */}
+      {loadout === null ? (
+        <div className="aspect-[4/3] w-full animate-pulse border border-main-heavy bg-overlay"></div>
+      ) : (
+        <>
+          <Button
+            onPress={() => {
+              randomizeHandler(LoadoutPart.character);
+            }}
+            aria-label="Randomize Character"
+            className="relative aspect-[4/3] w-full overflow-hidden border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 pt-2 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
+          >
+            <LoadDetectImage
+              src={loadout.character.bigImg}
+              alt=""
+              priority
+              sizes="(max-width: 320px) 100vw, 360px"
+              width={0}
+              height={0}
+              className="m-auto h-full w-auto overflow-hidden object-cover opacity-100 transition data-[loading=true]:opacity-0"
+            />
+          </Button>
+          {/* Character Name */}
+          <h2 className="text-lg">
+            {`${role === DbdRole.killer ? "The " : ""}${
+              loadout.character.name
+            }`}
+          </h2>
+        </>
+      )}
+    </RouletteTabContent>
+  );
+}
+
+function PerksTab({
+  loadout,
+  randomizeHandler,
+}: MobileRouletteProps): ReactElement {
+  const [perkHovered, setPerkHovered] = useState<boolean>(false);
+  const [perkPressed, setPerkPressed] = useState<boolean>(false);
+
+  return (
+    <RouletteTabContent id="perks" title="Perks">
+      {/* Vertical Layout */}
+      <div className="flex w-full flex-col gap-2">
+        {loadout === null
+          ? // Placeholders
+            [...Array(4)].map((_, idx) => (
+              <div
+                key={idx}
+                className="h-[90px] w-full animate-pulse border border-main-medium bg-overlay"
+              ></div>
+            ))
+          : // Perk Buttons
+            loadout.perks.map((perk, _idx) => (
+              <Button
+                key={perk.id}
+                aria-label="Randomize All Perks"
+                onPress={() => {
+                  randomizeHandler(LoadoutPart.perks);
+                }}
+                onHoverChange={setPerkHovered}
+                onPressChange={setPerkPressed}
+                className={twMerge(
+                  "flex items-center justify-start gap-2 border border-main-light p-2 text-start outline-0 transition focus-visible:outline-2",
+                  perkHovered && "bg-overlay-light",
+                  perkPressed && "border-main-heavy",
+                )}
+              >
+                {/* Image */}
+                {/* Pseudo-Border */}
+                <div
+                  className={twMerge(
+                    "clip-diamond shrink-0 bg-main-light p-0.5 transition",
+                    perkPressed && "bg-main-heavy",
+                  )}
+                >
+                  {/* Clipped Background */}
+                  <div className="clip-diamond overflow-visible bg-gradient-to-b from-orange-800 to-orange-950">
+                    <LoadDetectImage
+                      src={perk.img}
+                      alt=""
+                      priority
+                      width={68}
+                      height={68}
+                      className={twMerge(
+                        "scale-110 opacity-100 transition data-[loading=true]:opacity-0",
+                        perkHovered && "brightness-125",
+                      )}
+                    />
+                  </div>
+                </div>
+
+                <p className="grow">{perk.name}</p>
+              </Button>
+            ))}
+      </div>
+    </RouletteTabContent>
+  );
+}
+
+function AbilityAddOnsTab({
+  loadout,
+  role,
+  randomizeHandler,
+}: MobileRouletteProps): ReactElement {
+  const [abilityHovered, setAbilityHovered] = useState<boolean>(false);
+  const [abilityPressed, setAbilityPressed] = useState<boolean>(false);
+
+  const [addOnHovered, setAddOnHovered] = useState<boolean>(false);
+  const [addOnPressed, setAddOnPressed] = useState<boolean>(false);
+
+  const roleAbilityType: string = match(role)
+    .with(DbdRole.killer, () => "Power")
+    .with(DbdRole.survivor, () => "Item")
+    .exhaustive();
+
+  return (
+    <RouletteTabContent id="add-ons" title={`${roleAbilityType} and Add-Ons`}>
+      {/* Ability */}
+      <section className="flex w-full flex-col gap-2">
+        <h2 className="text-lg font-medium">{roleAbilityType}</h2>
+
+        {loadout === null ? (
+          <div className="h-[98px] w-full animate-pulse border border-main-medium bg-overlay"></div>
+        ) : (
+          <Button
+            onPress={() => {
+              randomizeHandler(LoadoutPart.ability);
+            }}
+            aria-label={`Randomize ${roleAbilityType}`}
+            onHoverChange={setAbilityHovered}
+            onPressChange={setAbilityPressed}
+            className="flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition hover:bg-overlay-light focus-visible:outline-2 pressed:border-main-heavy"
+          >
+            {/* Image Border and Background */}
+            <div
+              className={twMerge(
+                "relative aspect-square h-20 w-20 border border-main-light transition",
+                match(role)
+                  .with(
+                    DbdRole.killer,
+                    () => "bg-gradient-to-b from-orange-900 to-orange-950/80",
+                  )
+                  .with(DbdRole.survivor, () =>
+                    rarityBg((loadout.ability as Item).rarity),
+                  )
+                  .exhaustive(),
+                abilityPressed && "border-main-heavy",
+              )}
+            >
+              <LoadDetectImage
+                src={loadout?.ability.img}
+                alt=""
+                priority
+                fill
+                sizes="80px"
+                className="opacity-100 transition data-[loading=true]:opacity-0"
+              />
+            </div>
+
+            <p className="text-start">{loadout?.ability.name}</p>
+          </Button>
+        )}
+      </section>
+
+      {/* Add-Ons */}
+      <section className="flex w-full flex-col gap-2">
+        <h2 className="text-lg font-medium">Add-Ons</h2>
+
+        {/* Vertical Layout for Add-On Buttons */}
+        <div className="flex w-full flex-col gap-2">
+          {loadout === null
+            ? // Placeholders
+              [...Array(2)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="h-[82px] w-full animate-pulse border border-main-medium bg-overlay"
+                ></div>
+              ))
+            : // Add-On Buttons
+              loadout.addOns.map((addOn) => (
+                <Button
+                  key={addOn.id}
+                  aria-label="Randomize Add-Ons"
+                  onPress={() => {
+                    randomizeHandler(LoadoutPart.addOns);
+                  }}
+                  onHoverChange={setAddOnHovered}
+                  onPressChange={setAddOnPressed}
+                  className={twMerge(
+                    "flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition focus-visible:outline-2",
+                    (abilityHovered || addOnHovered) && "bg-overlay-light",
+                    (abilityPressed || addOnPressed) && "border-main-heavy",
+                  )}
+                >
+                  {/* Image Border and Background */}
+                  <div
+                    className={twMerge(
+                      twJoin(
+                        "relative aspect-square h-16 w-16 border border-main-light transition",
+                        rarityBg(addOn.rarity),
+                      ),
+                      (abilityPressed || addOnPressed) && "border-main-heavy",
+                    )}
+                  >
+                    <LoadDetectImage
+                      src={addOn.img}
+                      alt=""
+                      priority
+                      fill
+                      sizes="64px"
+                      className="opacity-100 transition data-[loading=true]:opacity-0"
+                    />
+                  </div>
+                  <p className="text-start">{addOn.name}</p>
+                </Button>
+              ))}
+        </div>
+      </section>
+    </RouletteTabContent>
+  );
+}
+
+function OfferingTab({
+  loadout,
+  randomizeHandler,
+}: MobileRouletteProps): ReactElement {
+  return (
+    <RouletteTabContent id="offering" title="Offering">
+      {loadout === null ? (
+        // Placeholder
+        <div className="aspect-[4/3] w-full animate-pulse border border-main-heavy bg-overlay"></div>
+      ) : (
+        <Button
+          onPress={() => {
+            randomizeHandler(LoadoutPart.offering);
+          }}
+          aria-label="Randomize Offering"
+          className="group flex aspect-[4/3] w-full items-center justify-center border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/60 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
+        >
+          {/* Pseudo-Border */}
+          <div className="clip-hexagon group bg-main-light p-[3px] transition group-pressed:bg-main-heavy">
+            {/* Clipped Background */}
+            <div
+              className={twJoin(
+                "clip-hexagon relative box-content h-[128px] w-[128px] py-[8px] transition group-hover:brightness-125",
+                rarityBg(loadout.offering.rarity),
+              )}
+            >
+              <LoadDetectImage
+                src={loadout?.offering.img}
+                alt=""
+                fill
+                priority
+                sizes="120px"
+                className="object-cover opacity-100 transition data-[loading=true]:opacity-0"
+              />
+            </div>
+          </div>
+        </Button>
+      )}
+
+      {/* Offering Name */}
+      <p className="text-lg">{loadout?.offering.name}</p>
+    </RouletteTabContent>
   );
 }
