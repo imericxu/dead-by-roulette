@@ -11,20 +11,24 @@ import { LoadoutConfigsContext } from "@/components/LoadoutConfigsProvider";
 import useLoadoutConfigs from "@/hooks/useLoadoutConfigs";
 import ConfigSelect from "@/app/settings/_components/ConfigSelect";
 
-const KILLER_TABS: Record<SettingsTab, { label: string; segment: string }> = {
+const KILLER_TABS: Record<
+  Exclude<SettingsTab, "loadout">,
+  { label: string; segment: string }
+> = {
   character: { label: "Killers", segment: "killers" },
   perks: { label: "Perks", segment: "perks" },
   addOns: { label: "Add-ons", segment: "add-ons" },
   offerings: { label: "Offerings", segment: "offerings" },
-  loadout: { label: "Current Loadout", segment: "loadout" },
 };
 
-const SURVIVOR_TABS: Record<SettingsTab, { label: string; segment: string }> = {
+const SURVIVOR_TABS: Record<
+  Exclude<SettingsTab, "loadout">,
+  { label: string; segment: string }
+> = {
   character: { label: "Survivors", segment: "survivors" },
   perks: { label: "Perks", segment: "perks" },
   addOns: { label: "Items & Add-ons", segment: "items-and-addons" },
   offerings: { label: "Offerings", segment: "offerings" },
-  loadout: { label: "Current Loadout", segment: "loadout" },
 };
 
 export interface SettingsPageProps {

@@ -26,7 +26,6 @@ export default function EffectStoreLastTab(
         .with("add-ons", () => SettingsTab.addOns)
         .with("items-and-addons", () => SettingsTab.addOns)
         .with("offerings", () => SettingsTab.offerings)
-        .with("loadout", () => SettingsTab.loadout)
         .otherwise(() => {
           throw new Error(`Unexpected segment: ${segment}`);
         }),

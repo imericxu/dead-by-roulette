@@ -14,7 +14,6 @@ export enum SettingsTab {
   perks = "perks",
   addOns = "addOns",
   offerings = "offerings",
-  loadout = "loadout",
 }
 
 /**
@@ -54,7 +53,6 @@ export function getLastSettingsTabRoute(role: DbdRole): Route {
           .with(SettingsTab.perks, () => "/settings/killer/perks")
           .with(SettingsTab.addOns, () => "/settings/killer/add-ons")
           .with(SettingsTab.offerings, () => "/settings/killer/offerings")
-          .with(SettingsTab.loadout, () => "/settings/killer/loadout")
           .exhaustive(),
       )
       .with(DbdRole.survivor, () =>
@@ -67,7 +65,6 @@ export function getLastSettingsTabRoute(role: DbdRole): Route {
             () => "/settings/survivor/items-and-add-ons",
           )
           .with(SettingsTab.offerings, () => "/settings/survivor/offerings")
-          .with(SettingsTab.loadout, () => "/settings/survivor/loadout")
           .exhaustive(),
       )
       .exhaustive();
