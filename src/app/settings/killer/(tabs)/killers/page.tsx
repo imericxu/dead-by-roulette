@@ -1,12 +1,12 @@
 "use client";
 
-import { type ReactElement, use } from "react";
-import { dbd, Killer } from "@/lib/dbd";
 import { LoadoutConfigsContext } from "@/components/LoadoutConfigsProvider";
-import { Button, ToggleButton } from "react-aria-components";
+import { Killer, dbd } from "@/lib/dbd";
 import { ConfigEntity } from "@/lib/settings";
 import Image from "next/image";
-import { twJoin, twMerge } from "tailwind-merge";
+import { use, type ReactElement } from "react";
+import { ToggleButton } from "react-aria-components";
+import Loading from "../loading";
 
 export default function Placeholder(): ReactElement {
   // TODO: I feel like I should only use the necessary parts of the dbd object, but let's worry about optimization later
@@ -18,16 +18,7 @@ export default function Placeholder(): ReactElement {
   const { configs, configManager } = configsContext;
 
   if (configs === undefined || configs.length === 0) {
-    return (
-      <div className="col-span-full col-start-1 grid animate-pulse grid-cols-subgrid gap-y-2">
-        {[...Array(10)].map((_, i) => (
-          <div
-            key={i}
-            className="col-span-full h-12 border border-main-medium"
-          ></div>
-        ))}
-      </div>
-    );
+    return <Loading />;
   }
 
   const disabledCharacters = configs[0].disabledEntities.characters;

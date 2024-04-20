@@ -30,7 +30,7 @@ export const buttonStyles = tv({
   defaultVariants: {
     variant: "default",
     size: "default",
-    case: "normal",
+    case: "uppercase",
   },
 });
 

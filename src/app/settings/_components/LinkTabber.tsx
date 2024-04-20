@@ -1,13 +1,13 @@
 "use client";
 
-import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
-import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
-import { type ReactElement, useEffect, useMemo, useRef, useState } from "react";
-import { Button } from "react-aria-components";
-import { twJoin, twMerge } from "tailwind-merge";
-import ButtonLink from "../../../components/ButtonLink";
 import { buildReturnUrl } from "@/lib/utils";
+import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 import { Route } from "next";
+import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
+import { useEffect, useMemo, useRef, useState, type ReactElement } from "react";
+import { Button } from "react-aria-components";
+import { twMerge } from "tailwind-merge";
+import ButtonLink from "../../../components/ButtonLink";
 
 export interface LinkTabberProps {
   className?: string;
@@ -188,6 +188,7 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
                 `${props.layoutRoute}/${segment}` as Route,
                 returnUrl,
               )}
+              prefetch
               variant={currentTabIdx === i ? "active" : "default"}
               className={"-outline-offset-2"}
             >

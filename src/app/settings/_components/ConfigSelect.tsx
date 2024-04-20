@@ -40,7 +40,7 @@ export default function ConfigSelect({
                   throw new Error("Invalid key.");
                 await configManager.selectConfig(selected);
               }}
-              className={twMerge("flex items-baseline gap-2", className)}
+              className="flex items-baseline gap-2"
             >
               <Label>Config</Label>
               <StyledButton

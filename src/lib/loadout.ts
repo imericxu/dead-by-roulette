@@ -14,3 +14,13 @@ export default interface Loadout {
   offering: Offering;
   perks: Perk[];
 }
+
+export enum LoadoutPart {
+  character = "character",
+  ability = "ability",
+  addOns = "addOns",
+  addOn = "addOn",
+  offering = "offering",
+  perks = "perks",
+  perk = "perk",
+}
