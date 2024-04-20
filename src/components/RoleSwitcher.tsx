@@ -25,7 +25,7 @@ export default function RoleSwitcher(props: RoleSwitcherProps): ReactElement {
       ) : (
         <Link
           href={props.killerLink}
-          className="font-light transition hover:text-white/75 active:scale-95"
+          className="font-light transition active:scale-95 hover:text-white/75"
         >
           Killer
         </Link>
@@ -40,7 +40,7 @@ export default function RoleSwitcher(props: RoleSwitcherProps): ReactElement {
       ) : (
         <Link
           href={props.survivorLink}
-          className="font-light transition hover:text-white/75 active:scale-95"
+          className="font-light transition active:scale-95 hover:text-white/75"
         >
           Survivor
         </Link>

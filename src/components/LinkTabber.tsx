@@ -151,12 +151,12 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
         onPress={scrollLeft}
         isDisabled={!canScrollLeft}
         className={
-          "group absolute left-0 top-0 h-full w-10 border-2 border-transparent bg-black/60 backdrop-blur-[2px] transition duration-300 gradient-mask-r-10 data-hovered:bg-black/90 data-disabled:pointer-events-none data-disabled:opacity-0 data-focus-visible:border-focus"
+          "group absolute left-0 top-0 h-full w-10 border-2 border-transparent bg-black/60 backdrop-blur-[2px] transition duration-300 gradient-mask-r-10 hover:bg-black/90 focus-visible:border-focus disabled:pointer-events-none disabled:opacity-0"
         }
       >
         <LucideChevronLeft
           size={20}
-          className="relative float-left transition group-data-pressed:translate-x-1"
+          className="relative float-left transition group-pressed:translate-x-1"
         />
       </Button>
       {/* Scroll-Right Button */}
@@ -165,12 +165,12 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
         onPress={scrollRight}
         isDisabled={!canScrollRight}
         className={
-          "first-line:group absolute right-0 top-0 h-full w-10 border-2 border-transparent bg-black/60 backdrop-blur-[2px] transition duration-300 gradient-mask-l-10 data-hovered:bg-black/90 data-disabled:pointer-events-none data-disabled:opacity-0 data-focus-visible:border-focus"
+          "first-line:group absolute right-0 top-0 h-full w-10 border-2 border-transparent bg-black/60 backdrop-blur-[2px] transition duration-300 gradient-mask-l-10 hover:bg-black/90 focus-visible:border-focus disabled:pointer-events-none disabled:opacity-0"
         }
       >
         <LucideChevronRight
           size={20}
-          className="relative float-right transition group-data-pressed:-translate-x-1"
+          className="relative float-right transition group-pressed:-translate-x-1"
         />
       </Button>
 

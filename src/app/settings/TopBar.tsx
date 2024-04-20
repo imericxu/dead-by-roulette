@@ -26,7 +26,7 @@ export default function TopBar(): ReactElement {
       <Link
         href={(returnUrl as Route) ?? "/"}
         title={returnUrl !== null ? "Back" : "Home"}
-        className="shrink-0 transition hover:text-white/75 active:scale-95"
+        className="shrink-0 transition active:scale-95 hover:text-white/75"
       >
         {returnUrl !== null ? (
           <LucideArrowLeft size={20} />

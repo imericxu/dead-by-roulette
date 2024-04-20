@@ -37,7 +37,7 @@ export default function SurvivorSettingsLayout({
 
           <button
             type="button"
-            className="inline-flex h-10 grow items-center gap-2 border border-white/25 px-2 hover:border-white/50 hover:bg-white/10 active:border-white/95"
+            className="inline-flex h-10 grow items-center gap-2 border border-white/25 px-2 active:border-white/95 hover:border-white/50 hover:bg-white/10"
           >
             <span className="grow overflow-ellipsis whitespace-nowrap text-left">
               My Config Name
@@ -71,7 +71,7 @@ export default function SurvivorSettingsLayout({
             <StyledButton
               size="icon"
               aria-label="Locate Group"
-              className="peer-hover:border-l-white/50 peer-data-[pressed]:border-l-white/95"
+              className="peer-hover:border-l-white/50 peer-pressed:border-l-white/95"
             >
               <LucideScanSearch size={20} />
             </StyledButton>

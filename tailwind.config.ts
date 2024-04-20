@@ -9,18 +9,15 @@ const config: Config = {
     "./src/lib/variants/**/*.ts",
   ],
   theme: {
-    data: {
-      pressed: "pressed",
-      hovered: "hovered",
-      disabled: "disabled",
-      "focus-visible": "focus-visible",
-    },
     extend: {
       colors: {
         focus: "#ca8a04b3",
       },
     },
   },
-  plugins: [require("tailwind-gradient-mask-image")],
+  plugins: [
+    require("tailwind-gradient-mask-image"),
+    require("tailwindcss-react-aria-components"),
+  ],
 };
 export default config;

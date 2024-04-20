@@ -15,9 +15,9 @@ const button = tv({
   variants: {
     variant: {
       default:
-        "border-white/25 data-pressed:border-white/95 data-pressed:bg-white/10 data-hovered:bg-white/10",
+        "border-white/25 hover:bg-white/10 pressed:border-white/95 pressed:bg-white/10",
       ghost:
-        "border-transparent data-pressed:border-white/95 data-pressed:bg-white/10 data-hovered:border-white/25 data-hovered:bg-transparent",
+        "border-transparent hover:border-white/25 hover:bg-transparent pressed:border-white/95 pressed:bg-white/10",
     },
     size: {
       default: "px-4 py-2",

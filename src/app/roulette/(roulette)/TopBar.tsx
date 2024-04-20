@@ -25,7 +25,7 @@ export default function TopBar(): ReactElement {
         href="/"
         aria-label="Home"
         title="Home"
-        className="shrink-0 transition hover:text-white/75 active:scale-95"
+        className="shrink-0 transition active:scale-95 hover:text-white/75"
       >
         <LucideHome size={20} />
       </Link>
