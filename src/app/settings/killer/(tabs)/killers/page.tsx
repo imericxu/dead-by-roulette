@@ -6,7 +6,7 @@ import { ConfigEntity } from "@/lib/settings";
 import Image from "next/image";
 import { use, type ReactElement } from "react";
 import { ToggleButton } from "react-aria-components";
-import Loading from "../loading";
+import LoadingRoleSettings from "../loading";
 
 export default function Placeholder(): ReactElement {
   // TODO: I feel like I should only use the necessary parts of the dbd object, but let's worry about optimization later
@@ -18,7 +18,7 @@ export default function Placeholder(): ReactElement {
   const { configs, configManager } = configsContext;
 
   if (configs === undefined || configs.length === 0) {
-    return <Loading />;
+    return <LoadingRoleSettings />;
   }
 
   const disabledCharacters = configs[0].disabledEntities.characters;
