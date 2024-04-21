@@ -1,5 +1,5 @@
 import { type ReactElement, type ReactNode } from "react";
-import TopBar from "./TopBar";
+import TopBar from "./_components/TopBar";
 
 export default function RouletteLayout({
   children,
