@@ -15,7 +15,6 @@ import {
   randomizePerks,
 } from "@/lib/randomize";
 import { LoadoutConfig } from "@/lib/settings";
-import Image from "next/image";
 import {
   ReactElement,
   Suspense,
@@ -23,10 +22,9 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Button } from "react-aria-components";
 import { match } from "ts-pattern";
-import MobileRoulette from "./MobileRoulette";
 import LoadMobileRoulette from "./LoadMobileRoulette";
+import MobileRoulette from "./MobileRoulette";
 
 export enum RouletteTab {
   character = "character",
@@ -95,77 +93,7 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
       </Suspense>
 
       {/* Desktop */}
-      {loadout !== null && (
-        <div className="col-span-full col-start-1 hidden w-fit grid-cols-[auto_min-content_max-content_min-content_max-content] grid-rows-[max-content_min-content_max-content] justify-self-center sm:grid">
-          {/* Character */}
-          <StyledButton className="relative col-start-1 row-span-full h-full w-48">
-            <Image
-              src={loadout.character.bigImg}
-              alt=""
-              fill
-              priority
-              sizes="192px"
-              className="object-cover"
-            />
-          </StyledButton>
-          {/* Ability and Add-Ons */}
-          <div className="col-start-3 row-start-1 flex items-end gap-2">
-            {/* Ability */}
-            <StyledButton className="h-fit w-fit p-0">
-              <Image
-                src={loadout.ability.img}
-                alt=""
-                width={100}
-                height={100}
-              />
-            </StyledButton>
-            {/* Add-Ons */}
-            <div className="flex shrink-0">
-              {loadout.addOns.map((addOn) => (
-                <Image
-                  key={addOn.id}
-                  src={addOn.img}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="shrink-0 border"
-                />
-              ))}
-            </div>
-          </div>
-          {/* Offering */}
-          <div className="col-start-5 row-start-1">
-            <Image src={loadout.offering.img} alt="" width={100} height={100} />
-          </div>
-          {/* Perks */}
-          <div className="col-start-3 col-end-[-1] row-start-3 flex gap-2">
-            {loadout.perks.map((perk) => (
-              <Button
-                key={perk.id}
-                className="clip-diamond flex h-[96px] w-[96px] items-center justify-center bg-main-light pressed:bg-main-heavy"
-              >
-                <div className="clip-diamond relative h-[92px] w-[92px] bg-orange-700">
-                  <Image
-                    src={perk.img}
-                    alt=""
-                    fill
-                    sizes="92px"
-                    className="scale-105 object-cover"
-                  />
-                </div>
-              </Button>
-            ))}
-          </div>
-
-          {/* Dividers */}
-          {/* Character | Rest of Content */}
-          <div className="col-start-2 row-span-full row-start-1 mx-4 h-full w-px bg-gradient-to-b from-transparent via-main-light to-transparent"></div>
-          {/* Add-Ons | Offering */}
-          <div className="col-start-4 row-start-1 mx-4 h-full w-px bg-gradient-to-b from-transparent via-main-light to-transparent"></div>
-          {/* Perks | Rest of Content */}
-          <div className="col-start-3 col-end-[-1] row-start-2 my-4 h-px w-full bg-gradient-to-r from-transparent via-main-light to-transparent"></div>
-        </div>
-      )}
+      {/* TODO: Implement */}
 
       {/* Randomize Button */}
       <StyledButton
