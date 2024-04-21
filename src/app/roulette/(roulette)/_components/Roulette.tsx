@@ -16,10 +16,17 @@ import {
 } from "@/lib/randomize";
 import { LoadoutConfig } from "@/lib/settings";
 import Image from "next/image";
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import {
+  ReactElement,
+  Suspense,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { Button } from "react-aria-components";
 import { match } from "ts-pattern";
 import MobileRoulette from "./MobileRoulette";
+import LoadMobileRoulette from "./LoadMobileRoulette";
 
 export enum RouletteTab {
   character = "character",
@@ -79,11 +86,13 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
   return (
     <main className="col-span-full col-start-1 grid grid-cols-subgrid gap-y-4">
       {/* Mobile (Tabbed) */}
-      <MobileRoulette
-        role={role}
-        loadout={loadout}
-        randomizeHandler={randomizeHandler}
-      />
+      <Suspense fallback={<LoadMobileRoulette />}>
+        <MobileRoulette
+          role={role}
+          loadout={loadout}
+          randomizeHandler={randomizeHandler}
+        />
+      </Suspense>
 
       {/* Desktop */}
       {loadout !== null && (

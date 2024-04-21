@@ -13,6 +13,7 @@ import { Button, Tab, TabList, TabPanel, Tabs } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { P, match } from "ts-pattern";
 import { RouletteTab } from "./Roulette";
+import LoadMobileRoulette from "./LoadMobileRoulette";
 
 export interface MobileRouletteProps {
   role: DbdRole;
@@ -49,7 +50,9 @@ export default function MobileRoulette(
     }
   }, [pathname, router, searchParams, tab]);
 
-  return (
+  return tab === null ? (
+    <LoadMobileRoulette />
+  ) : (
     <Tabs
       selectedKey={tab}
       onSelectionChange={(key) => {

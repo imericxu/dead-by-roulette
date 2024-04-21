@@ -1,13 +1,12 @@
 "use client";
 
-import { buildReturnUrl } from "@/lib/utils";
+import ButtonLinkWithQuery from "@/components/ButtonLinkSearchParams";
 import { LucideChevronLeft, LucideChevronRight } from "lucide-react";
 import { Route } from "next";
-import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
+import { useSelectedLayoutSegment } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, type ReactElement } from "react";
 import { Button } from "react-aria-components";
 import { twMerge } from "tailwind-merge";
-import ButtonLink from "../../../components/ButtonLink";
 
 export interface LinkTabberProps {
   className?: string;
@@ -23,9 +22,6 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
   const currentTabIdx: number = useMemo(() => {
     return props.tabs.findIndex((tab) => tab.segment === segment);
   }, [segment, props.tabs]);
-
-  const searchParams = useSearchParams();
-  const returnUrl: string | null = searchParams.get("return");
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -183,17 +179,15 @@ export default function LinkTabber(props: LinkTabberProps): ReactElement {
       >
         {props.tabs.map(({ label, segment }, i) => (
           <li key={label} className="group">
-            <ButtonLink
-              href={buildReturnUrl(
-                `${props.layoutRoute}/${segment}` as Route,
-                returnUrl,
-              )}
+            <ButtonLinkWithQuery
+              href={`${props.layoutRoute}/${segment}` as Route}
+              searchParams={["return"]}
               prefetch
               variant={currentTabIdx === i ? "active" : "default"}
-              className={"-outline-offset-2"}
+              className="-outline-offset-2"
             >
               {label}
-            </ButtonLink>
+            </ButtonLinkWithQuery>
           </li>
         ))}
       </ul>
