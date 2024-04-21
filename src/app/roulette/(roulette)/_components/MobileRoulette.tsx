@@ -392,7 +392,7 @@ function OfferingTab({
             {/* Clipped Background */}
             <div
               className={twJoin(
-                "clip-hexagon relative box-content h-[128px] w-[128px] py-[8px] transition group-hover:brightness-125",
+                "clip-hexagon relative box-content h-[128px] w-[128px] py-[8px] transition",
                 rarityBg(loadout.offering.rarity),
               )}
             >
