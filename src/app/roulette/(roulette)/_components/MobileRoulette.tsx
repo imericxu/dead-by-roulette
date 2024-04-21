@@ -221,17 +221,19 @@ function PerksTab({
                   )}
                 >
                   {/* Clipped Background */}
-                  <div className="clip-diamond overflow-visible bg-gradient-to-b from-orange-800 to-orange-950">
+                  <div
+                    className={twJoin(
+                      "clip-diamond overflow-visible bg-gradient-to-b from-orange-800 to-orange-950",
+                      perkHovered && "brightness-125",
+                    )}
+                  >
                     <LoadDetectImage
                       src={perk.img}
                       alt=""
                       priority
                       width={68}
                       height={68}
-                      className={twMerge(
-                        "scale-110 opacity-100 transition data-[loading=true]:opacity-0",
-                        perkHovered && "brightness-125",
-                      )}
+                      className="scale-110 opacity-100 transition data-[loading=true]:opacity-0"
                     />
                   </div>
                 </div>
@@ -276,12 +278,12 @@ function AbilityAddOnsTab({
             aria-label={`Randomize ${roleAbilityType}`}
             onHoverChange={setAbilityHovered}
             onPressChange={setAbilityPressed}
-            className="flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition hover:bg-overlay-light focus-visible:outline-2 pressed:border-main-heavy"
+            className="group flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition hover:bg-overlay-light focus-visible:outline-2 pressed:border-main-heavy"
           >
             {/* Image Border and Background */}
             <div
-              className={twMerge(
-                "relative aspect-square h-20 w-20 border border-main-light transition",
+              className={twJoin(
+                "relative aspect-square h-20 w-20 border border-main-light transition group-hover:brightness-125 group-pressed:border-main-heavy",
                 match(role)
                   .with(
                     DbdRole.killer,
@@ -291,7 +293,6 @@ function AbilityAddOnsTab({
                     rarityBg((loadout.ability as Item).rarity),
                   )
                   .exhaustive(),
-                abilityPressed && "border-main-heavy",
               )}
             >
               <LoadDetectImage
@@ -346,6 +347,7 @@ function AbilityAddOnsTab({
                         "relative aspect-square h-16 w-16 border border-main-light transition",
                         rarityBg(addOn.rarity),
                       ),
+                      (abilityHovered || addOnHovered) && "brightness-125",
                       (abilityPressed || addOnPressed) && "border-main-heavy",
                     )}
                   >
