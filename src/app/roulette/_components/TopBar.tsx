@@ -10,12 +10,10 @@ import { match } from "ts-pattern";
 
 export default function TopBar(): ReactElement {
   const segment: string | null = useSelectedLayoutSegment();
-  const role: DbdRole = match(segment)
+  const role: DbdRole | null = match(segment)
     .with("killer", () => DbdRole.killer)
     .with("survivor", () => DbdRole.survivor)
-    .with(null, () => {
-      throw new Error("Expected segment to be defined");
-    })
+    .with(null, () => null)
     .otherwise(() => {
       throw new Error(`Unexpected segment: ${segment}`);
     });

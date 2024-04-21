@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import LinkSearchParams from "./LinkWithSearchParams";
 
 export interface RoleSwitcherProps {
-  role: DbdRole;
+  role: DbdRole | null;
   killerLink: Route;
   survivorLink: Route;
   className?: string;
