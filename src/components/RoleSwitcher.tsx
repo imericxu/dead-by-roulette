@@ -1,8 +1,8 @@
 import DbdRole from "@/lib/dbdRole";
 import { type Route } from "next";
-import Link from "next/link";
 import { type ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
+import LinkSearchParams from "./LinkWithSearchParams";
 
 export interface RoleSwitcherProps {
   role: DbdRole;
@@ -23,12 +23,13 @@ export default function RoleSwitcher(props: RoleSwitcherProps): ReactElement {
       {props.role === DbdRole.killer ? (
         <span className="font-semibold">Killer</span>
       ) : (
-        <Link
+        <LinkSearchParams
           href={props.killerLink}
+          searchParams={["tab"]}
           className="font-light transition active:scale-95 hover:text-white/75"
         >
           Killer
-        </Link>
+        </LinkSearchParams>
       )}
 
       {/* Divider */}
@@ -38,12 +39,13 @@ export default function RoleSwitcher(props: RoleSwitcherProps): ReactElement {
       {props.role === DbdRole.survivor ? (
         <span className="font-semibold">Survivor</span>
       ) : (
-        <Link
+        <LinkSearchParams
           href={props.survivorLink}
+          searchParams={["tab"]}
           className="font-light transition active:scale-95 hover:text-white/75"
         >
           Survivor
-        </Link>
+        </LinkSearchParams>
       )}
     </div>
   );
