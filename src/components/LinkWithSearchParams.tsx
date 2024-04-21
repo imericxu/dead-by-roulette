@@ -33,12 +33,13 @@ export default function LinkSearchParams<T extends string>(
   );
 }
 
-function _LinkSearchParams<T extends string>(
-  props: LinkSearchParamsProps<T>,
-): ReactElement {
+function _LinkSearchParams<T extends string>({
+  searchParams: propSearchParams,
+  ...props
+}: LinkSearchParamsProps<T>): ReactElement {
   const searchParams = useSearchParams();
   const query = new URLSearchParams();
-  for (const param of props.searchParams) {
+  for (const param of propSearchParams) {
     const value = searchParams.get(param);
     if (value !== null) {
       query.set(param, value);
