@@ -1,5 +1,5 @@
 import SkipToMain from "@/components/SkipToMain";
-import { ReactElement, ReactNode, Suspense } from "react";
+import { ReactElement, ReactNode } from "react";
 import TopBar from "./_components/TopBar";
 
 export default function SettingsLayout({
@@ -8,9 +8,7 @@ export default function SettingsLayout({
   return (
     <>
       <SkipToMain />
-      <Suspense>
-        <TopBar />
-      </Suspense>
+      <TopBar />
       {children}
     </>
   );

@@ -25,7 +25,7 @@ export default function RoleSwitcher(props: RoleSwitcherProps): ReactElement {
       ) : (
         <LinkSearchParams
           href={props.killerLink}
-          searchParams={["tab"]}
+          searchParams={["return", "tab"]}
           className="font-light transition active:scale-95 hover:text-white/75"
         >
           Killer
