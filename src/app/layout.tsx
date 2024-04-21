@@ -1,8 +1,9 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
+import { type ReactElement, type ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 import "./globals.css";
-import { type ReactElement, type ReactNode } from "react";
 
 const jost = Jost({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <div className="relative mx-page grid grid-cols-4 gap-4 sm:grid-cols-8 sm:gap-x-8 lg:mx-page-lg lg:w-[var(--page-width-lg)] lg:grid-cols-12">
           {children}
         </div>
+        <Analytics />
       </body>
     </html>
   );
