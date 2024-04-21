@@ -4,7 +4,7 @@ const nextConfig = {
     typedRoutes: true,
   },
   images: {
-    unoptimized: true,
+    // unoptimized: true,
   },
 };
 
