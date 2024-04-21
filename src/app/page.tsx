@@ -4,8 +4,8 @@ import { type ReactElement } from "react";
 
 export default function Home(): ReactElement {
   return (
-    <>
-      <main className="col-span-full flex h-screen min-h-min w-40 flex-col items-center justify-center gap-8 justify-self-center text-center">
+    <div className="col-span-full flex h-dvh min-h-min flex-col items-center gap-8 py-page">
+      <main className="flex w-40 grow flex-col items-center justify-center gap-8 justify-self-center text-center">
         {/* Heading */}
         <h1 className="text-balance text-5xl font-bold uppercase">
           Dead by Roulette
@@ -40,6 +40,13 @@ export default function Home(): ReactElement {
           <LucideSettings size={20} /> Settings
         </ButtonLink>
       </main>
-    </>
+
+      <a
+        href="https://www.github.com/imericxu/dead-by-roulette"
+        className="col-span-full col-start-1 text-center text-main-heavy"
+      >
+        GitHub
+      </a>
+    </div>
   );
 }
