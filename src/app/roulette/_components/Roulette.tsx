@@ -3,7 +3,8 @@
 import StyledButton from "@/components/StyledButton";
 import useLoadoutConfigs from "@/hooks/useLoadoutConfigs";
 import DbdRole from "@/lib/dbdRole";
-import Loadout, { LoadoutPart } from "@/lib/loadout";
+import type Loadout from "@/lib/loadout";
+import { LoadoutPart } from "@/lib/loadout";
 import {
   randomizeAbility,
   randomizeAddOn,
@@ -14,7 +15,7 @@ import {
   randomizePerk,
   randomizePerks,
 } from "@/lib/randomize";
-import { LoadoutConfig } from "@/lib/settings";
+import { type LoadoutConfig } from "@/lib/settings";
 import {
   ReactElement,
   Suspense,
@@ -23,6 +24,7 @@ import {
   useState,
 } from "react";
 import { match } from "ts-pattern";
+import DesktopRoulette from "./DesktopRoulette";
 import LoadMobileRoulette from "./LoadMobileRoulette";
 import MobileRoulette from "./MobileRoulette";
 
@@ -82,8 +84,8 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
   );
 
   return (
-    <main className="col-span-full col-start-1 grid grid-cols-subgrid gap-y-4">
-      {/* Mobile (Tabbed) */}
+    <main className="col-span-full col-start-1 grid grid-cols-subgrid gap-y-4 sm:gap-y-8">
+      {/* Visible under sm size */}
       <Suspense fallback={<LoadMobileRoulette />}>
         <MobileRoulette
           role={role}
@@ -92,8 +94,12 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
         />
       </Suspense>
 
-      {/* Desktop */}
-      {/* TODO: Implement */}
+      {/* Visible above sm size */}
+      <DesktopRoulette
+        role={role}
+        loadout={loadout}
+        randomizeHandler={randomizeHandler}
+      />
 
       {/* Randomize Button */}
       <StyledButton

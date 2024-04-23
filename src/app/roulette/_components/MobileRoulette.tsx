@@ -58,8 +58,7 @@ export default function MobileRoulette(
       onSelectionChange={(key) => {
         setTab(key as RouletteTab);
       }}
-      // TODO: Add sm:hidden when the desktop experience is ready
-      className="col-span-full col-start-1 flex h-[476px] flex-col items-center"
+      className="col-span-full col-start-1 flex h-[476px] flex-col items-center sm:hidden"
     >
       {/* Tab Switchers */}
       <TabList

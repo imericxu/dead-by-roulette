@@ -9,9 +9,6 @@ export default function SettingsLayout({
     <>
       <SkipToMain />
       <TopBar />
-      <p className="col-span-full col-start-1 justify-self-center bg-black p-1 text-center text-xs">
-        🚧 Under Construction 🚧
-      </p>
       {children}
     </>
   );
