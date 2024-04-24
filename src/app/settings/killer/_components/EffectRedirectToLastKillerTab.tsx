@@ -3,21 +3,23 @@
 import DbdRole from "@/lib/dbdRole";
 import { getLastSettingsTabRoute } from "@/lib/settings";
 import {
-  type ReadonlyURLSearchParams,
   redirect,
   useSearchParams,
+  type ReadonlyURLSearchParams,
 } from "next/navigation";
-import { type ReactElement, useEffect } from "react";
-import { buildReturnUrl } from "@/lib/utils";
+import { useEffect, type ReactElement } from "react";
 
 export default function EffectRedirectToLastKillerTab(): ReactElement {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const returnUrl: string | null = searchParams.get("return");
 
   useEffect(() => {
-    redirect(
-      buildReturnUrl(getLastSettingsTabRoute(DbdRole.killer), returnUrl),
-    );
+    const searchParams = new URLSearchParams();
+    if (returnUrl !== null) {
+      searchParams.set("return", returnUrl);
+    }
+    const redirectUrl = `${getLastSettingsTabRoute(DbdRole.killer)}?${searchParams.toString()}`;
+    redirect(redirectUrl);
   }, [returnUrl]);
 
   return <></>;

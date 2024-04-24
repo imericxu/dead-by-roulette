@@ -18,13 +18,6 @@ export function isSubRouteOf(parent: Route, child: Route): boolean {
 }
 
 /**
- * Add return query to a route if it exists.
- */
-export function buildReturnUrl(route: Route, returnUrl: string | null): Route {
-  return returnUrl === null ? route : `${route}?return=${returnUrl}`;
-}
-
-/**
  * Pick a random element from an array.
  *
  * Uses Math.random() to generate a random index.

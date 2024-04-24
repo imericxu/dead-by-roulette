@@ -2,8 +2,7 @@
 
 import { getLastRole, getLastSettingsTabRoute } from "@/lib/settings";
 import { redirect, useSearchParams } from "next/navigation";
-import { type ReactElement, useEffect } from "react";
-import { buildReturnUrl } from "@/lib/utils";
+import { useEffect, type ReactElement } from "react";
 
 export default function EffectRedirectToLastTab(): ReactElement {
   const searchParams = useSearchParams();
@@ -11,7 +10,12 @@ export default function EffectRedirectToLastTab(): ReactElement {
 
   // Redirect to the last accessed settings page
   useEffect(() => {
-    redirect(buildReturnUrl(getLastSettingsTabRoute(getLastRole()), returnUrl));
+    const searchParams = new URLSearchParams();
+    if (returnUrl !== null) {
+      searchParams.set("return", returnUrl);
+    }
+    const redirectUrl = `${getLastSettingsTabRoute(getLastRole())}?${searchParams.toString()}`;
+    redirect(redirectUrl);
   }, [returnUrl]);
 
   return <></>;
