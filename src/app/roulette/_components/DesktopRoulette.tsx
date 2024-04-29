@@ -36,7 +36,7 @@ export default function DesktopRoulette({
 
   if (loadout === null) return <></>;
   return (
-    <div className="col-span-full col-start-1 mt-4 hidden w-full grid-cols-[auto_min-content_max-content_min-content_max-content] grid-rows-[max-content_min-content_max-content] justify-self-center sm:grid">
+    <div className="col-span-full col-start-1 mt-4 hidden w-full max-w-[888px] grid-cols-[auto_min-content_max-content_min-content_max-content] grid-rows-[max-content_min-content_max-content] justify-self-center sm:grid">
       {/* Character */}
       <Button
         onPress={() => {
@@ -45,7 +45,7 @@ export default function DesktopRoulette({
         onHoverChange={setCharacterHovered}
         onPressChange={setCharacterPressed}
         className={twMerge(
-          "relative col-start-1 row-span-full h-[225px] w-full max-w-96 justify-self-end border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 outline-0 transition focus-visible:outline-2 md:h-[257px]",
+          "relative col-start-1 row-span-full h-[225px] w-full justify-self-end border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 outline-0 transition focus-visible:outline-2 md:h-[257px]",
           (characterHovered || (role === DbdRole.killer && abilityHovered)) &&
             "brightness-125",
           (characterPressed || (role === DbdRole.killer && abilityPressed)) &&
