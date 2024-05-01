@@ -51,7 +51,7 @@ export default function Placeholder(): ReactElement {
                   alt=""
                   fill
                   sizes="3rem"
-                  className="object-cover grayscale transition group-selected:filter-none"
+                  className="pointer-events-none object-cover grayscale transition group-selected:filter-none"
                 />
               </div>
               {/* Text */}

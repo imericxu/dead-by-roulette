@@ -162,7 +162,7 @@ function CharacterTab({
               sizes="(max-width: 320px) 100vw, 360px"
               width={0}
               height={0}
-              className="m-auto h-full w-auto overflow-hidden object-cover opacity-100 transition data-[loading=true]:opacity-0"
+              className="pointer-events-none m-auto h-full w-auto overflow-hidden object-cover opacity-100 transition data-[loading=true]:opacity-0"
             />
           </Button>
           {/* Character Name */}
@@ -233,7 +233,7 @@ function PerksTab({
                       priority
                       width={68}
                       height={68}
-                      className="scale-110 opacity-100 transition data-[loading=true]:opacity-0"
+                      className="pointer-events-none scale-110 opacity-100 transition data-[loading=true]:opacity-0"
                     />
                   </div>
                 </div>
@@ -301,7 +301,7 @@ function AbilityAddOnsTab({
                 priority
                 fill
                 sizes="80px"
-                className="opacity-100 transition data-[loading=true]:opacity-0"
+                className="pointer-events-none opacity-100 transition data-[loading=true]:opacity-0"
               />
             </div>
 
@@ -357,7 +357,7 @@ function AbilityAddOnsTab({
                       priority
                       fill
                       sizes="64px"
-                      className="opacity-100 transition data-[loading=true]:opacity-0"
+                      className="pointer-events-none opacity-100 transition data-[loading=true]:opacity-0"
                     />
                   </div>
                   <p className="text-start">{addOn.name}</p>
@@ -401,7 +401,7 @@ function OfferingTab({
                 fill
                 priority
                 sizes="120px"
-                className="object-cover opacity-100 transition data-[loading=true]:opacity-0"
+                className="pointer-events-none object-cover opacity-100 transition data-[loading=true]:opacity-0"
               />
             </div>
           </div>

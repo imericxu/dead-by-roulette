@@ -59,7 +59,7 @@ export default function DesktopRoulette({
           height={0}
           priority
           sizes="300px"
-          className="m-auto h-full w-auto overflow-hidden object-cover transition data-[loading=true]:opacity-0"
+          className="pointer-events-none m-auto h-full w-auto overflow-hidden object-cover transition data-[loading=true]:opacity-0"
         />
       </Button>
 
@@ -98,7 +98,7 @@ export default function DesktopRoulette({
             priority
             fill
             sizes="(max-width:640px) 96px, 112px"
-            className="transition data-[loading=true]:opacity-0"
+            className="pointer-events-none transition data-[loading=true]:opacity-0"
           />
         </Button>
 
@@ -133,7 +133,7 @@ export default function DesktopRoulette({
                 fill
                 priority
                 sizes="(max-width: 640px) 80px, 96px"
-                className="transition data-[loading=true]:opacity-0"
+                className="pointer-events-none transition data-[loading=true]:opacity-0"
               />
             </Button>
           ))}
@@ -160,7 +160,7 @@ export default function DesktopRoulette({
             fill
             priority
             sizes="(max-width: 640px) 96px, 112px"
-            className="object-cover transition data-[loading=true]:opacity-0"
+            className="pointer-events-none object-cover transition data-[loading=true]:opacity-0"
           />
         </div>
       </Button>
@@ -189,7 +189,7 @@ export default function DesktopRoulette({
                 fill
                 priority
                 sizes="(max-width: 640px) 96px, 112px"
-                className="scale-110 object-cover transition data-[loading=true]:opacity-0"
+                className="pointer-events-none scale-110 object-cover transition data-[loading=true]:opacity-0"
               />
             </div>
           </Button>
