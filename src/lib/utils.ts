@@ -1,6 +1,8 @@
 import binarySearch from "binary-search";
 import { type Route } from "next";
 
+export type Timeout = ReturnType<typeof setTimeout>;
+
 /**
  * Type guard for enums.
  */

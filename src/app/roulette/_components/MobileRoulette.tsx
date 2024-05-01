@@ -1,19 +1,22 @@
 "use client";
 
 import LoadDetectImage from "@/components/LoadDetectImage";
-import { Item } from "@/lib/dbd";
+import { type Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import Loadout, { LoadoutPart } from "@/lib/loadout";
-import { isEnumValue } from "@/lib/utils";
+import { Timeout, isEnumValue } from "@/lib/utils";
 import rarityBg from "@/lib/variants/rarityBg";
+import { type PressEvent } from "@react-types/shared";
 import { type Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReactNode, useEffect, useState, type ReactElement } from "react";
 import { Button, Tab, TabList, TabPanel, Tabs } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { P, match } from "ts-pattern";
-import { RouletteTab } from "./Roulette";
 import LoadMobileRoulette from "./LoadMobileRoulette";
+import { RouletteTab } from "./Roulette";
+
+const LONG_PRESS_DURATION_MS = 300;
 
 export interface MobileRouletteProps {
   role: DbdRole;
@@ -181,8 +184,24 @@ function PerksTab({
   loadout,
   randomizeHandler,
 }: MobileRouletteProps): ReactElement {
+  // Press States
   const [perkHovered, setPerkHovered] = useState<boolean>(false);
-  const [perkPressed, setPerkPressed] = useState<boolean>(false);
+  const [pressedIdx, setPressedIdx] = useState<number | null>(null);
+
+  // Long Press
+  const [isLongPress, setIsLongPress] = useState<boolean>(false);
+  const [longPressTimeout, setLongPressTimeout] = useState<Timeout | null>(
+    null,
+  );
+
+  function resetPress(): void {
+    setPressedIdx(null);
+    setIsLongPress(false);
+    if (longPressTimeout !== null) {
+      clearTimeout(longPressTimeout);
+      setLongPressTimeout(null);
+    }
+  }
 
   return (
     <RouletteTabContent id="perks" title="Perks">
@@ -197,19 +216,34 @@ function PerksTab({
               ></div>
             ))
           : // Perk Buttons
-            loadout.perks.map((perk, _idx) => (
+            loadout.perks.map((perk, idx) => (
               <Button
                 key={perk.id}
                 aria-label="Randomize All Perks"
-                onPress={() => {
-                  randomizeHandler(LoadoutPart.perks);
+                onPressStart={() => {
+                  setPressedIdx(idx);
+                  setLongPressTimeout(
+                    setTimeout(() => {
+                      setIsLongPress(true);
+                    }, LONG_PRESS_DURATION_MS),
+                  );
                 }}
+                onPressUp={() => {
+                  if (pressedIdx === null) return;
+                  if (isLongPress) {
+                    randomizeHandler(LoadoutPart.perk, pressedIdx);
+                  } else {
+                    randomizeHandler(LoadoutPart.perks);
+                  }
+                  resetPress();
+                }}
+                onPressEnd={resetPress}
                 onHoverChange={setPerkHovered}
-                onPressChange={setPerkPressed}
                 className={twMerge(
                   "flex items-center justify-start gap-2 border border-main-light p-2 text-start outline-0 transition focus-visible:outline-2",
                   perkHovered && "bg-overlay-light",
-                  perkPressed && "border-main-heavy",
+                  pressedIdx !== null && "border-main-heavy",
+                  isLongPress && idx !== pressedIdx && "border-main-light",
                 )}
               >
                 {/* Image */}
@@ -217,7 +251,8 @@ function PerksTab({
                 <div
                   className={twMerge(
                     "clip-diamond shrink-0 bg-main-light p-0.5 transition",
-                    perkPressed && "bg-main-heavy",
+                    pressedIdx !== null && "bg-main-heavy",
+                    isLongPress && idx !== pressedIdx && "bg-main-light",
                   )}
                 >
                   {/* Clipped Background */}
@@ -255,7 +290,20 @@ function AbilityAddOnsTab({
   const [abilityPressed, setAbilityPressed] = useState<boolean>(false);
 
   const [addOnHovered, setAddOnHovered] = useState<boolean>(false);
-  const [addOnPressed, setAddOnPressed] = useState<boolean>(false);
+  const [pressedAddOnIdx, setPressedAddOnIdx] = useState<number | null>(null);
+  const [isLongPress, setIsLongPress] = useState<boolean>(false);
+  const [longPressTimeout, setLongPressTimeout] = useState<Timeout | null>(
+    null,
+  );
+
+  function resetAddOnPress(): void {
+    setPressedAddOnIdx(null);
+    setIsLongPress(false);
+    if (longPressTimeout !== null) {
+      clearTimeout(longPressTimeout);
+      setLongPressTimeout(null);
+    }
+  }
 
   const roleAbilityType: string = match(role)
     .with(DbdRole.killer, () => "Power")
@@ -272,10 +320,10 @@ function AbilityAddOnsTab({
           <div className="h-[98px] w-full animate-pulse border border-main-medium bg-overlay"></div>
         ) : (
           <Button
+            aria-label={`Randomize ${roleAbilityType}`}
             onPress={() => {
               randomizeHandler(LoadoutPart.ability);
             }}
-            aria-label={`Randomize ${roleAbilityType}`}
             onHoverChange={setAbilityHovered}
             onPressChange={setAbilityPressed}
             className="group flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition hover:bg-overlay-light focus-visible:outline-2 pressed:border-main-heavy"
@@ -325,19 +373,37 @@ function AbilityAddOnsTab({
                 ></div>
               ))
             : // Add-On Buttons
-              loadout.addOns.map((addOn) => (
+              loadout.addOns.map((addOn, idx) => (
                 <Button
                   key={addOn.id}
                   aria-label="Randomize Add-Ons"
-                  onPress={() => {
-                    randomizeHandler(LoadoutPart.addOns);
+                  onPressStart={() => {
+                    setPressedAddOnIdx(idx);
+                    setLongPressTimeout(
+                      setTimeout(() => {
+                        setIsLongPress(true);
+                      }, LONG_PRESS_DURATION_MS),
+                    );
                   }}
+                  onPressUp={() => {
+                    if (pressedAddOnIdx === null) return;
+                    if (isLongPress) {
+                      randomizeHandler(LoadoutPart.addOn, idx);
+                    } else {
+                      randomizeHandler(LoadoutPart.addOns);
+                    }
+                    resetAddOnPress();
+                  }}
+                  onPressEnd={resetAddOnPress}
                   onHoverChange={setAddOnHovered}
-                  onPressChange={setAddOnPressed}
                   className={twMerge(
                     "flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition focus-visible:outline-2",
                     (abilityHovered || addOnHovered) && "bg-overlay-light",
-                    (abilityPressed || addOnPressed) && "border-main-heavy",
+                    (abilityPressed || pressedAddOnIdx !== null) &&
+                      "border-main-heavy",
+                    isLongPress &&
+                      idx !== pressedAddOnIdx &&
+                      "border-main-light",
                   )}
                 >
                   {/* Image Border and Background */}
@@ -348,7 +414,11 @@ function AbilityAddOnsTab({
                         rarityBg(addOn.rarity),
                       ),
                       (abilityHovered || addOnHovered) && "brightness-125",
-                      (abilityPressed || addOnPressed) && "border-main-heavy",
+                      (abilityPressed || pressedAddOnIdx !== null) &&
+                        "border-main-heavy",
+                      isLongPress &&
+                        idx !== pressedAddOnIdx &&
+                        "border-main-light",
                     )}
                   >
                     <LoadDetectImage
