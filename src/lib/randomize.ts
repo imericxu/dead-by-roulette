@@ -12,7 +12,11 @@ import {
 import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
 import { type LoadoutConfig } from "@/lib/settings";
-import { pickNRandomWithoutReplacement, pickRandom } from "@/lib/utils";
+import {
+  binarySearchValue,
+  pickNRandomWithoutReplacement,
+  pickRandom,
+} from "@/lib/utils";
 import binarySearch from "binary-search";
 import { match } from "ts-pattern";
 
@@ -139,46 +143,30 @@ export function randomizeAddOn(
   loadout: Readonly<Loadout>,
   index: number,
 ): Loadout {
-  return match(role)
-    .with(DbdRole.killer, () => {
-      const killer: Killer = loadout.character as Killer;
-      const addOns: AddOn[] = loadout.addOns.slice();
-      addOns.splice(index, 1);
-      const addOnsSelection: number[] = killer.addOnIds.filter(
-        (id) =>
-          !config.disabledEntities.addOns.has(id) &&
-          !addOns.some((addOn) => addOn.id === id),
-      );
-      if (addOnsSelection.length === 0) return loadout;
-      return {
-        ...loadout,
-        addOns: addOns.splice(
-          index,
-          0,
-          dbd.killerRelated.addOns[pickRandom(addOnsSelection)],
-        ),
-      };
-    })
-    .with(DbdRole.survivor, () => {
-      const itemType: ItemType = _itemTypeFromItem(loadout.ability as Item);
-      const addOns: AddOn[] = loadout.addOns.slice();
-      addOns.splice(index, 1);
-      const addOnsSelection: number[] = itemType.addOnIds.filter(
-        (id) =>
-          !config.disabledEntities.addOns.has(id) &&
-          !addOns.some((addOn) => addOn.id === id),
-      );
-      if (addOnsSelection.length === 0) return loadout;
-      return {
-        ...loadout,
-        addOns: addOns.splice(
-          index,
-          0,
-          dbd.survivorRelated.addOns[pickRandom(addOnsSelection)],
-        ),
-      };
-    })
-    .exhaustive();
+  const addOns: AddOn[] = loadout.addOns.slice();
+  const selection: number[] = match(role)
+    .with(DbdRole.killer, () => (loadout.character as Killer).addOnIds)
+    .with(
+      DbdRole.survivor,
+      () => _itemTypeFromItem(loadout.ability as Item).addOnIds,
+    )
+    .exhaustive()
+    .filter(
+      (id) =>
+        !config.disabledEntities.addOns.has(id) &&
+        !addOns.some((addOn) => addOn.id === id),
+    );
+  if (selection.length === 0) return loadout;
+  const newAddOn: AddOn = binarySearchValue(
+    match(role)
+      .with(DbdRole.killer, () => dbd.killerRelated.addOns)
+      .with(DbdRole.survivor, () => dbd.survivorRelated.addOns)
+      .exhaustive(),
+    pickRandom(selection),
+    (value, needle) => value.id - needle,
+  );
+  addOns.splice(index, 1, newAddOn);
+  return { ...loadout, addOns };
 }
 
 export function randomizeOffering(
@@ -250,7 +238,13 @@ function _randomizeKillerAddOns(
   return pickNRandomWithoutReplacement(
     killer.addOnIds.filter((id) => !config.disabledEntities.addOns.has(id)),
     2,
-  ).map<AddOn>((id) => dbd.killerRelated.addOns[id]);
+  ).map<AddOn>((id) =>
+    binarySearchValue(
+      dbd.killerRelated.addOns,
+      id,
+      (value, needle) => value.id - needle,
+    ),
+  );
 }
 
 function _randomizeSurvivorItem(config: Readonly<LoadoutConfig>): Item {
@@ -259,7 +253,13 @@ function _randomizeSurvivorItem(config: Readonly<LoadoutConfig>): Item {
       (itemType) => !config.disabledEntities.itemTypes.has(itemType.id),
     ),
   );
-  return dbd.survivorRelated.items[pickRandom(itemType.itemIds)];
+  return binarySearchValue(
+    dbd.survivorRelated.items,
+    pickRandom(itemType.itemIds),
+    (value, needle) => {
+      return value.id - needle;
+    },
+  );
 }
 
 function _randomizeSurvivorAddOns(
@@ -270,15 +270,12 @@ function _randomizeSurvivorAddOns(
   return pickNRandomWithoutReplacement(
     itemType.addOnIds.filter((id) => !config.disabledEntities.addOns.has(id)),
     2,
-  ).map<AddOn>(
-    (id) =>
-      dbd.survivorRelated.addOns[
-        binarySearch(
-          dbd.survivorRelated.addOns,
-          id,
-          (addOn, needle) => addOn.id - needle,
-        )
-      ],
+  ).map<AddOn>((id) =>
+    binarySearchValue(
+      dbd.survivorRelated.addOns,
+      id,
+      (value, needle) => value.id - needle,
+    ),
   );
 }
 

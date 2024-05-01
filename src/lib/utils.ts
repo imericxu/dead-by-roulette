@@ -1,3 +1,4 @@
+import binarySearch from "binary-search";
 import { type Route } from "next";
 
 /**
@@ -52,4 +53,14 @@ export function pickNRandomWithoutReplacement<T>(
   }
 
   return result;
+}
+
+export function binarySearchValue<A, B>(
+  haystack: readonly A[],
+  needle: B,
+  compare: (value: A, needle: B) => number,
+): A {
+  const index: number = binarySearch(haystack, needle, compare);
+  if (index < 0) throw new Error("Value not found in array.");
+  return haystack[index];
 }
