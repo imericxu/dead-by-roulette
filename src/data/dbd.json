@@ -173,7 +173,7 @@
         "id": 13,
         "name": "Legion",
         "img": "/images/portraits/killers/the-legion.png",
-        "bigImg": "/images/large-portraits/killers/the-pig.png",
+        "bigImg": "/images/large-portraits/killers/the-legion.png",
         "power": "Feral Frenzy",
         "powerImg": "/images/killer-powers/feral-frenzy.png",
         "perkIds": [39, 40, 41],
