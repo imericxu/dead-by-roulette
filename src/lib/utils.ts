@@ -57,7 +57,11 @@ export function pickNRandomWithoutReplacement<T>(
   return result;
 }
 
-export function binarySearchValue<A, B>(
+/**
+ * Find a value in a sorted array using binary search.
+ * @throws Error if the value is not found in the array.
+ */
+export function binarySearchFind<A, B>(
   haystack: readonly A[],
   needle: B,
   compare: (value: A, needle: B) => number,

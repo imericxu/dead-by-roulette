@@ -13,7 +13,7 @@ import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
 import { type LoadoutConfig } from "@/lib/settings";
 import {
-  binarySearchValue,
+  binarySearchFind,
   pickNRandomWithoutReplacement,
   pickRandom,
 } from "@/lib/utils";
@@ -157,7 +157,7 @@ export function randomizeAddOn(
         !addOns.some((addOn) => addOn.id === id),
     );
   if (selection.length === 0) return loadout;
-  const newAddOn: AddOn = binarySearchValue(
+  const newAddOn: AddOn = binarySearchFind(
     match(role)
       .with(DbdRole.killer, () => dbd.killerRelated.addOns)
       .with(DbdRole.survivor, () => dbd.survivorRelated.addOns)
@@ -239,7 +239,7 @@ function _randomizeKillerAddOns(
     killer.addOnIds.filter((id) => !config.disabledEntities.addOns.has(id)),
     2,
   ).map<AddOn>((id) =>
-    binarySearchValue(
+    binarySearchFind(
       dbd.killerRelated.addOns,
       id,
       (value, needle) => value.id - needle,
@@ -253,7 +253,7 @@ function _randomizeSurvivorItem(config: Readonly<LoadoutConfig>): Item {
       (itemType) => !config.disabledEntities.itemTypes.has(itemType.id),
     ),
   );
-  return binarySearchValue(
+  return binarySearchFind(
     dbd.survivorRelated.items,
     pickRandom(itemType.itemIds),
     (value, needle) => {
@@ -271,7 +271,7 @@ function _randomizeSurvivorAddOns(
     itemType.addOnIds.filter((id) => !config.disabledEntities.addOns.has(id)),
     2,
   ).map<AddOn>((id) =>
-    binarySearchValue(
+    binarySearchFind(
       dbd.survivorRelated.addOns,
       id,
       (value, needle) => value.id - needle,
