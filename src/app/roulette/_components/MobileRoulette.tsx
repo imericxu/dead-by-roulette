@@ -6,7 +6,6 @@ import DbdRole from "@/lib/dbdRole";
 import Loadout, { LoadoutPart } from "@/lib/loadout";
 import { Timeout, isEnumValue } from "@/lib/utils";
 import rarityBg from "@/lib/variants/rarityBg";
-import { type PressEvent } from "@react-types/shared";
 import { type Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReactNode, useEffect, useState, type ReactElement } from "react";
