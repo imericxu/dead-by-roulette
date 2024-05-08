@@ -159,10 +159,9 @@ function CharacterTab({
             className="relative aspect-[4/3] w-full overflow-hidden border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 pt-2 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
           >
             <LoadDetectImage
-              src={loadout.character.bigImg}
+              src={`${loadout.character.bigImg}-264h.png`}
               alt=""
               priority
-              sizes="(max-width: 320px) 100vw, 360px"
               width={0}
               height={0}
               className="pointer-events-none m-auto h-full w-auto overflow-hidden object-cover opacity-100 transition data-[loading=true]:opacity-0"
@@ -263,7 +262,7 @@ function PerksTab({
                     )}
                   >
                     <LoadDetectImage
-                      src={perk.img}
+                      src={`${perk.img}-112w.png`}
                       alt=""
                       priority
                       width={68}
@@ -344,11 +343,10 @@ function AbilityAddOnsTab({
               )}
             >
               <LoadDetectImage
-                src={loadout?.ability.img}
+                src={`${loadout?.ability.img}-112w.png`}
                 alt=""
                 priority
                 fill
-                sizes="80px"
                 className="pointer-events-none opacity-100 transition data-[loading=true]:opacity-0"
               />
             </div>
@@ -422,11 +420,10 @@ function AbilityAddOnsTab({
                     )}
                   >
                     <LoadDetectImage
-                      src={addOn.img}
+                      src={`${addOn.img}-96w.png`}
                       alt=""
                       priority
                       fill
-                      sizes="64px"
                       className="pointer-events-none opacity-100 transition data-[loading=true]:opacity-0"
                     />
                   </div>
@@ -466,11 +463,10 @@ function OfferingTab({
               )}
             >
               <LoadDetectImage
-                src={loadout?.offering.img}
+                src={`${loadout?.offering.img}-144w.png`}
                 alt=""
                 fill
                 priority
-                sizes="120px"
                 className="pointer-events-none object-cover opacity-100 transition data-[loading=true]:opacity-0"
               />
             </div>

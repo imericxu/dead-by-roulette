@@ -53,12 +53,11 @@ export default function DesktopRoulette({
         )}
       >
         <LoadDetectImage
-          src={loadout.character.bigImg}
+          src={`${loadout.character.bigImg}-264h.png`}
           alt=""
           width={0}
           height={0}
           priority
-          sizes="300px"
           className="pointer-events-none m-auto h-full w-auto overflow-hidden object-cover transition data-[loading=true]:opacity-0"
         />
       </Button>
@@ -93,11 +92,10 @@ export default function DesktopRoulette({
           )}
         >
           <LoadDetectImage
-            src={loadout.ability.img}
+            src={`${loadout.ability.img}-112w.png`}
             alt=""
             priority
             fill
-            sizes="(max-width:640px) 96px, 112px"
             className="pointer-events-none transition data-[loading=true]:opacity-0"
           />
         </Button>
@@ -128,11 +126,10 @@ export default function DesktopRoulette({
               )}
             >
               <LoadDetectImage
-                src={addOn.img}
+                src={`${addOn.img}-96w.png`}
                 alt=""
                 fill
                 priority
-                sizes="(max-width: 640px) 80px, 96px"
                 className="pointer-events-none transition data-[loading=true]:opacity-0"
               />
             </Button>
@@ -155,11 +152,10 @@ export default function DesktopRoulette({
           )}
         >
           <LoadDetectImage
-            src={loadout?.offering.img}
+            src={`${loadout?.offering.img}-144w.png`}
             alt=""
             fill
             priority
-            sizes="(max-width: 640px) 96px, 112px"
             className="pointer-events-none object-cover transition data-[loading=true]:opacity-0"
           />
         </div>
@@ -184,11 +180,10 @@ export default function DesktopRoulette({
             {/* Clipped Background */}
             <div className="clip-diamond relative h-full w-full bg-gradient-to-b from-orange-800 to-orange-950">
               <LoadDetectImage
-                src={perk.img}
+                src={`${perk.img}-112w.png`}
                 alt=""
                 fill
                 priority
-                sizes="(max-width: 640px) 96px, 112px"
                 className="pointer-events-none scale-110 object-cover transition data-[loading=true]:opacity-0"
               />
             </div>

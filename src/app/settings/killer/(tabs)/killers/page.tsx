@@ -47,10 +47,9 @@ export default function Placeholder(): ReactElement {
               {/* Image */}
               <div className="relative h-14 w-11 border border-main-light bg-gradient-to-b from-slate-800 via-sky-200/70 via-30% to-slate-900 transition">
                 <Image
-                  src={killer.img}
+                  src={`${killer.img}-96w.png`}
                   alt=""
                   fill
-                  sizes="3rem"
                   className="pointer-events-none object-cover grayscale transition group-selected:filter-none"
                 />
               </div>
