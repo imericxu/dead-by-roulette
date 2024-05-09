@@ -12,6 +12,8 @@ import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { match } from "ts-pattern";
 import LoadDesktopRoulette from "./LoadDesktopRoulette";
+import DiamondOutline from "@/components/svg/DiamondOutline";
+import HexagonOutline from "@/components/svg/HexagonOutline";
 
 export interface DesktopRouletteProps {
   role: DbdRole;
@@ -50,7 +52,7 @@ export default function DesktopRoulette({
           onHoverChange={setCharacterHovered}
           onPressChange={setCharacterPressed}
           className={twMerge(
-            "relative col-start-1 row-span-full h-[225px] w-full justify-self-end border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 outline-0 transition focus-visible:outline-2 md:h-[257px]",
+            "relative col-start-1 row-span-full h-[225px] w-full justify-self-end border-2 border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 outline-0 transition focus-visible:outline-2 md:h-[257px]",
             (characterHovered || (role === DbdRole.killer && abilityHovered)) &&
               "brightness-125",
             (characterPressed || (role === DbdRole.killer && abilityPressed)) &&
@@ -90,7 +92,7 @@ export default function DesktopRoulette({
             }`}
             className={twMerge(
               twJoin(
-                "relative h-24 w-24 border border-main-light outline-0 transition focus-visible:outline-2 md:h-28 md:w-28",
+                "relative h-24 w-24 border-2 border-main-light outline-0 transition focus-visible:outline-2 md:h-28 md:w-28",
                 match(role)
                   .with(
                     DbdRole.killer,
@@ -153,7 +155,7 @@ export default function DesktopRoulette({
                 }}
                 className={twMerge(
                   twJoin(
-                    "relative h-20 w-20 border border-main-light outline-0 transition focus-visible:outline-2 md:h-24 md:w-24",
+                    "relative h-20 w-20 border-2 border-main-light outline-0 transition focus-visible:outline-2 md:h-24 md:w-24",
                     rarityBg(addOn.rarity),
                   ),
                   ((role === DbdRole.killer && characterHovered) ||
@@ -196,23 +198,25 @@ export default function DesktopRoulette({
           onPress={() => {
             randomizeHandler(LoadoutPart.offering);
           }}
-          className="clip-hexagon col-start-5 row-start-1 h-24 w-[84px] bg-main-light p-[2px] transition hover:brightness-125 pressed:bg-main-heavy md:h-28 md:w-[105px]"
+          className="group relative col-start-5 row-start-1 h-24 w-[84px] outline-0 transition hover:brightness-125 focus-visible:outline-2 md:h-28 md:w-[105px]"
         >
-          {/* Clipped Background */}
+          {/* Background */}
           <div
             className={twJoin(
-              "clip-hexagon relative h-full w-full transition",
+              "clip-hexagon h-full w-full",
               rarityBg(loadout.offering.rarity),
             )}
-          >
-            <LoadDetectImage
-              src={`${loadout?.offering.img}-144w.png`}
-              alt=""
-              fill
-              priority
-              className="pointer-events-none object-cover transition data-[loading=true]:opacity-0"
-            />
-          </div>
+          ></div>
+          {/* Border */}
+          <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-[3px] transition group-pressed:stroke-main-heavy" />
+          {/* Image */}
+          <LoadDetectImage
+            src={`${loadout?.offering.img}-144w.png`}
+            alt=""
+            fill
+            priority
+            className="pointer-events-none absolute object-cover transition data-[loading=true]:opacity-0"
+          />
         </Button>
         <Tooltip
           placement="bottom"
@@ -249,21 +253,27 @@ export default function DesktopRoulette({
                 randomizeHandler(LoadoutPart.perks);
               }}
               className={twMerge(
-                "clip-diamond h-24 w-24 bg-main-light p-[2px] transition md:h-28 md:w-28",
+                "relative h-24 w-24 outline-0 transition focus-visible:outline-2 md:h-28 md:w-28",
                 perksHoveredIdx !== null && "brightness-125",
-                perksPressedIdx !== null && "bg-main-heavy",
               )}
             >
-              {/* Clipped Background */}
-              <div className="clip-diamond relative h-full w-full bg-gradient-to-b from-orange-800 to-orange-950">
-                <LoadDetectImage
-                  src={`${perk.img}-112w.png`}
-                  alt=""
-                  fill
-                  priority
-                  className="pointer-events-none scale-110 object-cover transition data-[loading=true]:opacity-0"
-                />
-              </div>
+              {/* Background */}
+              <div className="clip-diamond h-full w-full bg-orange-500 bg-gradient-to-b from-orange-800 to-orange-950"></div>
+              {/* Border */}
+              <DiamondOutline
+                className={twMerge(
+                  "absolute inset-0 h-full w-full stroke-main-light stroke-[3px]",
+                  perksPressedIdx !== null && "stroke-main-heavy",
+                )}
+              />
+              {/* Image */}
+              <LoadDetectImage
+                src={`${perk.img}-112w.png`}
+                alt=""
+                fill
+                priority
+                className="pointer-events-none absolute col-start-1 scale-125 object-cover transition data-[loading=true]:opacity-0"
+              />
             </Button>
             <Tooltip
               placement="bottom"

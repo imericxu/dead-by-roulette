@@ -14,6 +14,8 @@ import { twJoin, twMerge } from "tailwind-merge";
 import { P, match } from "ts-pattern";
 import LoadMobileRoulette from "./LoadMobileRoulette";
 import { RouletteTab } from "./Roulette";
+import DiamondOutline from "@/components/svg/DiamondOutline";
+import HexagonOutline from "@/components/svg/HexagonOutline";
 
 const LONG_PRESS_DURATION_MS = 300;
 
@@ -244,31 +246,30 @@ function PerksTab({
                   isLongPress && idx !== pressedIdx && "border-main-light",
                 )}
               >
-                {/* Image */}
-                {/* Pseudo-Border */}
+                {/* Perk Diamond */}
                 <div
                   className={twMerge(
-                    "clip-diamond shrink-0 bg-main-light p-0.5 transition",
-                    pressedIdx !== null && "bg-main-heavy",
-                    isLongPress && idx !== pressedIdx && "bg-main-light",
+                    "relative h-[72px] w-[72px] shrink-0",
+                    perkHovered && "brightness-125",
                   )}
                 >
-                  {/* Clipped Background */}
-                  <div
-                    className={twJoin(
-                      "clip-diamond overflow-visible bg-gradient-to-b from-orange-800 to-orange-950",
-                      perkHovered && "brightness-125",
+                  {/* Background */}
+                  <div className="clip-diamond h-full w-full bg-gradient-to-b from-orange-800 to-orange-950"></div>
+                  {/* Border */}
+                  <DiamondOutline
+                    className={twMerge(
+                      "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
+                      pressedIdx !== null && "stroke-main-heavy",
                     )}
-                  >
-                    <LoadDetectImage
-                      src={`${perk.img}-112w.png`}
-                      alt=""
-                      priority
-                      width={68}
-                      height={68}
-                      className="pointer-events-none scale-110 opacity-100 transition data-[loading=true]:opacity-0"
-                    />
-                  </div>
+                  />
+                  {/* Image */}
+                  <LoadDetectImage
+                    src={`${perk.img}-112w.png`}
+                    alt=""
+                    priority
+                    fill
+                    className="pointer-events-none absolute scale-125 opacity-100 transition data-[loading=true]:opacity-0"
+                  />
                 </div>
 
                 <p className="grow">{perk.name}</p>
@@ -452,23 +453,25 @@ function OfferingTab({
           aria-label="Randomize Offering"
           className="group flex aspect-[4/3] w-full items-center justify-center border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/60 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
         >
-          {/* Pseudo-Border */}
-          <div className="clip-hexagon group bg-main-light p-[3px] transition group-pressed:bg-main-heavy">
-            {/* Clipped Background */}
+          {/* Offering Hexagon */}
+          <div className="relative h-36 w-[126px]">
+            {/* Background */}
             <div
               className={twJoin(
-                "clip-hexagon relative box-content h-[128px] w-[128px] py-[8px] transition",
+                "clip-hexagon h-full w-full",
                 rarityBg(loadout.offering.rarity),
               )}
-            >
-              <LoadDetectImage
-                src={`${loadout?.offering.img}-144w.png`}
-                alt=""
-                fill
-                priority
-                className="pointer-events-none object-cover opacity-100 transition data-[loading=true]:opacity-0"
-              />
-            </div>
+            ></div>
+            {/* Border */}
+            <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-2 transition group-pressed:stroke-main-heavy" />
+            {/* Image */}
+            <LoadDetectImage
+              src={`${loadout?.offering.img}-144w.png`}
+              alt=""
+              fill
+              priority
+              className="pointer-events-none absolute scale-110 object-cover opacity-100 transition data-[loading=true]:opacity-0"
+            />
           </div>
         </Button>
       )}
