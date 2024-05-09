@@ -278,7 +278,7 @@ export default function DesktopRoulette({
             <Tooltip
               placement="bottom"
               offset={8}
-              className="flex flex-col items-center gap-2 border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
+              className="flex flex-col items-center border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
             >
               <span>{loadout.perks[idx].name}</span>
               <span className="text-sm opacity-75">
