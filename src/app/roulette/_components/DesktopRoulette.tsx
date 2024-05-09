@@ -10,6 +10,7 @@ import { useState, type ReactElement } from "react";
 import { Button } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { match } from "ts-pattern";
+import LoadDesktopRoulette from "./LoadDesktopRoulette";
 
 export interface DesktopRouletteProps {
   role: DbdRole;
@@ -34,7 +35,7 @@ export default function DesktopRoulette({
   const [perksHovered, setPerksHovered] = useState(false);
   const [perksPressed, setPerksPressed] = useState(false);
 
-  if (loadout === null) return <></>;
+  if (loadout === null) return <LoadDesktopRoulette />;
   return (
     <div className="col-span-full col-start-1 mt-4 hidden w-full max-w-[888px] grid-cols-[auto_min-content_max-content_min-content_max-content] grid-rows-[max-content_min-content_max-content] justify-self-center sm:grid">
       {/* Character */}
