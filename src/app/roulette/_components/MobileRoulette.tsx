@@ -243,7 +243,9 @@ function PerksTab({
                   "flex items-center justify-start gap-2 border border-main-light p-2 text-start outline-0 transition focus-visible:outline-2",
                   perkHovered && "bg-overlay-light",
                   pressedIdx !== null && "border-main-heavy",
-                  isLongPress && idx !== pressedIdx && "border-main-light",
+                  isLongPress &&
+                    idx !== pressedIdx &&
+                    "border-main-light bg-transparent",
                 )}
               >
                 {/* Perk Diamond */}
@@ -251,6 +253,7 @@ function PerksTab({
                   className={twMerge(
                     "relative h-[72px] w-[72px] shrink-0",
                     perkHovered && "brightness-125",
+                    isLongPress && pressedIdx !== idx && "brightness-100",
                   )}
                 >
                   {/* Background */}
@@ -260,6 +263,7 @@ function PerksTab({
                     className={twMerge(
                       "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
                       pressedIdx !== null && "stroke-main-heavy",
+                      isLongPress && pressedIdx !== idx && "stroke-main-light",
                     )}
                   />
                   {/* Image */}
@@ -401,7 +405,7 @@ function AbilityAddOnsTab({
                       "border-main-heavy",
                     isLongPress &&
                       idx !== pressedAddOnIdx &&
-                      "border-main-light",
+                      "border-main-light bg-transparent",
                   )}
                 >
                   {/* Image Border and Background */}
@@ -416,7 +420,7 @@ function AbilityAddOnsTab({
                         "border-main-heavy",
                       isLongPress &&
                         idx !== pressedAddOnIdx &&
-                        "border-main-light",
+                        "border-main-light brightness-100",
                     )}
                   >
                     <LoadDetectImage
