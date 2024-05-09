@@ -1,6 +1,8 @@
 "use client";
 
 import LoadDetectImage from "@/components/LoadDetectImage";
+import DiamondOutline from "@/components/svg/DiamondOutline";
+import HexagonOutline from "@/components/svg/HexagonOutline";
 import { type Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
@@ -12,8 +14,6 @@ import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { match } from "ts-pattern";
 import LoadDesktopRoulette from "./LoadDesktopRoulette";
-import DiamondOutline from "@/components/svg/DiamondOutline";
-import HexagonOutline from "@/components/svg/HexagonOutline";
 
 export interface DesktopRouletteProps {
   role: DbdRole;
@@ -198,7 +198,7 @@ export default function DesktopRoulette({
           onPress={() => {
             randomizeHandler(LoadoutPart.offering);
           }}
-          className="group relative col-start-5 row-start-1 h-24 w-[84px] outline-0 transition hover:brightness-125 focus-visible:outline-2 md:h-28 md:w-[105px]"
+          className="group relative col-start-5 row-start-1 h-24 w-[84px] outline-0 transition hover:brightness-125 focus-visible:outline-2 md:h-28 md:w-[98px]"
         >
           {/* Background */}
           <div

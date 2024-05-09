@@ -1,8 +1,5 @@
-import Diamond112w from "@/components/svg/Diamond112w";
-import Diamond96w from "@/components/svg/Diamond96w";
 import DiamondOutline from "@/components/svg/DiamondOutline";
 import HexagonOutline from "@/components/svg/HexagonOutline";
-import Image from "next/image";
 import { type ReactElement } from "react";
 
 export default function LoadDesktopRoulette(): ReactElement {

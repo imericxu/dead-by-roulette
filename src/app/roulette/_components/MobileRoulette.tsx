@@ -1,6 +1,8 @@
 "use client";
 
 import LoadDetectImage from "@/components/LoadDetectImage";
+import DiamondOutline from "@/components/svg/DiamondOutline";
+import HexagonOutline from "@/components/svg/HexagonOutline";
 import { type Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import Loadout, { LoadoutPart } from "@/lib/loadout";
@@ -14,8 +16,6 @@ import { twJoin, twMerge } from "tailwind-merge";
 import { P, match } from "ts-pattern";
 import LoadMobileRoulette from "./LoadMobileRoulette";
 import { RouletteTab } from "./Roulette";
-import DiamondOutline from "@/components/svg/DiamondOutline";
-import HexagonOutline from "@/components/svg/HexagonOutline";
 
 const LONG_PRESS_DURATION_MS = 300;
 
