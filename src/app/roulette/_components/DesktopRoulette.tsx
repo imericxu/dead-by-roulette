@@ -71,7 +71,7 @@ export default function DesktopRoulette({
         <Tooltip
           offset={8}
           placement="bottom"
-          className="border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
+          className="border border-main-light bg-black/75 px-4 py-2 backdrop-blur-sm"
         >
           {loadout.character.name}
         </Tooltip>
@@ -122,7 +122,7 @@ export default function DesktopRoulette({
           <Tooltip
             placement="bottom"
             offset={8}
-            className="border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
+            className="border border-main-light bg-black/75 px-4 py-2 backdrop-blur-sm"
           >
             {loadout.ability.name}
           </Tooltip>
@@ -179,7 +179,7 @@ export default function DesktopRoulette({
               <Tooltip
                 placement="bottom"
                 offset={8}
-                className="flex flex-col items-center border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
+                className="flex flex-col items-center border border-main-light bg-black/75 px-4 py-2 backdrop-blur-sm"
               >
                 <span>{loadout.addOns[idx].name}</span>
                 <span className="text-sm opacity-75">
@@ -221,7 +221,7 @@ export default function DesktopRoulette({
         <Tooltip
           placement="bottom"
           offset={8}
-          className="border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
+          className="border border-main-light bg-black/75 px-4 py-2 backdrop-blur-sm"
         >
           {loadout.offering.name}
         </Tooltip>
@@ -278,7 +278,7 @@ export default function DesktopRoulette({
             <Tooltip
               placement="bottom"
               offset={8}
-              className="flex flex-col items-center border border-main-light bg-black/50 px-4 py-2 backdrop-blur-sm"
+              className="flex flex-col items-center border border-main-light bg-black/75 px-4 py-2 backdrop-blur-sm"
             >
               <span>{loadout.perks[idx].name}</span>
               <span className="text-sm opacity-75">
