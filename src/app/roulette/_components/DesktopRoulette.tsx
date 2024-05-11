@@ -1,13 +1,13 @@
 "use client";
 
-import LoadDetectImage from "@/components/LoadDetectImage";
+import LoadFadeImage from "@/components/LoadFadeImage";
 import DiamondOutline from "@/components/svg/DiamondOutline";
 import HexagonOutline from "@/components/svg/HexagonOutline";
 import { type Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
 import { LoadoutPart } from "@/lib/loadout";
-import { Timeout } from "@/lib/utils";
+import { genSrcSet } from "@/lib/utils";
 import rarityBg from "@/lib/variants/rarityBg";
 import { useState, type ReactElement } from "react";
 import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
@@ -59,13 +59,21 @@ export default function DesktopRoulette({
               "border-main-heavy",
           )}
         >
-          <LoadDetectImage
-            src={`${loadout.character.bigImg}-264h.png`}
+          <LoadFadeImage
+            srcSet={genSrcSet(
+              loadout.character.bigImg,
+              match(role)
+                .with(DbdRole.killer, () => [384, 640, 750])
+                .with(DbdRole.survivor, () => [256, 384, 640, 750])
+                .exhaustive(),
+            )}
+            sizes={match(role)
+              .with(DbdRole.killer, () => "(max-width: 768px) 480px, 560px")
+              .with(DbdRole.survivor, () => "(max-width: 768px) 256px, 296px")
+              .exhaustive()}
             alt=""
-            width={0}
-            height={0}
-            priority
-            className="pointer-events-none m-auto h-full w-auto overflow-hidden object-cover transition data-[loading=true]:opacity-0"
+            loading="eager"
+            className="pointer-events-none m-auto h-full w-auto object-cover"
           />
         </Button>
         <Tooltip
@@ -111,12 +119,12 @@ export default function DesktopRoulette({
                 "border-main-heavy",
             )}
           >
-            <LoadDetectImage
-              src={`${loadout.ability.img}-112w.png`}
+            <LoadFadeImage
+              srcSet={genSrcSet(loadout.ability.img, [48, 64, 96, 128, 256])}
+              sizes="(max-width: 768px) 96px, 112px"
               alt=""
-              priority
-              fill
-              className="pointer-events-none transition data-[loading=true]:opacity-0"
+              loading="eager"
+              className="pointer-events-none h-full w-full object-cover"
             />
           </Button>
           <Tooltip
@@ -168,12 +176,15 @@ export default function DesktopRoulette({
                     "border-main-heavy",
                 )}
               >
-                <LoadDetectImage
-                  src={`${addOn.img}-96w.png`}
+                <LoadFadeImage
+                  srcSet={genSrcSet(
+                    loadout.addOns[idx].img,
+                    [48, 64, 96, 128, 256],
+                  )}
+                  sizes="(max-width: 768px) 80px, 96px"
                   alt=""
-                  fill
-                  priority
-                  className="pointer-events-none transition data-[loading=true]:opacity-0"
+                  loading="eager"
+                  className="pointer-events-none h-full w-full object-cover"
                 />
               </Button>
               <Tooltip
@@ -210,12 +221,12 @@ export default function DesktopRoulette({
           {/* Border */}
           <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-2 transition group-pressed:stroke-main-heavy" />
           {/* Image */}
-          <LoadDetectImage
-            src={`${loadout?.offering.img}-144w.png`}
+          <LoadFadeImage
+            srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256])}
+            sizes="(max-width: 768px) 96px, 112px"
             alt=""
-            fill
-            priority
-            className="pointer-events-none absolute object-cover transition data-[loading=true]:opacity-0"
+            loading="eager"
+            className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover"
           />
         </Button>
         <Tooltip
@@ -267,12 +278,12 @@ export default function DesktopRoulette({
                 )}
               />
               {/* Image */}
-              <LoadDetectImage
-                src={`${perk.img}-112w.png`}
+              <LoadFadeImage
+                srcSet={genSrcSet(loadout.perks[idx].img, [96, 128, 256])}
+                sizes="(max-width: 768px) 96px, 112px"
                 alt=""
-                fill
-                priority
-                className="pointer-events-none absolute col-start-1 scale-125 object-cover transition data-[loading=true]:opacity-0"
+                loading="eager"
+                className="pointer-events-none absolute inset-0 scale-[1.2] object-cover"
               />
             </Button>
             <Tooltip

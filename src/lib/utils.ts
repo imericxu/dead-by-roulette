@@ -70,3 +70,16 @@ export function binarySearchFind<A, B>(
   if (index < 0) throw new Error("Value not found in array.");
   return haystack[index];
 }
+
+/**
+ * @param baseUrl - The base URL for the image (excluding extension).
+ * @param sizes - An array of image sizes (widths).
+ * @param ext - The file extension for the image.
+ */
+export function genSrcSet(
+  baseUrl: string,
+  sizes: readonly number[],
+  ext: string = "png",
+): string {
+  return sizes.map((size) => `${baseUrl}-${size}w.${ext} ${size}w`).join(", ");
+}

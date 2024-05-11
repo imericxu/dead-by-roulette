@@ -19,6 +19,7 @@
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/consistent-type-imports": "off",
     "@typescript-eslint/no-unsafe-argument": "error",
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@next/next/no-img-element": "off"
   }
 }

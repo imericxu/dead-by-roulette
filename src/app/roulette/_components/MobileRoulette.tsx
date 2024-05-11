@@ -1,12 +1,12 @@
 "use client";
 
-import LoadDetectImage from "@/components/LoadDetectImage";
+import LoadFadeImage from "@/components/LoadFadeImage";
 import DiamondOutline from "@/components/svg/DiamondOutline";
 import HexagonOutline from "@/components/svg/HexagonOutline";
 import { type Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import Loadout, { LoadoutPart } from "@/lib/loadout";
-import { Timeout, isEnumValue } from "@/lib/utils";
+import { Timeout, genSrcSet, isEnumValue } from "@/lib/utils";
 import rarityBg from "@/lib/variants/rarityBg";
 import { type Route } from "next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -159,13 +159,18 @@ function CharacterTab({
             aria-label="Randomize Character"
             className="relative aspect-[4/3] w-full overflow-hidden border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 pt-2 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
           >
-            <LoadDetectImage
-              src={`${loadout.character.bigImg}-264h.png`}
+            <LoadFadeImage
+              srcSet={genSrcSet(
+                loadout.character.bigImg,
+                match(role)
+                  .with(DbdRole.killer, () => [384, 640, 750])
+                  .with(DbdRole.survivor, () => [256, 384, 640])
+                  .exhaustive(),
+              )}
+              sizes="(max-width: 352px) 100vw, 520px"
               alt=""
-              priority
-              width={0}
-              height={0}
-              className="pointer-events-none m-auto h-full w-auto overflow-hidden object-cover opacity-100 transition data-[loading=true]:opacity-0"
+              loading="eager"
+              className="pointer-events-none absolute inset-0 m-auto h-full w-auto object-cover"
             />
           </Button>
           {/* Character Name */}
@@ -267,12 +272,12 @@ function PerksTab({
                     )}
                   />
                   {/* Image */}
-                  <LoadDetectImage
-                    src={`${perk.img}-112w.png`}
+                  <LoadFadeImage
+                    srcSet={genSrcSet(perk.img, [96, 128, 256])}
+                    sizes="72px"
                     alt=""
-                    priority
-                    fill
-                    className="pointer-events-none absolute scale-125 opacity-100 transition data-[loading=true]:opacity-0"
+                    loading="eager"
+                    className="pointer-events-none absolute inset-0 h-full w-full scale-[1.2]"
                   />
                 </div>
 
@@ -346,12 +351,12 @@ function AbilityAddOnsTab({
                   .exhaustive(),
               )}
             >
-              <LoadDetectImage
-                src={`${loadout?.ability.img}-112w.png`}
+              <LoadFadeImage
+                srcSet={genSrcSet(loadout.ability.img, [96, 128, 256])}
+                sizes="80px"
                 alt=""
-                priority
-                fill
-                className="pointer-events-none opacity-100 transition data-[loading=true]:opacity-0"
+                loading="eager"
+                className="pointer-events-none"
               />
             </div>
 
@@ -423,12 +428,12 @@ function AbilityAddOnsTab({
                         "border-main-light brightness-100",
                     )}
                   >
-                    <LoadDetectImage
-                      src={`${addOn.img}-96w.png`}
+                    <LoadFadeImage
+                      srcSet={genSrcSet(addOn.img, [48, 64, 96, 128, 256])}
+                      sizes="64px"
                       alt=""
-                      priority
-                      fill
-                      className="pointer-events-none opacity-100 transition data-[loading=true]:opacity-0"
+                      loading="eager"
+                      className="pointer-events-none"
                     />
                   </div>
                   <p className="text-start">{addOn.name}</p>
@@ -469,12 +474,12 @@ function OfferingTab({
             {/* Border */}
             <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-2 transition group-pressed:stroke-main-heavy" />
             {/* Image */}
-            <LoadDetectImage
-              src={`${loadout?.offering.img}-144w.png`}
+            <LoadFadeImage
+              srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256])}
+              sizes="144px"
               alt=""
-              fill
-              priority
-              className="pointer-events-none absolute scale-110 object-cover opacity-100 transition data-[loading=true]:opacity-0"
+              loading="eager"
+              className="pointer-events-none absolute inset-0 h-full w-full scale-105 object-cover"
             />
           </div>
         </Button>
