@@ -19,12 +19,14 @@ export interface DesktopRouletteProps {
   role: DbdRole;
   loadout: Loadout | null;
   randomizeHandler: (part: LoadoutPart, idx?: number) => void;
+  canRandomize: boolean;
 }
 
 export default function DesktopRoulette({
   role,
   loadout,
   randomizeHandler,
+  canRandomize,
 }: DesktopRouletteProps): ReactElement {
   const [characterHovered, setCharacterHovered] = useState(false);
   const [characterPressed, setCharacterPressed] = useState(false);
@@ -53,10 +55,14 @@ export default function DesktopRoulette({
           onPressChange={setCharacterPressed}
           className={twMerge(
             "relative col-start-1 row-span-full h-[225px] w-full justify-self-end border-2 border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 outline-0 transition focus-visible:outline-2 md:h-[257px]",
-            (characterHovered || (role === DbdRole.killer && abilityHovered)) &&
-              "brightness-125",
-            (characterPressed || (role === DbdRole.killer && abilityPressed)) &&
-              "border-main-heavy",
+            canRandomize && [
+              (characterHovered ||
+                (role === DbdRole.killer && abilityHovered)) &&
+                "brightness-125",
+              (characterPressed ||
+                (role === DbdRole.killer && abilityPressed)) &&
+                "border-main-heavy",
+            ],
           )}
         >
           <LoadFadeImage
@@ -111,12 +117,14 @@ export default function DesktopRoulette({
                   )
                   .exhaustive(),
               ),
-              ((characterHovered && role === DbdRole.killer) ||
-                abilityHovered) &&
-                "brightness-125",
-              ((characterPressed && role === DbdRole.killer) ||
-                abilityPressed) &&
-                "border-main-heavy",
+              canRandomize && [
+                ((characterHovered && role === DbdRole.killer) ||
+                  abilityHovered) &&
+                  "brightness-125",
+                ((characterPressed && role === DbdRole.killer) ||
+                  abilityPressed) &&
+                  "border-main-heavy",
+              ],
             )}
           >
             <LoadFadeImage
@@ -166,14 +174,16 @@ export default function DesktopRoulette({
                     "relative h-20 w-20 border-2 border-main-light outline-0 transition focus-visible:outline-2 md:h-24 md:w-24",
                     rarityBg(addOn.rarity),
                   ),
-                  ((role === DbdRole.killer && characterHovered) ||
-                    abilityHovered ||
-                    addOnsHoveredIdx !== null) &&
-                    "brightness-125",
-                  ((role === DbdRole.killer && characterPressed) ||
-                    abilityPressed ||
-                    addOnsPressedIdx !== null) &&
-                    "border-main-heavy",
+                  canRandomize && [
+                    ((role === DbdRole.killer && characterHovered) ||
+                      abilityHovered ||
+                      addOnsHoveredIdx !== null) &&
+                      "brightness-125",
+                    ((role === DbdRole.killer && characterPressed) ||
+                      abilityPressed ||
+                      addOnsPressedIdx !== null) &&
+                      "border-main-heavy",
+                  ],
                 )}
               >
                 <LoadFadeImage
@@ -209,7 +219,10 @@ export default function DesktopRoulette({
           onPress={() => {
             randomizeHandler(LoadoutPart.offering);
           }}
-          className="group relative col-start-5 row-start-1 h-24 w-[84px] outline-0 transition hover:brightness-125 focus-visible:outline-2 md:h-28 md:w-[98px]"
+          className={twJoin(
+            "group relative col-start-5 row-start-1 h-24 w-[84px] outline-0 transition focus-visible:outline-2 md:h-28 md:w-[98px]",
+            canRandomize && "hover:brightness-125",
+          )}
         >
           {/* Background */}
           <div
@@ -219,7 +232,12 @@ export default function DesktopRoulette({
             )}
           ></div>
           {/* Border */}
-          <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-2 transition group-pressed:stroke-main-heavy" />
+          <HexagonOutline
+            className={twJoin(
+              "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
+              canRandomize && "group-pressed:stroke-main-heavy",
+            )}
+          />
           {/* Image */}
           <LoadFadeImage
             srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256])}
@@ -265,7 +283,7 @@ export default function DesktopRoulette({
               }}
               className={twMerge(
                 "relative h-24 w-24 outline-0 transition focus-visible:outline-2 md:h-28 md:w-28",
-                perksHoveredIdx !== null && "brightness-125",
+                canRandomize && perksHoveredIdx !== null && "brightness-125",
               )}
             >
               {/* Background */}
@@ -274,7 +292,9 @@ export default function DesktopRoulette({
               <DiamondOutline
                 className={twMerge(
                   "absolute inset-0 h-full w-full stroke-main-light stroke-2",
-                  perksPressedIdx !== null && "stroke-main-heavy",
+                  canRandomize &&
+                    perksPressedIdx !== null &&
+                    "stroke-main-heavy",
                 )}
               />
               {/* Image */}

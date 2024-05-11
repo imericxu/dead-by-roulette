@@ -23,6 +23,7 @@ export interface MobileRouletteProps {
   role: DbdRole;
   loadout: Loadout | null;
   randomizeHandler: (part: LoadoutPart, idx?: number) => void;
+  canRandomize: boolean;
 }
 
 export default function MobileRoulette(
@@ -144,6 +145,7 @@ function CharacterTab({
   loadout,
   role,
   randomizeHandler,
+  canRandomize,
 }: MobileRouletteProps): ReactElement {
   return (
     <RouletteTabContent id="character" title="Character">
@@ -157,7 +159,10 @@ function CharacterTab({
               randomizeHandler(LoadoutPart.character);
             }}
             aria-label="Randomize Character"
-            className="relative aspect-[4/3] w-full overflow-hidden border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 pt-2 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
+            className={twMerge(
+              "relative aspect-[4/3] w-full overflow-hidden border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/90 pt-2 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy",
+              !canRandomize && "hover:brightness-100 pressed:border-main-light",
+            )}
           >
             <LoadFadeImage
               srcSet={genSrcSet(
@@ -188,6 +193,7 @@ function CharacterTab({
 function PerksTab({
   loadout,
   randomizeHandler,
+  canRandomize,
 }: MobileRouletteProps): ReactElement {
   // Press States
   const [perkHovered, setPerkHovered] = useState<boolean>(false);
@@ -251,6 +257,7 @@ function PerksTab({
                   isLongPress &&
                     idx !== pressedIdx &&
                     "border-main-light bg-transparent",
+                  !canRandomize && "border-main-light bg-transparent",
                 )}
               >
                 {/* Perk Diamond */}
@@ -259,6 +266,7 @@ function PerksTab({
                     "relative h-[72px] w-[72px] shrink-0",
                     perkHovered && "brightness-125",
                     isLongPress && pressedIdx !== idx && "brightness-100",
+                    !canRandomize && "brightness-100",
                   )}
                 >
                   {/* Background */}
@@ -269,6 +277,7 @@ function PerksTab({
                       "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
                       pressedIdx !== null && "stroke-main-heavy",
                       isLongPress && pressedIdx !== idx && "stroke-main-light",
+                      !canRandomize && "stroke-main-light",
                     )}
                   />
                   {/* Image */}
@@ -293,6 +302,7 @@ function AbilityAddOnsTab({
   loadout,
   role,
   randomizeHandler,
+  canRandomize,
 }: MobileRouletteProps): ReactElement {
   const [abilityHovered, setAbilityHovered] = useState<boolean>(false);
   const [abilityPressed, setAbilityPressed] = useState<boolean>(false);
@@ -334,12 +344,18 @@ function AbilityAddOnsTab({
             }}
             onHoverChange={setAbilityHovered}
             onPressChange={setAbilityPressed}
-            className="group flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition hover:bg-overlay-light focus-visible:outline-2 pressed:border-main-heavy"
+            className={twJoin(
+              "group flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition focus-visible:outline-2",
+              canRandomize &&
+                "hover:bg-overlay-light pressed:border-main-heavy",
+            )}
           >
             {/* Image Border and Background */}
             <div
               className={twJoin(
-                "relative aspect-square h-20 w-20 border border-main-light transition group-hover:brightness-125 group-pressed:border-main-heavy",
+                "relative aspect-square h-20 w-20 border border-main-light transition",
+                canRandomize &&
+                  "group-hover:brightness-125 group-pressed:border-main-heavy",
                 match(role)
                   .with(
                     DbdRole.killer,
@@ -405,12 +421,14 @@ function AbilityAddOnsTab({
                   onHoverChange={setAddOnHovered}
                   className={twMerge(
                     "flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition focus-visible:outline-2",
-                    (abilityHovered || addOnHovered) && "bg-overlay-light",
-                    (abilityPressed || pressedAddOnIdx !== null) &&
-                      "border-main-heavy",
-                    isLongPress &&
-                      idx !== pressedAddOnIdx &&
-                      "border-main-light bg-transparent",
+                    canRandomize && [
+                      (abilityHovered || addOnHovered) && "bg-overlay-light",
+                      (abilityPressed || pressedAddOnIdx !== null) &&
+                        "border-main-heavy",
+                      isLongPress &&
+                        idx !== pressedAddOnIdx &&
+                        "border-main-light bg-transparent",
+                    ],
                   )}
                 >
                   {/* Image Border and Background */}
@@ -420,12 +438,14 @@ function AbilityAddOnsTab({
                         "relative aspect-square h-16 w-16 border border-main-light transition",
                         rarityBg(addOn.rarity),
                       ),
-                      (abilityHovered || addOnHovered) && "brightness-125",
-                      (abilityPressed || pressedAddOnIdx !== null) &&
-                        "border-main-heavy",
-                      isLongPress &&
-                        idx !== pressedAddOnIdx &&
-                        "border-main-light brightness-100",
+                      canRandomize && [
+                        (abilityHovered || addOnHovered) && "brightness-125",
+                        (abilityPressed || pressedAddOnIdx !== null) &&
+                          "border-main-heavy",
+                        isLongPress &&
+                          idx !== pressedAddOnIdx &&
+                          "border-main-light brightness-100",
+                      ],
                     )}
                   >
                     <LoadFadeImage
@@ -448,6 +468,7 @@ function AbilityAddOnsTab({
 function OfferingTab({
   loadout,
   randomizeHandler,
+  canRandomize,
 }: MobileRouletteProps): ReactElement {
   return (
     <RouletteTabContent id="offering" title="Offering">
@@ -460,7 +481,10 @@ function OfferingTab({
             randomizeHandler(LoadoutPart.offering);
           }}
           aria-label="Randomize Offering"
-          className="group flex aspect-[4/3] w-full items-center justify-center border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/60 outline-0 transition hover:brightness-125 focus-visible:outline-2 pressed:border-main-heavy"
+          className={twJoin(
+            "group flex aspect-[4/3] w-full items-center justify-center border border-main-light bg-gradient-to-b from-orange-950/80 to-stone-950/60 outline-0 transition focus-visible:outline-2",
+            canRandomize && "hover:brightness-125 pressed:border-main-heavy",
+          )}
         >
           {/* Offering Hexagon */}
           <div className="relative h-36 w-[126px]">
@@ -472,7 +496,12 @@ function OfferingTab({
               )}
             ></div>
             {/* Border */}
-            <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-2 transition group-pressed:stroke-main-heavy" />
+            <HexagonOutline
+              className={twJoin(
+                "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
+                canRandomize && "group-pressed:stroke-main-heavy",
+              )}
+            />
             {/* Image */}
             <LoadFadeImage
               srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256])}

@@ -16,6 +16,7 @@ export default interface Loadout {
 }
 
 export enum LoadoutPart {
+  all = "all",
   character = "character",
   ability = "ability",
   addOns = "addOns",

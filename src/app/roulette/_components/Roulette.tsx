@@ -16,6 +16,7 @@ import {
   randomizePerks,
 } from "@/lib/randomize";
 import { type LoadoutConfig } from "@/lib/settings";
+import { Timeout } from "@/lib/utils";
 import {
   ReactElement,
   Suspense,
@@ -23,10 +24,13 @@ import {
   useEffect,
   useState,
 } from "react";
+import { twMerge } from "tailwind-merge";
 import { match } from "ts-pattern";
 import DesktopRoulette from "./DesktopRoulette";
 import LoadMobileRoulette from "./LoadMobileRoulette";
 import MobileRoulette from "./MobileRoulette";
+
+const RANDOMIZE_INTERVAL_MS = 500;
 
 export enum RouletteTab {
   character = "character",
@@ -46,6 +50,9 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
   }
   const config: LoadoutConfig | undefined = configsContext?.configs?.at(0);
 
+  const [canRandomize, setCanRandomize] = useState(true);
+  const [, setRandomizeTimeout] = useState<Timeout | null>(null);
+
   const [loadout, setLoadout] = useState<Loadout | null>(null);
 
   useEffect(() => {
@@ -57,9 +64,19 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
   const randomizeHandler = useCallback(
     (loadoutPart: LoadoutPart, idx?: number): void => {
       if (config === undefined) throw Error("Config is undefined");
+      if (!canRandomize) return;
+      setCanRandomize(false);
+      setRandomizeTimeout((prev) => {
+        if (prev !== null) clearTimeout(prev);
+        return setTimeout(() => {
+          setCanRandomize(true);
+          setRandomizeTimeout(null);
+        }, RANDOMIZE_INTERVAL_MS);
+      });
       setLoadout((prev) => {
         if (prev === null) throw Error("Previous loadout is null");
         return match(loadoutPart)
+          .with(LoadoutPart.all, () => randomizeLoadout(config, role))
           .with(LoadoutPart.character, () =>
             randomizeCharacter(config, role, prev),
           )
@@ -80,7 +97,7 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
           .exhaustive();
       });
     },
-    [config, role],
+    [config, role, canRandomize],
   );
 
   return (
@@ -91,6 +108,7 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
           role={role}
           loadout={loadout}
           randomizeHandler={randomizeHandler}
+          canRandomize={canRandomize}
         />
       </Suspense>
 
@@ -99,15 +117,18 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
         role={role}
         loadout={loadout}
         randomizeHandler={randomizeHandler}
+        canRandomize={canRandomize}
       />
 
       {/* Randomize Button */}
       <StyledButton
         onPress={() => {
-          if (config === undefined) throw Error("Config is undefined");
-          setLoadout(randomizeLoadout(config, role));
+          randomizeHandler(LoadoutPart.all);
         }}
-        className="col-span-full col-start-1 w-[min(100%,320px)] justify-self-center"
+        className={twMerge(
+          "col-span-full col-start-1 w-[min(100%,320px)] justify-self-center",
+          !canRandomize && "hover:bg-transparent pressed:border-main-light",
+        )}
       >
         Randomize
       </StyledButton>
