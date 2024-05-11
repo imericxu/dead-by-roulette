@@ -208,7 +208,7 @@ export default function DesktopRoulette({
             )}
           ></div>
           {/* Border */}
-          <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-[3px] transition group-pressed:stroke-main-heavy" />
+          <HexagonOutline className="absolute inset-0 h-full w-full stroke-main-light stroke-2 transition group-pressed:stroke-main-heavy" />
           {/* Image */}
           <LoadDetectImage
             src={`${loadout?.offering.img}-144w.png`}
@@ -262,7 +262,7 @@ export default function DesktopRoulette({
               {/* Border */}
               <DiamondOutline
                 className={twMerge(
-                  "absolute inset-0 h-full w-full stroke-main-light stroke-[3px]",
+                  "absolute inset-0 h-full w-full stroke-main-light stroke-2",
                   perksPressedIdx !== null && "stroke-main-heavy",
                 )}
               />
