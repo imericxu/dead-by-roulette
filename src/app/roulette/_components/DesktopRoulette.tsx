@@ -63,8 +63,8 @@ export default function DesktopRoulette({
             srcSet={genSrcSet(
               loadout.character.bigImg,
               match(role)
-                .with(DbdRole.killer, () => [384, 640, 750])
-                .with(DbdRole.survivor, () => [256, 384, 640, 750])
+                .with(DbdRole.killer, () => [384, 640])
+                .with(DbdRole.survivor, () => [256, 384, 640])
                 .exhaustive(),
             )}
             sizes={match(role)
