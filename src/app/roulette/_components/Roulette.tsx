@@ -53,6 +53,27 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
   const [canRandomize, setCanRandomize] = useState(true);
   const [, setRandomizeTimeout] = useState<Timeout | null>(null);
 
+  const [isShiftPressed, setIsShiftPressed] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Shift") {
+        setIsShiftPressed(true);
+      }
+    };
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.key === "Shift") {
+        setIsShiftPressed(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keyup", onKeyUp);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("keyup", onKeyUp);
+    };
+  }, []);
+
   const [loadout, setLoadout] = useState<Loadout | null>(null);
 
   useEffect(() => {
@@ -109,6 +130,7 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
           loadout={loadout}
           randomizeHandler={randomizeHandler}
           canRandomize={canRandomize}
+          isShiftPressed={isShiftPressed}
         />
       </Suspense>
 
@@ -118,6 +140,7 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
         loadout={loadout}
         randomizeHandler={randomizeHandler}
         canRandomize={canRandomize}
+        isShiftPressed={isShiftPressed}
       />
 
       {/* Randomize Button */}

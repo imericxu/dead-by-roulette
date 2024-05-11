@@ -17,13 +17,14 @@ import { P, match } from "ts-pattern";
 import LoadMobileRoulette from "./LoadMobileRoulette";
 import { RouletteTab } from "./Roulette";
 
-const LONG_PRESS_DURATION_MS = 300;
+const LONG_PRESS_DELAY_MS = 300;
 
 export interface MobileRouletteProps {
   role: DbdRole;
   loadout: Loadout | null;
   randomizeHandler: (part: LoadoutPart, idx?: number) => void;
   canRandomize: boolean;
+  isShiftPressed: boolean;
 }
 
 export default function MobileRoulette(
@@ -194,9 +195,10 @@ function PerksTab({
   loadout,
   randomizeHandler,
   canRandomize,
+  isShiftPressed,
 }: MobileRouletteProps): ReactElement {
   // Press States
-  const [perkHovered, setPerkHovered] = useState<boolean>(false);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [pressedIdx, setPressedIdx] = useState<number | null>(null);
 
   // Long Press
@@ -231,17 +233,23 @@ function PerksTab({
               <Button
                 key={perk.id}
                 aria-label="Randomize All Perks"
+                onHoverStart={() => {
+                  setHoveredIdx(idx);
+                }}
+                onHoverEnd={() => {
+                  setHoveredIdx(null);
+                }}
                 onPressStart={() => {
                   setPressedIdx(idx);
                   setLongPressTimeout(
                     setTimeout(() => {
                       setIsLongPress(true);
-                    }, LONG_PRESS_DURATION_MS),
+                    }, LONG_PRESS_DELAY_MS),
                   );
                 }}
                 onPressUp={() => {
                   if (pressedIdx === null) return;
-                  if (isLongPress) {
+                  if (isLongPress || isShiftPressed) {
                     randomizeHandler(LoadoutPart.perk, pressedIdx);
                   } else {
                     randomizeHandler(LoadoutPart.perks);
@@ -249,23 +257,25 @@ function PerksTab({
                   resetPress();
                 }}
                 onPressEnd={resetPress}
-                onHoverChange={setPerkHovered}
                 className={twMerge(
                   "flex items-center justify-start gap-2 border border-main-light p-2 text-start outline-0 transition focus-visible:outline-2",
-                  perkHovered && "bg-overlay-light",
-                  pressedIdx !== null && "border-main-heavy",
-                  isLongPress &&
-                    idx !== pressedIdx &&
-                    "border-main-light bg-transparent",
-                  !canRandomize && "border-main-light bg-transparent",
+                  canRandomize && [
+                    hoveredIdx !== null && "bg-overlay-light",
+                    pressedIdx !== null && "border-main-heavy",
+                    (isLongPress || isShiftPressed) &&
+                      idx !== hoveredIdx &&
+                      "border-main-light bg-transparent",
+                  ],
                 )}
               >
                 {/* Perk Diamond */}
                 <div
                   className={twMerge(
                     "relative h-[72px] w-[72px] shrink-0",
-                    perkHovered && "brightness-125",
-                    isLongPress && pressedIdx !== idx && "brightness-100",
+                    hoveredIdx !== null && "brightness-125",
+                    (isLongPress || isShiftPressed) &&
+                      hoveredIdx !== idx &&
+                      "brightness-100",
                     !canRandomize && "brightness-100",
                   )}
                 >
@@ -276,7 +286,9 @@ function PerksTab({
                     className={twMerge(
                       "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
                       pressedIdx !== null && "stroke-main-heavy",
-                      isLongPress && pressedIdx !== idx && "stroke-main-light",
+                      (isLongPress || isShiftPressed) &&
+                        hoveredIdx !== idx &&
+                        "stroke-main-light",
                       !canRandomize && "stroke-main-light",
                     )}
                   />
@@ -303,11 +315,12 @@ function AbilityAddOnsTab({
   role,
   randomizeHandler,
   canRandomize,
+  isShiftPressed,
 }: MobileRouletteProps): ReactElement {
   const [abilityHovered, setAbilityHovered] = useState<boolean>(false);
   const [abilityPressed, setAbilityPressed] = useState<boolean>(false);
 
-  const [addOnHovered, setAddOnHovered] = useState<boolean>(false);
+  const [hoveredAddOnIdx, setHoveredAddOnIdx] = useState<number | null>(null);
   const [pressedAddOnIdx, setPressedAddOnIdx] = useState<number | null>(null);
   const [isLongPress, setIsLongPress] = useState<boolean>(false);
   const [longPressTimeout, setLongPressTimeout] = useState<Timeout | null>(
@@ -400,17 +413,23 @@ function AbilityAddOnsTab({
                 <Button
                   key={addOn.id}
                   aria-label="Randomize Add-Ons"
+                  onHoverStart={() => {
+                    setHoveredAddOnIdx(idx);
+                  }}
+                  onHoverEnd={() => {
+                    setHoveredAddOnIdx(null);
+                  }}
                   onPressStart={() => {
                     setPressedAddOnIdx(idx);
                     setLongPressTimeout(
                       setTimeout(() => {
                         setIsLongPress(true);
-                      }, LONG_PRESS_DURATION_MS),
+                      }, LONG_PRESS_DELAY_MS),
                     );
                   }}
                   onPressUp={() => {
                     if (pressedAddOnIdx === null) return;
-                    if (isLongPress) {
+                    if (isLongPress || isShiftPressed) {
                       randomizeHandler(LoadoutPart.addOn, idx);
                     } else {
                       randomizeHandler(LoadoutPart.addOns);
@@ -418,15 +437,15 @@ function AbilityAddOnsTab({
                     resetAddOnPress();
                   }}
                   onPressEnd={resetAddOnPress}
-                  onHoverChange={setAddOnHovered}
                   className={twMerge(
                     "flex w-full items-center justify-start gap-2 border border-main-light p-2 outline-0 transition focus-visible:outline-2",
                     canRandomize && [
-                      (abilityHovered || addOnHovered) && "bg-overlay-light",
+                      (abilityHovered || hoveredAddOnIdx !== null) &&
+                        "bg-overlay-light",
                       (abilityPressed || pressedAddOnIdx !== null) &&
                         "border-main-heavy",
-                      isLongPress &&
-                        idx !== pressedAddOnIdx &&
+                      (isLongPress || isShiftPressed) &&
+                        idx !== hoveredAddOnIdx &&
                         "border-main-light bg-transparent",
                     ],
                   )}
@@ -439,11 +458,12 @@ function AbilityAddOnsTab({
                         rarityBg(addOn.rarity),
                       ),
                       canRandomize && [
-                        (abilityHovered || addOnHovered) && "brightness-125",
+                        (abilityHovered || hoveredAddOnIdx !== null) &&
+                          "brightness-125",
                         (abilityPressed || pressedAddOnIdx !== null) &&
                           "border-main-heavy",
-                        isLongPress &&
-                          idx !== pressedAddOnIdx &&
+                        (isLongPress || isShiftPressed) &&
+                          idx !== hoveredAddOnIdx &&
                           "border-main-light brightness-100",
                       ],
                     )}

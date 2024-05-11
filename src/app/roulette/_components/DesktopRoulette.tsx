@@ -7,19 +7,22 @@ import { type Item } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
 import { LoadoutPart } from "@/lib/loadout";
-import { genSrcSet } from "@/lib/utils";
+import { Timeout, genSrcSet } from "@/lib/utils";
 import rarityBg from "@/lib/variants/rarityBg";
-import { useState, type ReactElement } from "react";
+import { useCallback, useState, type ReactElement } from "react";
 import { Button, Tooltip, TooltipTrigger } from "react-aria-components";
 import { twJoin, twMerge } from "tailwind-merge";
 import { match } from "ts-pattern";
 import LoadDesktopRoulette from "./LoadDesktopRoulette";
+
+const LONG_PRESS_DELAY_MS = 300;
 
 export interface DesktopRouletteProps {
   role: DbdRole;
   loadout: Loadout | null;
   randomizeHandler: (part: LoadoutPart, idx?: number) => void;
   canRandomize: boolean;
+  isShiftPressed: boolean;
 }
 
 export default function DesktopRoulette({
@@ -27,6 +30,7 @@ export default function DesktopRoulette({
   loadout,
   randomizeHandler,
   canRandomize,
+  isShiftPressed,
 }: DesktopRouletteProps): ReactElement {
   const [characterHovered, setCharacterHovered] = useState(false);
   const [characterPressed, setCharacterPressed] = useState(false);
@@ -41,6 +45,36 @@ export default function DesktopRoulette({
 
   const [perksHoveredIdx, setPerksHoveredIdx] = useState<number | null>(null);
   const [perksPressedIdx, setPerksPressedIdx] = useState<number | null>(null);
+
+  const [isLongPress, setLongPress] = useState(false);
+  const [_, setLongPressTimeout] = useState<Timeout | null>(null);
+
+  const startLongPress = useCallback(() => {
+    setLongPressTimeout(
+      setTimeout(() => {
+        setLongPress(true);
+      }, LONG_PRESS_DELAY_MS),
+    );
+  }, []);
+
+  const resetPress = useCallback(
+    (part: LoadoutPart.addOn | LoadoutPart.perk) => {
+      match(part)
+        .with(LoadoutPart.addOn, () => {
+          setAddOnsPressedIdx(null);
+        })
+        .with(LoadoutPart.perk, () => {
+          setPerksPressedIdx(null);
+        })
+        .exhaustive();
+      setLongPress(false);
+      setLongPressTimeout((prev) => {
+        if (prev !== null) clearTimeout(prev);
+        return null;
+      });
+    },
+    [],
+  );
 
   if (loadout === null) return <LoadDesktopRoulette />;
   return (
@@ -155,7 +189,11 @@ export default function DesktopRoulette({
             >
               <Button
                 onPress={() => {
-                  randomizeHandler(LoadoutPart.addOns);
+                  if (isShiftPressed) {
+                    randomizeHandler(LoadoutPart.addOn, idx);
+                  } else {
+                    randomizeHandler(LoadoutPart.addOns);
+                  }
                 }}
                 onHoverStart={() => {
                   setAddOnsHoveredIdx(idx);
@@ -165,9 +203,19 @@ export default function DesktopRoulette({
                 }}
                 onPressStart={() => {
                   setAddOnsPressedIdx(idx);
+                  startLongPress();
+                }}
+                onPressUp={() => {
+                  if (addOnsPressedIdx === null) return;
+                  if (isLongPress || isShiftPressed) {
+                    randomizeHandler(LoadoutPart.addOn, addOnsPressedIdx);
+                  } else {
+                    randomizeHandler(LoadoutPart.addOns);
+                  }
+                  resetPress(LoadoutPart.addOn);
                 }}
                 onPressEnd={() => {
-                  setAddOnsPressedIdx(null);
+                  resetPress(LoadoutPart.addOn);
                 }}
                 className={twMerge(
                   twJoin(
@@ -183,6 +231,9 @@ export default function DesktopRoulette({
                       abilityPressed ||
                       addOnsPressedIdx !== null) &&
                       "border-main-heavy",
+                    (isLongPress || isShiftPressed) &&
+                      idx !== addOnsHoveredIdx &&
+                      "border-main-light brightness-100",
                   ],
                 )}
               >
@@ -274,16 +325,28 @@ export default function DesktopRoulette({
               }}
               onPressStart={() => {
                 setPerksPressedIdx(idx);
+                startLongPress();
+              }}
+              onPressUp={() => {
+                if (perksPressedIdx === null) return;
+                if (isLongPress || isShiftPressed) {
+                  randomizeHandler(LoadoutPart.perk, perksPressedIdx);
+                } else {
+                  randomizeHandler(LoadoutPart.perks);
+                }
+                resetPress(LoadoutPart.perk);
               }}
               onPressEnd={() => {
-                setPerksPressedIdx(null);
-              }}
-              onPress={() => {
-                randomizeHandler(LoadoutPart.perks);
+                resetPress(LoadoutPart.perk);
               }}
               className={twMerge(
                 "relative h-24 w-24 outline-0 transition focus-visible:outline-2 md:h-28 md:w-28",
-                canRandomize && perksHoveredIdx !== null && "brightness-125",
+                canRandomize && [
+                  perksHoveredIdx !== null && "brightness-125",
+                  (isLongPress || isShiftPressed) &&
+                    idx !== perksHoveredIdx &&
+                    "brightness-100",
+                ],
               )}
             >
               {/* Background */}
@@ -292,9 +355,12 @@ export default function DesktopRoulette({
               <DiamondOutline
                 className={twMerge(
                   "absolute inset-0 h-full w-full stroke-main-light stroke-2",
-                  canRandomize &&
-                    perksPressedIdx !== null &&
-                    "stroke-main-heavy",
+                  canRandomize && [
+                    perksPressedIdx !== null && "stroke-main-heavy",
+                    (isLongPress || isShiftPressed) &&
+                      idx !== perksHoveredIdx &&
+                      "stroke-main-light",
+                  ],
                 )}
               />
               {/* Image */}
