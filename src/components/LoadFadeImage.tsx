@@ -1,6 +1,12 @@
 "use client";
 
-import { DetailedHTMLProps, ImgHTMLAttributes, type ReactElement } from "react";
+import {
+  DetailedHTMLProps,
+  ImgHTMLAttributes,
+  useEffect,
+  useRef,
+  type ReactElement,
+} from "react";
 import { twMerge } from "tailwind-merge";
 
 export interface LoadFadeImageProps
@@ -16,14 +22,19 @@ export default function LoadFadeImage({
   ...props
 }: LoadFadeImageProps): ReactElement {
   const { alt, className, ..._props } = props;
+  const ref = useRef<HTMLImageElement | null>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.classList.add("opacity-0");
+  }, [props.src, props.srcSet]);
+
   return (
     <img
+      ref={ref}
       alt={alt}
-      onLoad={(e) => {
-        e.currentTarget.classList.remove("opacity-0");
-      }}
-      onChange={(e) => {
-        e.currentTarget.classList.add("opacity-0");
+      onLoad={() => {
+        ref.current?.classList.remove("opacity-0");
       }}
       className={twMerge("opacity-0 transition-opacity", className)}
       {..._props}
