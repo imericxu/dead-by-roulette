@@ -8,8 +8,9 @@ import "./globals.css";
 const jost = Jost({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dead by Roulette",
-  description: "Randomize your Dead by Daylight loadout",
+  title: "Dead by Roulette - Dead by Daylight Randomizer",
+  description:
+    "Randomize your Dead by Daylight loadout (randomize characters, perks, add-ons, and offerings). Customizable to your liking.",
 };
 
 export default function RootLayout({
