@@ -217,6 +217,13 @@ function PerksTab({
     }
   }
 
+  function shouldUnstyle(idx: number): boolean {
+    return (
+      (isShiftPressed && idx !== hoveredIdx) ||
+      (isLongPress && idx !== pressedIdx)
+    );
+  }
+
   return (
     <RouletteTabContent id="perks" title="Perks">
       {/* Vertical Layout */}
@@ -263,9 +270,7 @@ function PerksTab({
                   canRandomize && [
                     hoveredIdx !== null && "bg-overlay-light",
                     pressedIdx !== null && "border-main-heavy",
-                    (isLongPress || isShiftPressed) &&
-                      idx !== hoveredIdx &&
-                      "border-main-light bg-transparent",
+                    shouldUnstyle(idx) && "border-main-light bg-transparent",
                   ],
                 )}
               >
@@ -273,11 +278,12 @@ function PerksTab({
                 <div
                   className={twMerge(
                     "relative h-[72px] w-[72px] shrink-0",
-                    hoveredIdx !== null && "brightness-125",
-                    (isLongPress || isShiftPressed) &&
-                      hoveredIdx !== idx &&
-                      "brightness-100",
-                    !canRandomize && "brightness-100",
+                    canRandomize && [
+                      hoveredIdx !== null && "brightness-125",
+                      ((isShiftPressed && idx !== hoveredIdx) ||
+                        (isLongPress && idx !== pressedIdx)) &&
+                        "brightness-100",
+                    ],
                   )}
                 >
                   {/* Background */}
@@ -286,11 +292,10 @@ function PerksTab({
                   <DiamondOutline
                     className={twMerge(
                       "absolute inset-0 h-full w-full stroke-main-light stroke-2 transition",
-                      pressedIdx !== null && "stroke-main-heavy",
-                      (isLongPress || isShiftPressed) &&
-                        hoveredIdx !== idx &&
-                        "stroke-main-light",
-                      !canRandomize && "stroke-main-light",
+                      canRandomize && [
+                        pressedIdx !== null && "stroke-main-heavy",
+                        shouldUnstyle(idx) && "stroke-main-light",
+                      ],
                     )}
                   />
                   {/* Image */}
@@ -335,6 +340,13 @@ function AbilityAddOnsTab({
       clearTimeout(longPressTimeout);
       setLongPressTimeout(null);
     }
+  }
+
+  function shouldUnstyle(idx: number): boolean {
+    return (
+      (isShiftPressed && idx !== hoveredAddOnIdx) ||
+      (isLongPress && idx !== pressedAddOnIdx)
+    );
   }
 
   const roleAbilityType: string = match(role)
@@ -445,9 +457,7 @@ function AbilityAddOnsTab({
                         "bg-overlay-light",
                       (abilityPressed || pressedAddOnIdx !== null) &&
                         "border-main-heavy",
-                      (isLongPress || isShiftPressed) &&
-                        idx !== hoveredAddOnIdx &&
-                        "border-main-light bg-transparent",
+                      shouldUnstyle(idx) && "border-main-light bg-transparent",
                     ],
                   )}
                 >
@@ -463,8 +473,7 @@ function AbilityAddOnsTab({
                           "brightness-125",
                         (abilityPressed || pressedAddOnIdx !== null) &&
                           "border-main-heavy",
-                        (isLongPress || isShiftPressed) &&
-                          idx !== hoveredAddOnIdx &&
+                        shouldUnstyle(idx) &&
                           "border-main-light brightness-100",
                       ],
                     )}

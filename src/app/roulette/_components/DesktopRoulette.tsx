@@ -47,7 +47,7 @@ export default function DesktopRoulette({
   const [perksPressedIdx, setPerksPressedIdx] = useState<number | null>(null);
 
   const [isLongPress, setLongPress] = useState(false);
-  const [_, setLongPressTimeout] = useState<Timeout | null>(null);
+  const [, setLongPressTimeout] = useState<Timeout | null>(null);
 
   const startLongPress = useCallback(() => {
     setLongPressTimeout(
@@ -236,8 +236,8 @@ export default function DesktopRoulette({
                       abilityPressed ||
                       addOnsPressedIdx !== null) &&
                       "border-main-heavy",
-                    (isLongPress || isShiftPressed) &&
-                      idx !== addOnsHoveredIdx &&
+                    ((isShiftPressed && idx !== addOnsHoveredIdx) ||
+                      (isLongPress && idx !== addOnsPressedIdx)) &&
                       "border-main-light brightness-100",
                   ],
                 )}
@@ -349,8 +349,8 @@ export default function DesktopRoulette({
                 "relative h-24 w-24 outline-0 transition focus-visible:outline-2 md:h-28 md:w-28",
                 canRandomize && [
                   perksHoveredIdx !== null && "brightness-125",
-                  (isLongPress || isShiftPressed) &&
-                    idx !== perksHoveredIdx &&
+                  ((isShiftPressed && idx !== perksHoveredIdx) ||
+                    (isLongPress && idx !== perksPressedIdx)) &&
                     "brightness-100",
                 ],
               )}
@@ -363,8 +363,8 @@ export default function DesktopRoulette({
                   "absolute inset-0 h-full w-full stroke-main-light stroke-2",
                   canRandomize && [
                     perksPressedIdx !== null && "stroke-main-heavy",
-                    (isLongPress || isShiftPressed) &&
-                      idx !== perksHoveredIdx &&
+                    ((isShiftPressed && idx !== perksHoveredIdx) ||
+                      (isLongPress && idx !== perksPressedIdx)) &&
                       "stroke-main-light",
                   ],
                 )}
