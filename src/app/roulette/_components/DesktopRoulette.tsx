@@ -106,6 +106,7 @@ export default function DesktopRoulette({
                 .with(DbdRole.killer, () => [384, 640])
                 .with(DbdRole.survivor, () => [256, 384, 640])
                 .exhaustive(),
+              "webp",
             )}
             sizes={match(role)
               .with(DbdRole.killer, () => "(max-width: 768px) 480px, 560px")
@@ -162,7 +163,11 @@ export default function DesktopRoulette({
             )}
           >
             <LoadFadeImage
-              srcSet={genSrcSet(loadout.ability.img, [48, 64, 96, 128, 256])}
+              srcSet={genSrcSet(
+                loadout.ability.img,
+                [48, 64, 96, 128, 256],
+                "webp",
+              )}
               sizes="(max-width: 768px) 96px, 112px"
               alt=""
               loading="eager"
@@ -241,6 +246,7 @@ export default function DesktopRoulette({
                   srcSet={genSrcSet(
                     loadout.addOns[idx].img,
                     [48, 64, 96, 128, 256],
+                    "webp",
                   )}
                   sizes="(max-width: 768px) 80px, 96px"
                   alt=""
@@ -291,7 +297,7 @@ export default function DesktopRoulette({
           />
           {/* Image */}
           <LoadFadeImage
-            srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256])}
+            srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256], "webp")}
             sizes="(max-width: 768px) 96px, 112px"
             alt=""
             loading="eager"
@@ -365,7 +371,11 @@ export default function DesktopRoulette({
               />
               {/* Image */}
               <LoadFadeImage
-                srcSet={genSrcSet(loadout.perks[idx].img, [96, 128, 256])}
+                srcSet={genSrcSet(
+                  loadout.perks[idx].img,
+                  [96, 128, 256],
+                  "webp",
+                )}
                 sizes="(max-width: 768px) 96px, 112px"
                 alt=""
                 loading="eager"

@@ -1,14 +1,13 @@
 "use client";
 
+import LoadFadeImage from "@/components/LoadFadeImage";
 import { LoadoutConfigsContext } from "@/components/LoadoutConfigsProvider";
 import { Killer, dbd } from "@/lib/dbd";
 import { ConfigEntity } from "@/lib/settings";
-import Image from "next/image";
+import { genSrcSet } from "@/lib/utils";
 import { use, type ReactElement } from "react";
 import { ToggleButton } from "react-aria-components";
 import LoadingRoleSettings from "../loading";
-import LoadFadeImage from "@/components/LoadFadeImage";
-import { genSrcSet } from "@/lib/utils";
 
 export default function Placeholder(): ReactElement {
   // TODO: I feel like I should only use the necessary parts of the dbd object, but let's worry about optimization later
@@ -49,7 +48,7 @@ export default function Placeholder(): ReactElement {
               {/* Image */}
               <div className="relative h-14 w-11 border border-main-light bg-gradient-to-b from-slate-800 via-sky-200/70 via-30% to-slate-900 transition">
                 <LoadFadeImage
-                  srcSet={genSrcSet(killer.img, [48, 96])}
+                  srcSet={genSrcSet(killer.img, [48, 96], "webp")}
                   sizes="48px"
                   alt=""
                   loading="lazy"

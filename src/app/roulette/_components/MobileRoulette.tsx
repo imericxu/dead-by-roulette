@@ -172,6 +172,7 @@ function CharacterTab({
                   .with(DbdRole.killer, () => [384, 640])
                   .with(DbdRole.survivor, () => [256, 384, 640])
                   .exhaustive(),
+                "webp",
               )}
               sizes="(max-width: 352px) 100vw, 520px"
               alt=""
@@ -294,7 +295,7 @@ function PerksTab({
                   />
                   {/* Image */}
                   <LoadFadeImage
-                    srcSet={genSrcSet(perk.img, [96, 128, 256])}
+                    srcSet={genSrcSet(perk.img, [96, 128, 256], "webp")}
                     sizes="72px"
                     alt=""
                     loading="eager"
@@ -381,7 +382,7 @@ function AbilityAddOnsTab({
               )}
             >
               <LoadFadeImage
-                srcSet={genSrcSet(loadout.ability.img, [96, 128, 256])}
+                srcSet={genSrcSet(loadout.ability.img, [96, 128, 256], "webp")}
                 sizes="80px"
                 alt=""
                 loading="eager"
@@ -469,7 +470,11 @@ function AbilityAddOnsTab({
                     )}
                   >
                     <LoadFadeImage
-                      srcSet={genSrcSet(addOn.img, [48, 64, 96, 128, 256])}
+                      srcSet={genSrcSet(
+                        addOn.img,
+                        [48, 64, 96, 128, 256],
+                        "webp",
+                      )}
                       sizes="64px"
                       alt=""
                       loading="eager"
@@ -524,7 +529,11 @@ function OfferingTab({
             />
             {/* Image */}
             <LoadFadeImage
-              srcSet={genSrcSet(loadout.offering.img, [64, 96, 128, 256])}
+              srcSet={genSrcSet(
+                loadout.offering.img,
+                [64, 96, 128, 256],
+                "webp",
+              )}
               sizes="144px"
               alt=""
               loading="eager"
