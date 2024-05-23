@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import DbdRole from "@/lib/dbdRole";
 import { LoadoutConfig, type ConfigEntity } from "@/lib/settings";
 import { useLiveQuery } from "dexie-react-hooks";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export interface ConfigManager {
   addConfig: (name: string) => Promise<void>;
@@ -17,6 +17,7 @@ export default function useLoadoutConfigs(role: DbdRole): {
   configs: LoadoutConfig[] | undefined;
   configManager: ConfigManager;
 } {
+  const [isVerified, setVerified] = useState(false);
   const configs = useLiveQuery(
     async () =>
       await db.config
@@ -85,11 +86,12 @@ export default function useLoadoutConfigs(role: DbdRole): {
   );
 
   useEffect(() => {
-    if (configs === undefined) return;
+    if (isVerified || configs === undefined) return;
     if (configs.length === 0) {
       void configManager.addConfig("Default");
     }
-  }, [configManager, configs]);
+    setVerified(true);
+  }, [configManager, configs, isVerified]);
 
   return { configs, configManager };
 }
