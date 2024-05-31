@@ -91,23 +91,3 @@ export function saveLastTab(role: DbdRole, tab: SettingsTab): void {
     tab,
   );
 }
-
-/**
- * Configuration for randomizing a loadout.
- */
-export interface LoadoutConfig {
-  id?: number;
-  lastUsed: Date;
-  name: string;
-  role: DbdRole;
-  disabledEntities: Record<ConfigEntity, Set<number>>;
-}
-
-export enum ConfigEntity {
-  characters = "characters",
-  itemTypes = "itemTypes",
-  items = "items",
-  addOns = "addOns",
-  offerings = "offerings",
-  perks = "perks",
-}

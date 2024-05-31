@@ -11,7 +11,7 @@ import {
 } from "@/lib/dbd";
 import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
-import { type LoadoutConfig } from "@/lib/settings";
+import { type Config } from "@/lib/config";
 import {
   binarySearchFind,
   pickNRandomWithoutReplacement,
@@ -24,7 +24,7 @@ import { match } from "ts-pattern";
  * Randomize a loadout based on the given configuration and role.
  */
 export function randomizeLoadout(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
 ): Loadout {
   const character: Killer | Survivor = _randomizeCharacter(config, role);
@@ -70,7 +70,7 @@ export function randomizeLoadout(
  * randomized as well.
  */
 export function randomizeCharacter(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
 ): Loadout {
@@ -102,7 +102,7 @@ export function randomizeCharacter(
  * If the role is survivor, this will randomize the item and its add-ons.
  */
 export function randomizeAbility(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
 ): Loadout {
@@ -120,7 +120,7 @@ export function randomizeAbility(
  * Randomize the add-ons of a loadout.
  */
 export function randomizeAddOns(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
 ): Loadout {
@@ -138,7 +138,7 @@ export function randomizeAddOns(
 }
 
 export function randomizeAddOn(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
   index: number,
@@ -170,7 +170,7 @@ export function randomizeAddOn(
 }
 
 export function randomizeOffering(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
 ): Loadout {
@@ -181,7 +181,7 @@ export function randomizeOffering(
 }
 
 export function randomizePerks(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
 ): Loadout {
@@ -192,7 +192,7 @@ export function randomizePerks(
 }
 
 export function randomizePerk(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
   loadout: Readonly<Loadout>,
   index: number,
@@ -217,7 +217,7 @@ export function randomizePerk(
 }
 
 function _randomizeCharacter(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
 ): Killer | Survivor {
   return pickRandom(
@@ -232,7 +232,7 @@ function _randomizeCharacter(
 }
 
 function _randomizeKillerAddOns(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   killer: Readonly<Killer>,
 ): AddOn[] {
   return pickNRandomWithoutReplacement(
@@ -247,7 +247,7 @@ function _randomizeKillerAddOns(
   );
 }
 
-function _randomizeSurvivorItem(config: Readonly<LoadoutConfig>): Item {
+function _randomizeSurvivorItem(config: Readonly<Config>): Item {
   const itemType: ItemType = pickRandom(
     dbd.survivorRelated.itemTypes.filter(
       (itemType) => !config.disabledEntities.itemTypes.has(itemType.id),
@@ -263,7 +263,7 @@ function _randomizeSurvivorItem(config: Readonly<LoadoutConfig>): Item {
 }
 
 function _randomizeSurvivorAddOns(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   item: Readonly<Item>,
 ): AddOn[] {
   const itemType: ItemType = _itemTypeFromItem(item);
@@ -280,7 +280,7 @@ function _randomizeSurvivorAddOns(
 }
 
 function _randomizeOffering(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
 ): Offering {
   return pickRandom(
@@ -296,7 +296,7 @@ function _randomizeOffering(
 }
 
 function _randomizePerks(
-  config: Readonly<LoadoutConfig>,
+  config: Readonly<Config>,
   role: Readonly<DbdRole>,
 ): Perk[] {
   return pickNRandomWithoutReplacement(

@@ -1,14 +1,14 @@
 "use client";
 
+import { ConfigProvider } from "@/components/ConfigContext";
 import DbdRole from "@/lib/dbdRole";
 import { type ReactElement } from "react";
 import Roulette from "../_components/Roulette";
-import LoadoutConfigsProvider from "@/components/LoadoutConfigsProvider";
 
 export default function SurvivorRoulette(): ReactElement {
   return (
-    <LoadoutConfigsProvider role={DbdRole.survivor}>
+    <ConfigProvider role={DbdRole.survivor}>
       <Roulette role={DbdRole.survivor} />
-    </LoadoutConfigsProvider>
+    </ConfigProvider>
   );
 }

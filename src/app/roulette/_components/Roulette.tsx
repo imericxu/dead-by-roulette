@@ -1,7 +1,8 @@
 "use client";
 
+import ConfigContext from "@/components/ConfigContext";
 import StyledButton from "@/components/StyledButton";
-import useLoadoutConfigs from "@/hooks/useLoadoutConfigs";
+import { Config } from "@/lib/config";
 import DbdRole from "@/lib/dbdRole";
 import type Loadout from "@/lib/loadout";
 import { LoadoutPart } from "@/lib/loadout";
@@ -15,11 +16,11 @@ import {
   randomizePerk,
   randomizePerks,
 } from "@/lib/randomize";
-import { type LoadoutConfig } from "@/lib/settings";
 import { Timeout } from "@/lib/utils";
 import {
   ReactElement,
   Suspense,
+  use,
   useCallback,
   useEffect,
   useState,
@@ -29,6 +30,7 @@ import { match } from "ts-pattern";
 import DesktopRoulette from "./DesktopRoulette";
 import LoadMobileRoulette from "./LoadMobileRoulette";
 import MobileRoulette from "./MobileRoulette";
+import useShiftKey from "@/hooks/useShiftKey";
 
 const RANDOMIZE_INTERVAL_MS = 500;
 
@@ -44,48 +46,32 @@ export interface RouletteProps {
 }
 
 export default function Roulette({ role }: RouletteProps): ReactElement {
-  const configsContext = useLoadoutConfigs(role);
-  if (configsContext === undefined) {
-    throw new Error("LoadoutConfigsContext is undefined");
-  }
-  const config: LoadoutConfig | undefined = configsContext?.configs?.at(0);
+  const config: Config | null | undefined = use(ConfigContext);
+  if (config === undefined) throw new Error("config is undefined");
 
-  const [canRandomize, setCanRandomize] = useState(true);
+  const isShiftPressed = useShiftKey();
+
+  const [initialized, setInitialized] = useState(false);
+
+  const [canRandomize, setCanRandomize] = useState(false);
   const [, setRandomizeTimeout] = useState<Timeout | null>(null);
-
-  const [isShiftPressed, setIsShiftPressed] = useState(false);
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Shift") {
-        setIsShiftPressed(true);
-      }
-    };
-    const onKeyUp = (e: KeyboardEvent) => {
-      if (e.key === "Shift") {
-        setIsShiftPressed(false);
-      }
-    };
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("keyup", onKeyUp);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("keyup", onKeyUp);
-    };
-  }, []);
 
   const [loadout, setLoadout] = useState<Loadout | null>(null);
 
   useEffect(() => {
-    if (config !== undefined) {
+    if (initialized) return;
+    if (config !== null) {
       setLoadout(randomizeLoadout(config, role));
+      setCanRandomize(true);
+      setInitialized(true);
     }
-  }, [config, role]);
+  }, [config, role, initialized]);
 
   const randomizeHandler = useCallback(
     (loadoutPart: LoadoutPart, idx?: number): void => {
-      if (config === undefined) throw Error("Config is undefined");
+      if (config === null) throw Error("Config hasn't loaded");
       if (!canRandomize) return;
+
       setCanRandomize(false);
       setRandomizeTimeout((prev) => {
         if (prev !== null) clearTimeout(prev);
@@ -94,6 +80,7 @@ export default function Roulette({ role }: RouletteProps): ReactElement {
           setRandomizeTimeout(null);
         }, RANDOMIZE_INTERVAL_MS);
       });
+
       setLoadout((prev) => {
         if (prev === null) throw Error("Previous loadout is null");
         return match(loadoutPart)

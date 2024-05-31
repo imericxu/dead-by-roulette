@@ -1,13 +1,13 @@
 import Dexie, { Table } from "dexie";
-import { LoadoutConfig } from "@/lib/settings";
+import { Config } from "@/lib/config";
 
 export class MyDatabase extends Dexie {
-  config!: Table<LoadoutConfig, number>;
+  config!: Table<Config, number>;
 
   constructor() {
     super("myDatabase");
     this.version(1).stores({
-      config: "++id, lastUsed",
+      config: "++id, lastUsed, role",
     });
   }
 }

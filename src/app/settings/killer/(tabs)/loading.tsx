@@ -1,3 +1,3 @@
-import LoadingRoleSettings from "../../_components/LoadingRoleSettings";
+import LoadingRoleSettings from "@/app/settings/_components/LoadingRoleSettings";
 
 export default LoadingRoleSettings;

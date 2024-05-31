@@ -1,15 +1,16 @@
 "use client";
 
-import type { ReactElement, ReactNode } from "react";
-import DbdRole from "@/lib/dbdRole";
-import LinkTabber from "@/app/settings/_components/LinkTabber";
-import { SettingsTab } from "@/lib/settings";
-import { match } from "ts-pattern";
-import { type Route } from "next";
-import EffectStoreLastTab from "@/app/settings/_components/EffectStoreLastTab";
-import { LoadoutConfigsContext } from "@/components/LoadoutConfigsProvider";
-import useLoadoutConfigs from "@/hooks/useLoadoutConfigs";
 import ConfigSelect from "@/app/settings/_components/ConfigSelect";
+import EffectStoreLastTab from "@/app/settings/_components/EffectStoreLastTab";
+import LinkTabber from "@/app/settings/_components/LinkTabber";
+import ConfigContext from "@/components/ConfigContext";
+import useConfigs from "@/hooks/useConfigs";
+import DbdRole from "@/lib/dbdRole";
+import { Config } from "@/lib/config";
+import { SettingsTab } from "@/lib/settings";
+import { type Route } from "next";
+import type { ReactElement, ReactNode } from "react";
+import { match } from "ts-pattern";
 
 const KILLER_TABS: Record<
   Exclude<SettingsTab, "loadout">,
@@ -36,6 +37,11 @@ export interface SettingsPageProps {
   role: DbdRole;
 }
 
+/**
+ * Common layout for the settings pages.
+ *
+ * Content up to the config drop down.
+ */
 export default function RoleSettingsLayout(
   props: SettingsPageProps,
 ): ReactElement {
@@ -51,7 +57,7 @@ export default function RoleSettingsLayout(
       .exhaustive(),
   );
 
-  const { configs, configManager } = useLoadoutConfigs(props.role);
+  const configs: Config[] | undefined = useConfigs(props.role);
 
   return (
     <>
@@ -61,20 +67,18 @@ export default function RoleSettingsLayout(
         tabs={tabs}
         className="col-span-full w-dvw max-w-fit justify-self-center"
       />
-      <LoadoutConfigsContext.Provider value={{ configs, configManager }}>
+      <ConfigContext.Provider value={configs ? configs[0] : null}>
         <main
           id="main"
           className="col-span-full col-start-1 grid grid-cols-subgrid gap-y-4"
         >
-          {" "}
           <ConfigSelect
             configs={configs}
-            configManager={configManager}
             className="col-span-full col-start-1"
           />
           {props.children}
         </main>
-      </LoadoutConfigsContext.Provider>
+      </ConfigContext.Provider>
     </>
   );
 }

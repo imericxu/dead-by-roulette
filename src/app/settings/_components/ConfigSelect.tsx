@@ -1,8 +1,9 @@
 "use client";
 
+import StyledButton, { buttonStyles } from "@/components/StyledButton";
+import { selectConfig, type Config } from "@/lib/config";
+import { LucideChevronDown, LucideSettings2 } from "lucide-react";
 import { type ReactElement } from "react";
-import { type LoadoutConfig } from "@/lib/settings";
-import { ConfigManager } from "@/hooks/useLoadoutConfigs";
 import {
   Button,
   Label,
@@ -12,25 +13,21 @@ import {
   Select,
   SelectValue,
 } from "react-aria-components";
-import { LucideChevronDown, LucideSettings2 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import StyledButton, { buttonStyles } from "@/components/StyledButton";
 
 export interface ConfigSelectProps {
   className?: string;
-  configs: LoadoutConfig[] | undefined;
-  configManager: ConfigManager;
+  configs: Config[] | undefined;
 }
 
 export default function ConfigSelect({
   className,
   configs,
-  configManager,
 }: ConfigSelectProps): ReactElement {
   return (
     <>
       <div className={twMerge("flex w-full gap-2", className)}>
-        {configs !== undefined && configs.length >= 1 ? (
+        {configs !== undefined ? (
           <div className="flex-grow">
             <Select
               autoComplete="on"
@@ -38,7 +35,7 @@ export default function ConfigSelect({
               onSelectionChange={async (selected) => {
                 if (typeof selected !== "number")
                   throw new Error("Invalid key.");
-                await configManager.selectConfig(selected);
+                await selectConfig(selected);
               }}
               className="flex items-baseline gap-2"
             >
@@ -92,10 +89,7 @@ export default function ConfigSelect({
         )}
 
         {/* Manage Configs */}
-        <StyledButton
-          isDisabled={configs === undefined || configs.length === 0}
-          size="icon"
-        >
+        <StyledButton isDisabled={configs === undefined} size="icon">
           <LucideSettings2 size={20} />
         </StyledButton>
       </div>
