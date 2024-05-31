@@ -62,6 +62,9 @@ export default function RoleSettingsLayout(
   return (
     <>
       <EffectStoreLastTab role={props.role} />
+      <p className="col-span-full inline-block w-fit justify-self-center bg-black px-2 py-1 text-center">
+        🚧 Under construction 🚧
+      </p>
       <LinkTabber
         layoutRoute={layoutRoute}
         tabs={tabs}
